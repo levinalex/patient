@@ -1,0 +1,29 @@
+<% title "Lab Test Results" %>
+
+<table>
+  <tr>
+    <th>Patient</th>
+    <th>Accession #</th>
+    <th>Department</th>
+    <th>Lab Test</th>
+    <th>Value</th>
+    <th>Units</th>
+    <th>Normal Range</th>
+  </tr>
+  <% for lab_test_result in @lab_test_results %>
+    <tr>
+      <td><%=h lab_test_result.accession.patient.full_name %></td>
+      <td><%=h lab_test_result.accession_id %></td>
+      <td><%=h lab_test_result.lab_test.lab_test_department.name %></td>
+      <td><%=h lab_test_result.lab_test.name %></td>
+      <td><%=h lab_test_result.value %></td>
+      <td><%=h lab_test_result.lab_test.lab_test_unit.name %></td>
+      <td><%=h lab_test_result.range_min %> - <%=h lab_test_result.range_max %></td>
+      <td><%= link_to "Show", lab_test_result %></td>
+      <td><%= link_to "Edit", edit_lab_test_result_path(lab_test_result) %></td>
+      <td><%= link_to "Destroy", lab_test_result, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Lab Test Result", new_lab_test_result_path %></p>

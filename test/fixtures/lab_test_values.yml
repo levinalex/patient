@@ -1,0 +1,9 @@
+one:
+  value: MyString
+  flag: MyString
+  note: MyText
+
+two:
+  value: MyString
+  flag: MyString
+  note: MyText

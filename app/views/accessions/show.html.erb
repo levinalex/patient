@@ -1,0 +1,67 @@
+<% title "Accession" %>
+
+<p>
+  <strong>Accession #</strong>
+  <%=h @accession.id %>
+</p>
+<p>
+  <strong>Patient:</strong>
+  <%=h @accession.patient.full_name %>
+</p>
+<p>
+  <strong>Other ID:</strong>
+  <%=h @accession.other_id %>
+</p>
+<p>
+  <strong>Labels:</strong>
+  <%=h @accession.labels %>
+</p>
+<p>
+  <strong>Drawn At:</strong>
+  <%=h @accession.drawn_at %>
+</p>
+<p>
+  <strong>Drawn By:</strong>
+  <%=h @accession.drawn_by %>
+</p>
+<p>
+  <strong>Specimen Type:</strong>
+  <%=h @accession.specimen_type_id %>
+</p>
+<p>
+  <strong>Received At:</strong>
+  <%=h @accession.received_at %>
+</p>
+<p>
+  <strong>Received By:</strong>
+  <%=h @accession.received_by %>
+</p>
+<p>
+  <strong>Stat:</strong>
+  <%=h @accession.stat %>
+</p>
+<p>
+  <strong>Note:</strong>
+  <%=h @accession.note %>
+</p>
+<p>
+  <strong>Diagnosis:</strong>
+  <%=h @accession.diagnosis %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_accession_path(@accession) %> |
+  <%= link_to "Destroy", @accession, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", accessions_path %>
+</p>
+
+<h2>Test Results</h2>
+<p>
+  <% for lab_test_result in @accession.lab_test_results %>
+    <p>
+      <%=h lab_test_result.lab_test.name %>:
+      <%=h lab_test_result.value %>
+      <%=h lab_test_result.lab_test.lab_test_unit.name %>
+    </p>
+  <% end %>
+</p>

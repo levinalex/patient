@@ -1,0 +1,36 @@
+<% title "Lab Test Normal Range" %>
+
+<p>
+  <strong>Test:</strong>
+  <%=h @lab_test_normal_range.lab_test.name %>
+</p>
+<p>
+  <strong>Min:</strong>
+  <%=h @lab_test_normal_range.min %>
+</p>
+<p>
+  <strong>Max:</strong>
+  <%=h @lab_test_normal_range.max %>
+</p>
+<p>
+  <strong>Gender:</strong>
+  <%=h @lab_test_normal_range.gender %>
+</p>
+<p>
+  <strong>Min Age:</strong>
+  <%=h @lab_test_normal_range.min_age %>
+</p>
+<p>
+  <strong>Max Age:</strong>
+  <%=h @lab_test_normal_range.max_age %>
+</p>
+<p>
+  <strong>Age Unit:</strong>
+  <%=h @lab_test_normal_range.age_unit %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_lab_test_normal_range_path(@lab_test_normal_range) %> |
+  <%= link_to "Destroy", @lab_test_normal_range, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", lab_test_normal_ranges_path %>
+</p>

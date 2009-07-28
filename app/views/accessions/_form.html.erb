@@ -1,0 +1,48 @@
+<% form_for @accession do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :patient_id %><br />
+    <%= f.collection_select :patient_id, Patient.all, :id, :full_name %>
+  </p>
+  <p>
+    <%= f.label :other_id %><br />
+    <%= f.text_field :other_id %>
+  </p>
+  <p>
+    <%= f.label :labels %><br />
+    <%= f.text_field :labels %>
+  </p>
+  <p>
+    <%= f.label :drawn_at %><br />
+    <%= f.datetime_select :drawn_at %>
+  </p>
+  <p>
+    <%= f.label :drawn_by %><br />
+    <%= f.text_field :drawn_by %>
+  </p>
+  <p>
+    <%= f.label :specimen_type_id %><br />
+    <%= f.text_field :specimen_type_id %>
+  </p>
+  <p>
+    <%= f.label :received_at %><br />
+    <%= f.text_field :received_at %>
+  </p>
+  <p>
+    <%= f.label :received_by %><br />
+    <%= f.text_field :received_by %>
+  </p>
+  <p>
+    <%= f.label :stat %><br />
+    <%= f.check_box :stat %>
+  </p>
+  <p>
+    <%= f.label :note %><br />
+    <%= f.text_area :note %>
+  </p>
+  <p>
+    <%= f.label :diagnosis %><br />
+    <%= f.text_field :diagnosis %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

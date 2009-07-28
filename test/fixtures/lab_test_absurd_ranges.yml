@@ -1,0 +1,17 @@
+one:
+  min: 9.99
+  max: 9.99
+  gender: MyString
+  min_age: 1
+  max_age: 1
+  age_unit: MyString
+  lab_test_id: 1
+
+two:
+  min: 9.99
+  max: 9.99
+  gender: MyString
+  min_age: 1
+  max_age: 1
+  age_unit: MyString
+  lab_test_id: 1

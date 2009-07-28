@@ -1,0 +1,29 @@
+<% title "Lab Tests" %>
+
+<table>
+  <tr>
+    <th>Department</th>
+    <th>Code</th>
+    <th>Name</th>
+    <th>CPT Code</th>
+    <th>Description</th>
+    <th>Decimals</th>
+    <th>Units</th>
+  </tr>
+  <% for lab_test in @lab_tests %>
+    <tr>
+      <td><%=h lab_test.lab_test_department.name %></td>
+      <td><%=h lab_test.code %></td>
+      <td><%=h lab_test.name %></td>
+      <td><%=h lab_test.procedure %></td>
+      <td><%=h lab_test.description %></td>
+      <td><%=h lab_test.decimals %></td>
+      <td><%=h lab_test.lab_test_unit.name %></td>
+      <td><%= link_to "Show", lab_test %></td>
+      <td><%= link_to "Edit", edit_lab_test_path(lab_test) %></td>
+      <td><%= link_to "Destroy", lab_test, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Lab Test", new_lab_test_path %></p>

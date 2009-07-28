@@ -1,0 +1,8 @@
+<% title "Edit Accession ID " + @accession.id.to_s %>
+
+<%= render :partial => 'form' %>
+
+<p>
+  <%= link_to "Show", @accession %> |
+  <%= link_to "View All", accessions_path %>
+</p>

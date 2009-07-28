@@ -1,0 +1,38 @@
+en:
+  patients:
+    given_name: "Given Name"
+    middle_name: "Middle Name"
+    family_name: "Last Name"
+    family_name2: "Mother's Maiden Name"
+    name: "Name"
+    gender: "Sex"
+    birthdate: "Birth Date"
+    age: "Age"
+    identifier: "National ID"
+    address: "Address"
+    new_patient: "New Patient"
+    show_patient: "Show"
+    edit_patient: "Edit"
+    view_all: "View All"
+    back_to_list: "Back to List"
+    destroy: "Destroy"
+    confirm_destroy: "Are you sure?"
+    index:
+      title: "Patients"
+    new:
+      title: "New Patient"
+    show:
+      title: "Patient Info"
+    edit:
+      title: "Edit Patient Info"
+    form:
+      submit: "Submit"
+      prompt_sex: "Select Sex:"
+      day: "Day:"
+      month: "Month:"
+      year: "Year:"
+          
+  flash:
+    create: "Successfully created patient."
+    update: "Successfully updated patient."
+    destroy: "Successfully destroyed patient."

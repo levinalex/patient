@@ -1,0 +1,29 @@
+<% title "Lab Test Normal Ranges" %>
+
+<table>
+  <tr>
+    <th>Test</th>
+    <th>Min</th>
+    <th>Max</th>
+    <th>Gender</th>
+    <th>Min Age</th>
+    <th>Max Age</th>
+    <th>Age Unit</th>
+  </tr>
+  <% for lab_test_normal_range in @lab_test_normal_ranges %>
+    <tr>
+      <td><%=h lab_test_normal_range.lab_test.name %></td>
+      <td><%=h lab_test_normal_range.min %></td>
+      <td><%=h lab_test_normal_range.max %></td>
+      <td><%=h lab_test_normal_range.gender %></td>
+      <td><%=h lab_test_normal_range.min_age %></td>
+      <td><%=h lab_test_normal_range.max_age %></td>
+      <td><%=h lab_test_normal_range.age_unit %></td>
+      <td><%= link_to "Show", lab_test_normal_range %></td>
+      <td><%= link_to "Edit", edit_lab_test_normal_range_path(lab_test_normal_range) %></td>
+      <td><%= link_to "Destroy", lab_test_normal_range, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Lab Test Normal Range", new_lab_test_normal_range_path %></p>

@@ -1,0 +1,11 @@
+<% labeled_form_for @patient do |f| %>
+  <%= f.text_field :given_name, :required => true, :label => t('patients.given_name')%>
+  <%= f.text_field :middle_name, :label => t('patients.middle_name') %>
+  <%= f.text_field :family_name, :required => true, :label => t('patients.family_name') %>
+  <%= f.text_field :family_name2, :label => t('patients.family_name2') %>
+  <%= f.select :gender, Patient::GENDER_TYPES, :prompt => "Select", :required => true, :label => t('patients.gender') %>
+  <%= f.date_select :birthdate, :label => t('patients.birthdate'), :required => true %>
+  <%= f.text_field :identifier, :label => t('patients.identifier') %>
+  <%= f.text_area :address, :label => t('patients.address') %>
+  <%= f.submit %>
+<% end %>

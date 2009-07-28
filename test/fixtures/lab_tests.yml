@@ -1,0 +1,11 @@
+one:
+  code: MyString
+  name: MyString
+  description: MyText
+  decimals: 1
+
+two:
+  code: MyString
+  name: MyString
+  description: MyText
+  decimals: 1

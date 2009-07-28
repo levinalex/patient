@@ -1,0 +1,2 @@
+module LabTestPanelsHelper
+end

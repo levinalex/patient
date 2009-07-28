@@ -1,0 +1,2 @@
+module LabTestValuesHelper
+end

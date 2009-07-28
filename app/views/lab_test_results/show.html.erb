@@ -1,0 +1,20 @@
+<% title "Lab Test Result" %>
+
+<p>
+  <strong>Value:</strong>
+  <%=h @lab_test_result.value %>
+</p>
+<p>
+  <strong>Lab Test:</strong>
+  <%=h @lab_test_result.lab_test.name %>
+</p>
+<p>
+  <strong>Accession ID:</strong>
+  <%=h @lab_test_result.accession_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_lab_test_result_path(@lab_test_result) %> |
+  <%= link_to "Destroy", @lab_test_result, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", lab_test_results_path %>
+</p>

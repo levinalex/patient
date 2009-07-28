@@ -1,0 +1,28 @@
+<% title "Patient" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @patient.full_name %>
+</p>
+<p>
+  <strong>Gender:</strong>
+  <%=h @patient.gender %>
+</p>
+<p>
+  <strong>Age:</strong>
+  <%=h @patient.age %>
+</p>
+<p>
+  <strong>Identifier:</strong>
+  <%=h @patient.identifier %>
+</p>
+<p>
+  <strong>Address:</strong>
+  <%=h @patient.address %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_patient_path(@patient) %> |
+  <%= link_to "Destroy", @patient, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", patients_path %>
+</p>

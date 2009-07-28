@@ -1,0 +1,15 @@
+one:
+  numeric: false
+  ratio: false
+  range: false
+  fraction: false
+  text_length: 1
+  lab_test_value_id: 1
+
+two:
+  numeric: false
+  ratio: false
+  range: false
+  fraction: false
+  text_length: 1
+  lab_test_value_id: 1

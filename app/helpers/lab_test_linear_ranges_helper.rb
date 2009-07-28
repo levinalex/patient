@@ -1,0 +1,2 @@
+module LabTestLinearRangesHelper
+end

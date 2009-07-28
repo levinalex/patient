@@ -1,0 +1,32 @@
+<% form_for @lab_test do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :lab_test_department_id %><br />
+    <%= f.collection_select :lab_test_department_id, LabTestDepartment.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :procedure %><br />
+    <%= f.text_field :procedure %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :decimals %><br />
+    <%= f.text_field :decimals %>
+  </p>
+  <p>
+    <%= f.label :lab_test_unit_id %><br />
+    <%= f.collection_select :lab_test_unit_id, LabTestUnit.all, :id, :name %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

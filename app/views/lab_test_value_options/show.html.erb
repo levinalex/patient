@@ -1,0 +1,38 @@
+<% title "Lab Test Value Option" %>
+
+<p>
+  <strong>Test:</strong>
+  <%=h @lab_test_value_option.lab_test.name %>
+</p>
+<p>
+  <strong>Numeric:</strong>
+  <%=h @lab_test_value_option.numeric %>
+</p>
+<p>
+  <strong>Ratio:</strong>
+  <%=h @lab_test_value_option.ratio %>
+</p>
+<p>
+  <strong>Range:</strong>
+  <%=h @lab_test_value_option.range %>
+</p>
+<p>
+  <strong>Fraction:</strong>
+  <%=h @lab_test_value_option.fraction %>
+</p>
+<p>
+  <strong>Text Length:</strong>
+  <%=h @lab_test_value_option.text_length %>
+</p>
+<p>
+  <strong>Lab Test Values:</strong>
+  <% for lab_test_value_option_joint in @lab_test_value_option.lab_test_value_option_joints %>
+    <p><%=h lab_test_value_option_joint.lab_test_value.value %></p>
+  <% end %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_lab_test_value_option_path(@lab_test_value_option) %> |
+  <%= link_to "Destroy", @lab_test_value_option, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", lab_test_value_options_path %>
+</p>

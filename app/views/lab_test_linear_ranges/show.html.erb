@@ -1,0 +1,36 @@
+<% title "Lab Test Linear Range" %>
+
+<p>
+  <strong>Min:</strong>
+  <%=h @lab_test_linear_range.min %>
+</p>
+<p>
+  <strong>Max:</strong>
+  <%=h @lab_test_linear_range.max %>
+</p>
+<p>
+  <strong>Gender:</strong>
+  <%=h @lab_test_linear_range.gender %>
+</p>
+<p>
+  <strong>Min Age:</strong>
+  <%=h @lab_test_linear_range.min_age %>
+</p>
+<p>
+  <strong>Max Age:</strong>
+  <%=h @lab_test_linear_range.max_age %>
+</p>
+<p>
+  <strong>Age Unit:</strong>
+  <%=h @lab_test_linear_range.age_unit %>
+</p>
+<p>
+  <strong>Test:</strong>
+  <%=h @lab_test_linear_range.lab_test.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_lab_test_linear_range_path(@lab_test_linear_range) %> |
+  <%= link_to "Destroy", @lab_test_linear_range, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", lab_test_linear_ranges_path %>
+</p>

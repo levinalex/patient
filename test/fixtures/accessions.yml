@@ -1,0 +1,25 @@
+one:
+  patient_id: 1
+  other_id: 1
+  labels: 1
+  drawn_at: 2009-07-21 15:17:58
+  drawn_by: 1
+  specimen_type_id: 1
+  received_at: 2009-07-21 15:17:58
+  received_by: 1
+  stat?: false
+  note: MyText
+  diagnosis: 9.99
+
+two:
+  patient_id: 1
+  other_id: 1
+  labels: 1
+  drawn_at: 2009-07-21 15:17:58
+  drawn_by: 1
+  specimen_type_id: 1
+  received_at: 2009-07-21 15:17:58
+  received_by: 1
+  stat?: false
+  note: MyText
+  diagnosis: 9.99
