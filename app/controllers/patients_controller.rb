@@ -1,4 +1,7 @@
 class PatientsController < ApplicationController
+
+  filter_parameter_logging :given_name, :middle_name, :family_name, :family_name2, :birthdate, :identifier, :address
+
   def index
     @patients = Patient.all
   end
