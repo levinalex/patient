@@ -1,6 +1,0 @@
-.DS_Store
-.svn
-*~
-log/*.log
-tmp/**/*
-doc/app
