@@ -5,6 +5,7 @@ class AccessionsController < ApplicationController
   
   def show
     @accession = Accession.find(params[:id])
+    @lab_test_department_names = @accession.lab_test_results.group_by { |d| d.lab_test.lab_test_department.name }
   end
   
   def new

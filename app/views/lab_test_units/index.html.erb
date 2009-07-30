@@ -6,7 +6,7 @@
   </tr>
   <% for lab_test_unit in @lab_test_units %>
     <tr>
-      <td><%=h lab_test_unit.name %></td>
+      <td><%= lab_test_unit.name %></td>
       <td><%= link_to "Show", lab_test_unit %></td>
       <td><%= link_to "Edit", edit_lab_test_unit_path(lab_test_unit) %></td>
       <td><%= link_to "Destroy", lab_test_unit, :confirm => 'Are you sure?', :method => :delete %></td>
