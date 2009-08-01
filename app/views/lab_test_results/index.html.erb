@@ -14,9 +14,9 @@
     <tr>
       <td><%=h lab_test_result.accession.patient.full_name %></td>
       <td><%=h lab_test_result.accession_id %></td>
-      <td><%=h lab_test_result.lab_test.lab_test_department.name %></td>
+      <td><%=h lab_test_result.department %></td>
       <td><%=h lab_test_result.lab_test.name %></td>
-      <td><%=h lab_test_result.value %></td>
+      <td><%=h number_with_precision(lab_test_result.value, :precision => lab_test_result.lab_test.decimals, :delimiter => ',') %></td>
       <td><%=h lab_test_result.lab_test.lab_test_unit.name %></td>
       <td><%=h lab_test_result.range_min %> - <%=h lab_test_result.range_max %></td>
       <td><%= link_to "Show", lab_test_result %></td>

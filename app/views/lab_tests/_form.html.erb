@@ -25,6 +25,10 @@
     <%= f.text_field :decimals %>
   </p>
   <p>
+    <%= f.label :derivation %><br />
+    <%= f.check_box :derivation %>
+  </p>
+  <p>
     <%= f.label :lab_test_unit_id %><br />
     <%= f.collection_select :lab_test_unit_id, LabTestUnit.all, :id, :name %>
   </p>

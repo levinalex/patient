@@ -1,6 +1,5 @@
-<h2>
-  Accession #<%=h @accession.id %>
-</h2>
+<% title "Accession #" + @accession.id.to_s %>
+<p>
   <strong>Patient:</strong>
   <%=h @accession.patient.full_name %>
 </p>
@@ -14,7 +13,7 @@
 </p>
 <p>
   <strong>Reported At:</strong>
-  <%=h @accession.completed_at %>
+  <%=h @accession.reported_at %>
 </p>
 
 <p>
@@ -24,17 +23,20 @@
 </p>
 
 <p>
-  <% @lab_test_department_names.each do |department_name, lab_test_results| %>
-    <h3>
-      <%=h department_name %>
-    </h3>
-    <% for lab_test_result in lab_test_results %>
-      <p>
-        <%=h lab_test_result.lab_test.name %>:
-        <%=h lab_test_result.value %>
-        <%= lab_test_result.lab_test.lab_test_unit.name %>
-        (<%=h lab_test_result.range_min %> - <%=h lab_test_result.range_max %>)
-      </p>
+  <% @departments.each do |name, results| %>
+    <h3><%=h name %></h3>
+    <% for result in results %>
+      <div>
+        <%=h result.lab_test.name %>:
+        <% unless result.lab_test.derivation? %>
+          <%=h number_with_precision(result.value, :precision => result.lab_test.decimals, :delimiter => ',') %>
+        <% else %>
+          <% code = result.lab_test.code.underscore %>
+          <%=h @accession.ldl %>
+        <% end %>
+        <%=h result.lab_test.lab_test_unit.name %>
+        (<%=h result.range_min %> - <%=h result.range_max %>)
+      </div>
     <% end %>
   <% end %>
 </p>

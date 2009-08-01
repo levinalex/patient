@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090728002309) do
+ActiveRecord::Schema.define(:version => 20090801092620) do
 
   create_table "accessions", :force => true do |t|
     t.integer  "patient_id"
@@ -25,7 +25,8 @@ ActiveRecord::Schema.define(:version => 20090728002309) do
     t.decimal  "diagnosis"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "completed_at"
+    t.datetime "reported_at"
+    t.integer  "reported_by"
   end
 
   create_table "lab_test_absurd_ranges", :force => true do |t|
@@ -147,6 +148,7 @@ ActiveRecord::Schema.define(:version => 20090728002309) do
     t.integer  "lab_test_department_id"
     t.integer  "lab_test_unit_id"
     t.integer  "procedure"
+    t.boolean  "derivation"
   end
 
   create_table "patients", :force => true do |t|
