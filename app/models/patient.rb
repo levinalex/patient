@@ -23,6 +23,11 @@ class Patient < ActiveRecord::Base
     age = ((Date.today - birthdate.to_date).to_i / days_per_year).floor
   end
   
+  def age_in_months
+    months = Date.today.month - birthdate.month
+    age * 12 + months
+  end
+    
   def validate
     errors.add(:birthdate, "cannot be in the future") if birthdate > Date.today unless birthdate.nil?
   end

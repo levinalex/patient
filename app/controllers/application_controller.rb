@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   private
   
   def set_user_language
-    I18n.locale = 'en'
+    I18n.locale = 'es-PA'
   end
   
 end

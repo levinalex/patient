@@ -4,7 +4,7 @@ en:
     middle_name: "Middle Name"
     family_name: "Last Name"
     family_name2: "Mother's Maiden Name"
-    name: "Name"
+    full_name: "Name"
     gender: "Sex"
     birthdate: "Birth Date"
     age: "Age"
@@ -31,6 +31,10 @@ en:
       day: "Day:"
       month: "Month:"
       year: "Year:"
+  accessions:
+    drawn_at: "Drawn at"
+    received_at: "Received at"
+    reported_at: "Reported at"
           
   flash:
     create: "Successfully created patient."

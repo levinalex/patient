@@ -1,23 +1,40 @@
 class LabTestResult < ActiveRecord::Base
   belongs_to :lab_test
   belongs_to :accession
-    
+  
   def department
     lab_test.lab_test_department.name
   end
 
   def range_min
-  # Improve this... will fail if there is a range for a particular sex, does not take into account all possible gender values (i.e. M, F, U)
+    # Missing age component to calculate valid range, instead of calling first
     unless lab_test.lab_test_normal_ranges.blank?
-      lab_test.lab_test_normal_ranges.find(:first, :conditions => [ "gender = ?", "*"]).min.to_s
+      range_min = lab_test.lab_test_normal_ranges.for_its_gender(accession.patient.gender).for_its_age(accession.patient.age).first.min
+      ApplicationController.helpers.number_with_precision(range_min, :precision => lab_test.decimals, :delimiter => ',')
     end
   end
 
   def range_max
-  # Improve this (see above)
+    # Missing age component to calculate valid range (see above)
     unless lab_test.lab_test_normal_ranges.blank?
-      lab_test.lab_test_normal_ranges.find(:first, :conditions => [ "gender = ?", "*"]).max.to_s
+      range_max = lab_test.lab_test_normal_ranges.for_its_gender(accession.patient.gender).for_its_age(accession.patient.age).first.max
+      ApplicationController.helpers.number_with_precision(range_max, :precision => lab_test.decimals, :delimiter => ',')
     end
   end
   
+  def range
+    if range_min
+      if range_max
+        [range_min, "-", range_max].join(' ')
+      else
+        [">", range_min].join(' ')
+      end
+    else
+      if range_max
+        ["<", range_max].join(' ')
+      else
+        ""
+      end
+    end
+  end
 end

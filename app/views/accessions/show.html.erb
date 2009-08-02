@@ -1,42 +1,42 @@
 <% title "Accession #" + @accession.id.to_s %>
 <p>
-  <strong>Patient:</strong>
+  <strong><%= t 'patients.full_name' %>:</strong>
   <%=h @accession.patient.full_name %>
 </p>
 <p>
-  <strong>Drawn At:</strong>
+  <strong><%= t 'patients.age' %>:</strong>
+  <%=h @accession.patient.age %>
+</p>
+<p>
+  <strong><%= t 'accessions.drawn_at' %>:</strong>
   <%=h @accession.drawn_at %>
 </p>
 <p>
-  <strong>Received At:</strong>
+  <strong><%= t 'accessions.received_at' %>:</strong>
   <%=h @accession.received_at %>
 </p>
 <p>
-  <strong>Reported At:</strong>
+  <strong><%= t 'accessions.reported_at' %>:</strong>
   <%=h @accession.reported_at %>
 </p>
 
 <p>
-  <%= link_to "Edit", edit_accession_path(@accession) %> |
-  <%= link_to "Destroy", @accession, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", accessions_path %>
-</p>
-
-<p>
+<table>
   <% @departments.each do |name, results| %>
-    <h3><%=h name %></h3>
+    <tr><td><h3><%=h name %></h3></td></tr>
     <% for result in results %>
-      <div>
-        <%=h result.lab_test.name %>:
-        <% unless result.lab_test.derivation? %>
+      <div><tr>
+        <td><%=h result.lab_test.name %></td>
+        <td><% unless result.lab_test.derivation? %>
           <%=h number_with_precision(result.value, :precision => result.lab_test.decimals, :delimiter => ',') %>
         <% else %>
           <% code = result.lab_test.code.underscore %>
           <%=h @accession.ldl %>
-        <% end %>
-        <%=h result.lab_test.lab_test_unit.name %>
-        (<%=h result.range_min %> - <%=h result.range_max %>)
-      </div>
+        <% end %></td>
+        <td><%=h result.lab_test.lab_test_unit.name %></td>
+        <td><%=h result.range %></td>
+      </tr></div>
     <% end %>
   <% end %>
+</table>
 </p>

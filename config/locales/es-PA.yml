@@ -4,7 +4,7 @@ es-PA:
     middle_name: "Segundo Nombre"
     family_name: "Primer Apellido"
     family_name2: "Segundo Apellido"
-    name: "Nombre"
+    full_name: "Nombre"
     gender: "Sexo"
     birthdate: "Fecha de Nacimiento"
     age: "Edad"
@@ -31,6 +31,10 @@ es-PA:
       day: "Día:"
       month: "Mes:"
       year: "Año:"
+  accessions:
+    drawn_at: "Extraído el"
+    received_at: "Recibido el"
+    reported_at: "Reportado el"
     
   flash:
     create: "Paciente creado exitosamente."
