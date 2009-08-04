@@ -26,7 +26,7 @@
 </p>
 <p>
   <strong>Units:</strong>
-  <%= @lab_test.lab_test_unit.name %>
+  <%= @lab_test.lab_test_unit.name unless @lab_test.lab_test_unit.nil? %>
 </p>
 
 <p>

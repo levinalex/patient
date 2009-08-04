@@ -14,7 +14,7 @@
   </p>
   <p>
     <%= f.label :gender %><br />
-    <%= f.text_field :gender %>
+    <%= f.select :gender, LabTestNormalRange::GENDER_TYPES %>
   </p>
   <p>
     <%= f.label :min_age %><br />
@@ -26,7 +26,7 @@
   </p>
   <p>
     <%= f.label :age_unit %><br />
-    <%= f.text_field :age_unit %>
+    <%= f.select :age_unit, LabTestNormalRange::AGE_UNIT_TYPES, :prompt => "Select" %>
   </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>

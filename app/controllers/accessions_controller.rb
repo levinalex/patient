@@ -5,11 +5,12 @@ class AccessionsController < ApplicationController
   
   def show
     @accession = Accession.find(params[:id])
-    @departments = @accession.lab_test_results.group_by(&:department)
+    @results_grouped_by_departments = @accession.lab_test_results.group_by(&:department)
   end
   
   def new
     @accession = Accession.new
+    @accession.lab_test_results.build
   end
   
   def create

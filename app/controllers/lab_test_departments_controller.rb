@@ -1,21 +1,19 @@
 class LabTestDepartmentsController < ApplicationController
-  def index
-    @lab_test_departments = LabTestDepartment.all
-  end
   
-  def show
-    @lab_test_department = LabTestDepartment.find(params[:id])
+  def index
+    @lab_test_departments = LabTestDepartment.all :order => 'name ASC', :include => :lab_tests
   end
   
   def new
     @lab_test_department = LabTestDepartment.new
+    render :layout => false
   end
   
   def create
     @lab_test_department = LabTestDepartment.new(params[:lab_test_department])
     if @lab_test_department.save
-      flash[:notice] = "Successfully created lab test department."
-      redirect_to @lab_test_department
+      flash[:notice] = "Department created successfully."
+      redirect_to lab_test_departments_url
     else
       render :action => 'new'
     end
@@ -28,8 +26,8 @@ class LabTestDepartmentsController < ApplicationController
   def update
     @lab_test_department = LabTestDepartment.find(params[:id])
     if @lab_test_department.update_attributes(params[:lab_test_department])
-      flash[:notice] = "Successfully updated lab test department."
-      redirect_to @lab_test_department
+      flash[:notice] = "Department updated successfully."
+      redirect_to lab_test_departments_url
     else
       render :action => 'edit'
     end
@@ -38,7 +36,7 @@ class LabTestDepartmentsController < ApplicationController
   def destroy
     @lab_test_department = LabTestDepartment.find(params[:id])
     @lab_test_department.destroy
-    flash[:notice] = "Successfully destroyed lab test department."
+    flash[:notice] = "Department deleted."
     redirect_to lab_test_departments_url
   end
 end

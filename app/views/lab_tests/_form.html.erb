@@ -30,7 +30,7 @@
   </p>
   <p>
     <%= f.label :lab_test_unit_id %><br />
-    <%= f.collection_select :lab_test_unit_id, LabTestUnit.all, :id, :name %>
+    <%= f.collection_select :lab_test_unit_id, LabTestUnit.all, :id, :name, :prompt => "Select" %>
   </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>

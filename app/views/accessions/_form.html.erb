@@ -5,44 +5,29 @@
     <%= f.collection_select :patient_id, Patient.all, :id, :full_name %>
   </p>
   <p>
-    <%= f.label :other_id %><br />
-    <%= f.text_field :other_id %>
-  </p>
-  <p>
-    <%= f.label :labels %><br />
-    <%= f.text_field :labels %>
-  </p>
-  <p>
     <%= f.label :drawn_at %><br />
-    <%= f.datetime_select :drawn_at %>
+    <%= f.date_select :drawn_at %>
   </p>
-  <p>
-    <%= f.label :drawn_by %><br />
-    <%= f.text_field :drawn_by %>
-  </p>
-  <p>
-    <%= f.label :specimen_type_id %><br />
-    <%= f.text_field :specimen_type_id %>
-  </p>
-  <p>
-    <%= f.label :received_at %><br />
-    <%= f.text_field :received_at %>
-  </p>
-  <p>
-    <%= f.label :received_by %><br />
-    <%= f.text_field :received_by %>
-  </p>
-  <p>
-    <%= f.label :stat %><br />
-    <%= f.check_box :stat %>
-  </p>
-  <p>
-    <%= f.label :note %><br />
-    <%= f.text_area :note %>
-  </p>
-  <p>
-    <%= f.label :diagnosis %><br />
-    <%= f.text_field :diagnosis %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
+
+  <div id="departments">
+    <ul>
+      <% for department in LabTestDepartment.all %>
+        <li><%= link_to department.name, new_accession_url(:anchor => department.id) %></li>
+      <% end %>
+    </ul>
+        
+    <% for department in LabTestDepartment.all %>
+      <div id="<%= department.id %>"><table>
+        <% for lab_test in department.lab_tests %><tr>
+            <td>[ ]</td>
+            <td><%=h lab_test.name %></td>
+            <td><%= f.text_field :reported_by, :size => 10 %></td>
+            <td><%=h lab_test.lab_test_unit.name unless lab_test.lab_test_unit.nil? %></td>
+            <td>(range min - range max)</td>
+        </tr><% end %>
+      </table></div>
+    <% end %>
+  </div>
+  
+  <p><%= f.submit "Submit" %></p>  
 <% end %>

@@ -1,4 +1,5 @@
 <% labeled_form_for @patient do |f| %>
+  <%= f.error_messages %>
   <%= f.text_field :given_name, :required => true, :label => t('patients.given_name')%>
   <%= f.text_field :middle_name, :label => t('patients.middle_name') %>
   <%= f.text_field :family_name, :required => true, :label => t('patients.family_name') %>

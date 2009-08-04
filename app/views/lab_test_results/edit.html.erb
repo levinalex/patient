@@ -1,6 +1,19 @@
 <% title "Edit Lab Test Result" %>
 
-<%= render :partial => 'form' %>
+<% form_for @lab_test_result do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :value %><br />
+    <% unless @lab_test_result.lab_test.lab_test_value_options.blank? %>
+      <% unless @lab_test_result.lab_test.lab_test_value_options.first.lab_test_values.nil? %>
+        <%= f.collection_select :value, @lab_test_result.lab_test.lab_test_value_options.first.lab_test_values, :id, :value %>
+      <% end %>
+    <% else %>
+      <%= f.text_field :value %>
+    <% end %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
 
 <p>
   <%= link_to "Show", @lab_test_result %> |

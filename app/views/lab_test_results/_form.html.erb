@@ -2,7 +2,11 @@
   <%= f.error_messages %>
   <p>
     <%= f.label :value %><br />
-    <%= f.text_field :value %>
+    <% if f. %>
+      <%= f.text_field :value %>
+    <% else %>
+      ...
+    <% end %>
   </p>
   <p>
     <%= f.label :lab_test_id %><br />

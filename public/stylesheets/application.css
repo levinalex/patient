@@ -14,11 +14,16 @@ h2 {
 	text-shadow: rgba(255,255,255,1) 0px 1px 0px;
 }
 
+body,
+#ui-datepicker-div,
+#departments {
+  font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
+	font-size: 13px;
+}
+
 body {
   background-color: #4B7399;
   color: #333333;
-  font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
-	font-size: 13px;
 }
 
 textarea,
@@ -127,8 +132,9 @@ label.required {
 }
 
 #menu {
+  width: 75%;
+  margin: 0 auto;
   list-style: none;
-  margin: 0;
   padding: 0;
 }
 

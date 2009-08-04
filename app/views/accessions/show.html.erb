@@ -22,21 +22,26 @@
 
 <p>
 <table>
-  <% @departments.each do |name, results| %>
-    <tr><td><h3><%=h name %></h3></td></tr>
+  <% @results_grouped_by_departments.each do |department, results| %>
+    <tr><td><h3><%=h department %></h3></td></tr>
     <% for result in results %>
       <div><tr>
         <td><%=h result.lab_test.name %></td>
-        <td><% unless result.lab_test.derivation? %>
+        <td><% unless result.lab_test.derivation? || result.value.nil? %>
           <%=h number_with_precision(result.value, :precision => result.lab_test.decimals, :delimiter => ',') %>
         <% else %>
-          <% code = result.lab_test.code.underscore %>
           <%=h @accession.ldl %>
         <% end %></td>
-        <td><%=h result.lab_test.lab_test_unit.name %></td>
+        <td><%=h result.lab_test.lab_test_unit.name unless result.lab_test.lab_test_unit.nil? %></td>
         <td><%=h result.range %></td>
       </tr></div>
     <% end %>
   <% end %>
 </table>
 </p>
+<p>
+  <%= link_to "Edit", edit_accession_path(@accession) %> |
+  <%= link_to "Destroy", @accession, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", accessions_path %>
+</p>
+

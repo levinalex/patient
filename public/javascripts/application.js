@@ -6,4 +6,5 @@ jQuery.ajaxSetup({
 
 $(document).ready(function() {
                   $("#accession_received_at").datepicker();
+                  $("#departments").tabs();
                   })

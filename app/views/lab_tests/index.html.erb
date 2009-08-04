@@ -1,5 +1,4 @@
 <% title "Lab Tests" %>
-
 <table>
   <tr>
     <th>Department</th>
@@ -18,7 +17,7 @@
       <td><%=h lab_test.procedure %></td>
       <td><%=h lab_test.description %></td>
       <td><%=h lab_test.decimals %></td>
-      <td><%= lab_test.lab_test_unit.name %></td>
+      <td><%=h lab_test.lab_test_unit.name unless lab_test.lab_test_unit.nil? %></td>
       <td><%= link_to "Show", lab_test %></td>
       <td><%= link_to "Edit", edit_lab_test_path(lab_test) %></td>
       <td><%= link_to "Destroy", lab_test, :confirm => 'Are you sure?', :method => :delete %></td>

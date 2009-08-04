@@ -1,4 +1,5 @@
 class LabTestNormalRange < ActiveRecord::Base
+# Unify Normal, Linear, Critical and Absurd ranges into one table.
 
   GENDER_TYPES = [
     #Displayed  stored in db
@@ -6,6 +7,14 @@ class LabTestNormalRange < ActiveRecord::Base
     [ "Female",   "F" ],
     [ "Male",     "M" ],
     [ "Unknown",  "U" ]
+  ]
+
+  AGE_UNIT_TYPES = [
+    #Displayed  stored in db
+    [ "Years",    "Y" ],
+    [ "Months",   "M" ],
+    [ "Days",     "D" ],
+    [ "Hours",    "H" ]
   ]
 
   belongs_to :lab_test

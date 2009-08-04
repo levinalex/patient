@@ -8,12 +8,11 @@
     <%= yield(:head) %>
   </head>
   <body>
-    <div id="container">
-      <ul id="menu">
-        <li><%= link_to "Patients", :patients %></li>
-        <li><%= link_to "Order Tests", :new_accession %></li>
-      </ul>
-      
+    <ul id="menu">
+      <li><%= link_to "Patients", :patients %></li>
+      <li><%= link_to "Order Tests", :new_lab_test_result %></li>
+    </ul>
+    <div id="container">      
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>

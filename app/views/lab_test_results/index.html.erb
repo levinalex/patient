@@ -16,9 +16,17 @@
       <td><%=h lab_test_result.accession_id %></td>
       <td><%=h lab_test_result.department %></td>
       <td><%=h lab_test_result.lab_test.name %></td>
-      <td><%=h number_with_precision(lab_test_result.value, :precision => lab_test_result.lab_test.decimals, :delimiter => ',') %></td>
-      <td><%=h lab_test_result.lab_test.lab_test_unit.name %></td>
-      <td><%=h lab_test_result.range_min %> - <%=h lab_test_result.range_max %></td>
+      <td><% unless lab_test_result.value.nil? %>
+        <% unless lab_test_result.lab_test.lab_test_value_options.blank? %>
+          <% unless lab_test_result.lab_test.lab_test_value_options.first.lab_test_values.nil? %>
+            <%=h LabTestValue.find_by_id(lab_test_result.value).value %>
+          <% end %>
+        <% else %>
+          <%=h number_with_precision(lab_test_result.value, :precision => lab_test_result.lab_test.decimals, :delimiter => ',') %>
+        <% end %>
+      <% end %></td>
+      <td><%=h lab_test_result.lab_test.lab_test_unit.name unless lab_test_result.lab_test.lab_test_unit.nil? %></td>
+      <td><%=h lab_test_result.range %></td>
       <td><%= link_to "Show", lab_test_result %></td>
       <td><%= link_to "Edit", edit_lab_test_result_path(lab_test_result) %></td>
       <td><%= link_to "Destroy", lab_test_result, :confirm => 'Are you sure?', :method => :delete %></td>

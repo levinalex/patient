@@ -1,4 +1,5 @@
 class Patient < ActiveRecord::Base
+  extend ActiveSupport::Memoizable
 
   GENDER_TYPES = [
     #Displayed  stored in db
@@ -11,17 +12,20 @@ class Patient < ActiveRecord::Base
   
   validates_presence_of :given_name, :family_name, :gender, :birthdate
   validates_inclusion_of :gender, :in => GENDER_TYPES.map {|disp, value| value}
+  validates_uniqueness_of :identifier, :allow_blank => true
   
   has_many :accessions, :dependent => :destroy
   
   def full_name
     [given_name, middle_name, family_name, family_name2].join(' ')
   end
+  memoize :full_name
   
   def age
     days_per_year = 365.25
     age = ((Date.today - birthdate.to_date).to_i / days_per_year).floor
   end
+  memoize :age
   
   def age_in_months
     months = Date.today.month - birthdate.month
