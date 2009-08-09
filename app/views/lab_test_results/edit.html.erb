@@ -1,6 +1,6 @@
 <% title "Edit Lab Test Result" %>
 
-<% form_for @lab_test_result do |f| %>
+<% form_for [@accession, @lab_test_result] do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :value %><br />
@@ -16,6 +16,5 @@
 <% end %>
 
 <p>
-  <%= link_to "Show", @lab_test_result %> |
-  <%= link_to "View All", lab_test_results_path %>
+  <%= link_to "View All", accession_lab_test_results_path %>
 </p>

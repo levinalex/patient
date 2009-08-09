@@ -6,5 +6,5 @@ jQuery.ajaxSetup({
 
 $(document).ready(function() {
                   $("#accession_received_at").datepicker();
-                  $("#departments").tabs();
+                  $("#lab_tests").tabs({ autoHeight: true });
                   })

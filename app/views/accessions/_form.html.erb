@@ -1,33 +1,24 @@
 <% form_for @accession do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :patient_id %><br />
+    <strong><%= f.label :patient_id %>:</strong>
     <%= f.collection_select :patient_id, Patient.all, :id, :full_name %>
   </p>
   <p>
     <%= f.label :drawn_at %><br />
     <%= f.date_select :drawn_at %>
   </p>
-
-  <div id="departments">
-    <ul>
-      <% for department in LabTestDepartment.all %>
-        <li><%= link_to department.name, new_accession_url(:anchor => department.id) %></li>
-      <% end %>
-    </ul>
-        
-    <% for department in LabTestDepartment.all %>
-      <div id="<%= department.id %>"><table>
-        <% for lab_test in department.lab_tests %><tr>
-            <td>[ ]</td>
-            <td><%=h lab_test.name %></td>
-            <td><%= f.text_field :reported_by, :size => 10 %></td>
-            <td><%=h lab_test.lab_test_unit.name unless lab_test.lab_test_unit.nil? %></td>
-            <td>(range min - range max)</td>
-        </tr><% end %>
-      </table></div>
-    <% end %>
-  </div>
   
+  <h3>Lab Tests</h3>
+  <table>
+  <% for lab_test in LabTest.all %>
+    <tr>
+      <td><%= check_box_tag 'accession[lab_test_ids][]', lab_test.id, @accession.lab_tests.include?(lab_test) %></td>
+      <td><%=h lab_test.name %></td>
+    </tr>
+  <% end %>
+  </table>
+  <%= hidden_field_tag 'accession[lab_test_ids][]', '' %>
+    
   <p><%= f.submit "Submit" %></p>  
 <% end %>

@@ -1,28 +1,19 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :patients
-
-  map.resources :lab_test_results
-
-  map.resources :accessions
-
+  map.resources :patients, :shallow => true do |patient|
+#    patient.resources :accessions, :member => { :results => :put }
+    patient.resources :accessions
+  end
+#  map.resources :patients, :has_many => :accessions, :shallow => true
+  map.resources :accessions, :only => :index
   map.resources :lab_test_panels
-
   map.resources :lab_test_values
-
   map.resources :lab_test_value_options
-
   map.resources :lab_test_absurd_ranges
-
   map.resources :lab_test_linear_ranges
-
   map.resources :lab_test_critical_ranges
-
   map.resources :lab_test_normal_ranges
-
   map.resources :lab_tests
-
   map.resources :lab_test_units
-
   map.resources :lab_test_departments
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -58,6 +49,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
+  map.root :patients
 
   # See how all your routes lay out with "rake routes"
 

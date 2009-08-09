@@ -15,6 +15,15 @@ class Patient < ActiveRecord::Base
   validates_uniqueness_of :identifier, :allow_blank => true
   
   has_many :accessions, :dependent => :destroy
+  accepts_nested_attributes_for :accessions, :allow_destroy => true
+  
+  def self.search(query)
+    if query
+      find(:all, :conditions => ['given_name LIKE ?', "%#{query}%"])
+    else
+      find(:all)
+    end
+  end
   
   def full_name
     [given_name, middle_name, family_name, family_name2].join(' ')
@@ -22,6 +31,7 @@ class Patient < ActiveRecord::Base
   memoize :full_name
   
   def age
+    # Age reported should be calculated based on Today = Reported at
     days_per_year = 365.25
     age = ((Date.today - birthdate.to_date).to_i / days_per_year).floor
   end

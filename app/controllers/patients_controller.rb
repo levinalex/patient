@@ -3,7 +3,12 @@ class PatientsController < ApplicationController
   filter_parameter_logging :given_name, :middle_name, :family_name, :family_name2, :birthdate, :identifier, :address
 
   def index
-    @patients = Patient.all
+    if params[:search].blank?
+      #@patients = Patient.recent
+      @patients = Patient.all
+    else
+      @patients = Patient.search(params[:search])
+    end
   end
   
   def show

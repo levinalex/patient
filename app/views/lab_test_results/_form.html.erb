@@ -1,13 +1,5 @@
-<% form_for @lab_test_result do |f| %>
+<% form_for([@accession, @lab_test_result]) do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :value %><br />
-    <% if f. %>
-      <%= f.text_field :value %>
-    <% else %>
-      ...
-    <% end %>
-  </p>
   <p>
     <%= f.label :lab_test_id %><br />
     <%= f.collection_select :lab_test_id, LabTest.all, :id, :name %>

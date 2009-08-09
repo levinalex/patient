@@ -1,16 +1,12 @@
-<% title "Order Tests" %>
+<% title "New Accession" %>
 
-<% form_for @lab_test_result do |f| %>
+<% form_for [@accession, @lab_test_result] do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :lab_test_id %><br />
     <%= f.collection_select :lab_test_id, LabTest.all, :id, :name %>
   </p>
-  <p>
-    <%= f.label :accession_id %><br />
-    <%= f.text_field :accession_id %>
-  </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>
 
-<p><%= link_to "Back to List", lab_test_results_path %></p>
+<p><%= link_to "Back to List", accession_lab_test_results_path %></p>

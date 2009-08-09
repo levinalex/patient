@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
   
   before_filter :set_user_language
   
+  prawnto :prawn => {
+    :info => {
+      :Title => "My title", :Author => "John Doe", :Subject => "My Subject",
+      :Keywords => "test metadata ruby pdf dry", :Creator => "ACME Soft App", 
+      :Producer => "", :CreationDate => Time.now, :Grok => "Test Property"
+    }
+  }
+    
   private
   
   def set_user_language

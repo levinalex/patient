@@ -28,6 +28,32 @@
   <strong>Units:</strong>
   <%= @lab_test.lab_test_unit.name unless @lab_test.lab_test_unit.nil? %>
 </p>
+<p>
+  <strong>Also allow Numeric:</strong>
+  <%=h @lab_test.also_numeric %>
+</p>
+<p>
+  <strong>Is Ratio:</strong>
+  <%=h @lab_test.ratio %>
+</p>
+<p>
+  <strong>Is Range:</strong>
+  <%=h @lab_test.range %>
+</p>
+<p>
+  <strong>Is Fraction:</strong>
+  <%=h @lab_test.fraction %>
+</p>
+<p>
+  <strong>Text Length:</strong>
+  <%=h @lab_test.text_length %>
+</p>
+<p>
+  <strong>Lab Test Values:</strong>
+  <% for option in @lab_test.lab_test_value_option_joints %>
+    <p><%=h option.lab_test_value.value %></p>
+  <% end %>
+</p>
 
 <p>
   <%= link_to "Edit", edit_lab_test_path(@lab_test) %> |

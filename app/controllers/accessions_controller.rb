@@ -9,15 +9,16 @@ class AccessionsController < ApplicationController
   end
   
   def new
-    @accession = Accession.new
-    @accession.lab_test_results.build
+    @patient = Patient.find(params[:patient_id])
+    @accession = @patient.accessions.build
   end
   
   def create
-    @accession = Accession.new(params[:accession])
+    @patient = Patient.find(params[:patient_id])
+    @accession = @patient.accessions.build(params[:accession])
     if @accession.save
       flash[:notice] = "Successfully created accession."
-      redirect_to @accession
+      redirect_to patient_url(@accession.patient_id)
     else
       render :action => 'new'
     end
@@ -26,12 +27,22 @@ class AccessionsController < ApplicationController
   def edit
     @accession = Accession.find(params[:id])
   end
+
+#  def results
+#    @accession = Accession.find(params[:id])
+#    if @accession.update_attributes(params[:accession])
+#      flash[:notice] = "Successfully edited results."
+#      redirect_to accession_results_url
+#    else
+#      render :action => 'results'
+#    end
+#  end
   
   def update
     @accession = Accession.find(params[:id])
     if @accession.update_attributes(params[:accession])
       flash[:notice] = "Successfully updated accession."
-      redirect_to @accession
+      redirect_to accession_url
     else
       render :action => 'edit'
     end
@@ -41,6 +52,6 @@ class AccessionsController < ApplicationController
     @accession = Accession.find(params[:id])
     @accession.destroy
     flash[:notice] = "Successfully destroyed accession."
-    redirect_to accessions_url
+    redirect_to patient_url(@accession.patient_id)
   end
 end

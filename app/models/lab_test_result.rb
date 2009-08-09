@@ -2,6 +2,8 @@ class LabTestResult < ActiveRecord::Base
   belongs_to :lab_test
   belongs_to :accession
   
+  #validates_presence_of :accession_id, :lab_test_id
+  
   def department
     lab_test.lab_test_department.name
   end

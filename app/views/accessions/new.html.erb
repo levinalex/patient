@@ -1,5 +1,39 @@
-<% title "New Accession" %>
+<% title "Order Tests" %>
 
-<%= render :partial => 'form' %>
-
-<p><%= link_to "Back to List", accessions_path %></p>
+<% form_for [@patient, @accession] do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <strong>Patient:</strong>
+    <%=h @accession.patient.full_name %>
+  </p>
+  <p>
+    <%= f.label :drawn_at %><br />
+    <%= f.date_select :drawn_at %>
+  </p>
+  
+  <h3>Lab Tests</h3>
+  <div id="lab_tests">
+    <ul>
+      <% for department in LabTestDepartment.all %>
+        <li><a href="#<%=h department.id %>"><%=h department.name %></a></li>
+      <% end %>
+    </ul>
+      
+    <% for department in LabTestDepartment.all %>
+      <div id="<%= department.id %>">
+        <table>
+        <% for lab_test in department.lab_tests %>
+          <tr>
+            <td><%= check_box_tag 'accession[lab_test_ids][]', lab_test.id, @accession.lab_tests.include?(lab_test) %></td>
+            <td><%=h lab_test.name %></td>
+          </tr>
+        <% end %>
+        </table>
+      </div>
+    <% end %>
+    </div>
+    
+  <%= hidden_field_tag 'accession[lab_test_ids][]', '' %>
+    
+  <p><%= f.submit "Submit" %></p>  
+<% end %>

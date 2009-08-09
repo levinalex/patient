@@ -13,6 +13,10 @@
     <%= f.text_field :name %>
   </p>
   <p>
+    <%= f.label :lab_test_unit_id %><br />
+    <%= f.collection_select :lab_test_unit_id, LabTestUnit.all, :id, :name, :prompt => "Select" %>
+  </p>
+  <p>
     <%= f.label :procedure %><br />
     <%= f.text_field :procedure %>
   </p>
@@ -29,8 +33,24 @@
     <%= f.check_box :derivation %>
   </p>
   <p>
-    <%= f.label :lab_test_unit_id %><br />
-    <%= f.collection_select :lab_test_unit_id, LabTestUnit.all, :id, :name, :prompt => "Select" %>
+    <%= f.label :also_numeric %><br />
+    <%= f.check_box :also_numeric %>
+  </p>
+  <p>
+    <%= f.label :ratio %><br />
+    <%= f.check_box :ratio %>
+  </p>
+  <p>
+    <%= f.label :range %><br />
+    <%= f.check_box :range %>
+  </p>
+  <p>
+    <%= f.label :fraction %><br />
+    <%= f.check_box :fraction %>
+  </p>
+  <p>
+    <%= f.label :text_length %><br />
+    <%= f.text_field :text_length %>
   </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>

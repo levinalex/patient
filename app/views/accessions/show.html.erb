@@ -9,15 +9,15 @@
 </p>
 <p>
   <strong><%= t 'accessions.drawn_at' %>:</strong>
-  <%=h @accession.drawn_at %>
+  <%=h @accession.drawn_at.strftime('%b %d, %Y at %H:%M') if @accession.drawn_at %>
 </p>
 <p>
   <strong><%= t 'accessions.received_at' %>:</strong>
-  <%=h @accession.received_at %>
+  <%=h @accession.received_at.strftime('%b %d, %Y at %H:%M') if @accession.received_at %>
 </p>
 <p>
   <strong><%= t 'accessions.reported_at' %>:</strong>
-  <%=h @accession.reported_at %>
+  <%=h @accession.reported_at.strftime('%b %d, %Y at %H:%M') if @accession.reported_at %>
 </p>
 
 <p>
@@ -27,13 +27,25 @@
     <% for result in results %>
       <div><tr>
         <td><%=h result.lab_test.name %></td>
-        <td><% unless result.lab_test.derivation? || result.value.nil? %>
-          <%=h number_with_precision(result.value, :precision => result.lab_test.decimals, :delimiter => ',') %>
+        <% if !result.value.blank? %>
+          <td>
+            <% if result.lab_test.derivation %>
+              <%=h number_with_precision(@accession.send(result.lab_test.code.underscore), :precision => result.lab_test.decimals, :delimiter => ',') if @accession.reported_at %>
+            <% else %>
+              <% if result.lab_test.lab_test_values.blank? %>
+                <%=h number_with_precision(result.value, :precision => result.lab_test.decimals, :delimiter => ',') %>
+              <% else %>
+                <%=h LabTestValue.find_by_id(result.value.to_i).value %>
+              <% end %>
+            <% end %>
+          </td>
+          <td><%=h result.lab_test.lab_test_unit.name if result.lab_test.lab_test_unit %></td>
+          <td><%=h result.range %></td>
         <% else %>
-          <%=h @accession.ldl %>
-        <% end %></td>
-        <td><%=h result.lab_test.lab_test_unit.name unless result.lab_test.lab_test_unit.nil? %></td>
-        <td><%=h result.range %></td>
+            <td>N/R</td>
+            <td></td>
+            <td></td>
+          <% end %>
       </tr></div>
     <% end %>
   <% end %>
@@ -41,7 +53,7 @@
 </p>
 <p>
   <%= link_to "Edit", edit_accession_path(@accession) %> |
-  <%= link_to "Destroy", @accession, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", accessions_path %>
+  <%= link_to "Print (PDF)", accession_path(@accession, :format => 'pdf') %>
+  | <%= link_to "Destroy", @accession, :confirm => 'Are you sure?', :method => :delete %>
 </p>
 

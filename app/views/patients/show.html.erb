@@ -20,7 +20,15 @@
   <strong>Address:</strong>
   <%=h @patient.address %>
 </p>
-
+<p>
+  <strong>Accessions:</strong>
+  <% for accession in @patient.accessions %>
+    <p>
+      <%= link_to accession.id, accession_path(accession) %>
+    </p>
+  <% end %>
+  <%= link_to "New Accession", new_patient_accession_path(@patient) %>  
+</p>
 <p>
   <%= link_to "Edit", edit_patient_path(@patient) %> |
   <%= link_to "Destroy", @patient, :confirm => 'Are you sure?', :method => :delete %> |
