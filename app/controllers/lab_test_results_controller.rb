@@ -1,11 +1,12 @@
 class LabTestResultsController < ApplicationController
   def index
-    @lab_test_results = @accession.lab_test_results.all
+    @accession = Accession.find(params[:accession_id])
+    @results = @accession.lab_test_results.group_by(&:department)
   end
   
-  def show
-    @lab_test_result = @accession.lab_test_results.find(params[:id])
-  end
+#  def show
+#    @lab_test_result = @accession.lab_test_results.find(params[:id])
+#  end
   
   def new
     @lab_test_result = @accession.lab_test_results.new
@@ -22,7 +23,8 @@ class LabTestResultsController < ApplicationController
   end
   
   def edit
-    @lab_test_result = @accession.lab_test_results.find(params[:id])
+    @accession = Accession.find(params[:accession_id])
+    #@lab_test_result = @accession.lab_test_results.find(params[:id])
   end
   
   def update

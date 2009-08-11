@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  filter_parameter_logging :given_name, :middle_name, :family_name, :family_name2, :birthdate, :identifier, :address
   
   before_filter :set_user_language
   
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   private
   
   def set_user_language
-    I18n.locale = 'es-PA'
+    I18n.locale = 'es'
   end
   
 end

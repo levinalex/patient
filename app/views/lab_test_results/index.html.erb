@@ -1,37 +1,18 @@
-<% title "Lab Test Results" %>
+<% title "Accession #" + @accession.id.to_s %>
 
+<%= render @accession.patient %>
+
+<p>
 <table>
-  <tr>
-    <th>Patient</th>
-    <th>Accession #</th>
-    <th>Department</th>
-    <th>Lab Test</th>
-    <th>Value</th>
-    <th>Units</th>
-    <th>Normal Range</th>
-  </tr>
-  <% for lab_test_result in @lab_test_results %>
-    <tr>
-      <td><%=h lab_test_result.accession.patient.full_name %></td>
-      <td><%=h lab_test_result.accession_id %></td>
-      <td><%=h lab_test_result.department %></td>
-      <td><%=h lab_test_result.lab_test.name %></td>
-      <td><% unless lab_test_result.value.nil? %>
-        <% unless lab_test_result.lab_test.lab_test_value_options.blank? %>
-          <% unless lab_test_result.lab_test.lab_test_value_options.first.lab_test_values.nil? %>
-            <%=h LabTestValue.find_by_id(lab_test_result.value).value %>
-          <% end %>
-        <% else %>
-          <%=h number_with_precision(lab_test_result.value, :precision => lab_test_result.lab_test.decimals, :delimiter => ',') %>
-        <% end %>
-      <% end %></td>
-      <td><%=h lab_test_result.lab_test.lab_test_unit.name unless lab_test_result.lab_test.lab_test_unit.nil? %></td>
-      <td><%=h lab_test_result.range %></td>
-      <td><%= link_to "Show", lab_test_result %></td>
-      <td><%= link_to "Edit", edit_lab_test_result_path(lab_test_result) %></td>
-      <td><%= link_to "Destroy", lab_test_result, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
+  <% @results.each do |department, results| %>
+    <tr><th><%=h department %></th></tr>
+    <%= render results %>
   <% end %>
 </table>
+</p>
+<p>
+  <%= link_to "Change Accession", edit_accession_path(@accession) %> |
+  <%= link_to "Enter Results", edit_results_accession_url(@accession) %> |
+  <%= link_to "Patient Report (PDF)", accession_lab_test_results_path(@accession, :format => 'pdf') if @accession.reported_at %>
+</p>
 
-<p><%= link_to "New Lab Test Result", new_lab_test_result_path %></p>

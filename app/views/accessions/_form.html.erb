@@ -1,23 +1,42 @@
-<% form_for @accession do |f| %>
+<%= render @accession.patient %>
+
+<% form_for [@patient, @accession] do |f| %>
   <%= f.error_messages %>
   <p>
-    <strong><%= f.label :patient_id %>:</strong>
-    <%= f.collection_select :patient_id, Patient.all, :id, :full_name %>
+    <%= f.label :labels %><br />
+    <%= f.text_field :labels %>
   </p>
   <p>
     <%= f.label :drawn_at %><br />
     <%= f.date_select :drawn_at %>
   </p>
+  <p>
+    <%= f.label :drawn_by %><br />
+    <%= f.text_field :drawn_by %>
+  </p>
   
-  <h3>Lab Tests</h3>
-  <table>
-  <% for lab_test in LabTest.all %>
-    <tr>
-      <td><%= check_box_tag 'accession[lab_test_ids][]', lab_test.id, @accession.lab_tests.include?(lab_test) %></td>
-      <td><%=h lab_test.name %></td>
-    </tr>
-  <% end %>
-  </table>
+  <h3>Order Tests</h3>
+  <div id="lab_tests">
+    <ul>
+      <% for department in LabTestDepartment.all %>
+        <li><a href="#<%=h department.id %>"><%=h department.name %></a></li>
+      <% end %>
+    </ul>
+      
+    <% for department in LabTestDepartment.all %>
+      <div id="<%= department.id %>">
+        <table>
+        <% for lab_test in department.lab_tests %>
+          <tr>
+            <td><%= check_box_tag 'accession[lab_test_ids][]', lab_test.id, @accession.lab_tests.include?(lab_test) %></td>
+            <td><%=h lab_test.name %></td>
+          </tr>
+        <% end %>
+        </table>
+      </div>
+    <% end %>
+    </div>
+    
   <%= hidden_field_tag 'accession[lab_test_ids][]', '' %>
     
   <p><%= f.submit "Submit" %></p>  

@@ -1,10 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :patients, :shallow => true do |patient|
-#    patient.resources :accessions, :member => { :results => :put }
-    patient.resources :accessions
+    patient.resources :accessions do |accession|
+      accession.resources :lab_test_results
+    end
   end
-#  map.resources :patients, :has_many => :accessions, :shallow => true
-  map.resources :accessions, :only => :index
+  map.resources :accessions, :only => :index, :member => { :report => :put, :edit_results => :get }
   map.resources :lab_test_panels
   map.resources :lab_test_values
   map.resources :lab_test_value_options

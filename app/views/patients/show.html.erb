@@ -1,36 +1,27 @@
-<% title "Patient" %>
+<% title "Patient Demographics" %>
+
+<%= render @patient %>
+
+<h3>Recent Accessions</h3>
+
+<table>
+  <tr>
+    <th>Accession #</th>
+    <th>Patient</th>
+    <th>Other ID</th>
+    <th>Labels</th>
+    <th>Drawn At</th>
+    <th>Drawn By</th>
+    <th>Specimen Type</th>
+    <th>Reported At</th>
+    <th>Stat</th>
+    <th>Note</th>
+    <th>Diagnosis</th>
+  </tr>
+  <%= render @patient.accessions %>
+</table>
 
 <p>
-  <strong>Name:</strong>
-  <%=h @patient.full_name %>
-</p>
-<p>
-  <strong>Gender:</strong>
-  <%=h @patient.gender %>
-</p>
-<p>
-  <strong>Age:</strong>
-  <%=h @patient.age %>
-</p>
-<p>
-  <strong>Identifier:</strong>
-  <%=h @patient.identifier %>
-</p>
-<p>
-  <strong>Address:</strong>
-  <%=h @patient.address %>
-</p>
-<p>
-  <strong>Accessions:</strong>
-  <% for accession in @patient.accessions %>
-    <p>
-      <%= link_to accession.id, accession_path(accession) %>
-    </p>
-  <% end %>
-  <%= link_to "New Accession", new_patient_accession_path(@patient) %>  
-</p>
-<p>
-  <%= link_to "Edit", edit_patient_path(@patient) %> |
-  <%= link_to "Destroy", @patient, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", patients_path %>
+  <%= link_to "All Accessions", patient_accessions_path(@patient) %> |
+  <%= link_to "New Accession", new_patient_accession_path(@patient) %>
 </p>

@@ -1,7 +1,34 @@
-<tr>
-  <td><%= link_to h(patient.full_name), patient %></td>
-  <td><%=h patient.gender %></td>
-  <td><%=h patient.age %></td>
-  <td><%=h patient.identifier %></td>
-  <td><%=h patient.address %></td>
-</tr>
+<div class="patient">
+  <div class="actions">
+    <%= link_to 'view', patient %> |
+    <%= link_to 'edit', edit_patient_path(patient) %> |
+    <%= link_to 'delete', patient, :method => :delete, :confirm => 'Are you sure?' %>
+  </div>
+  <div class="full_name">
+    <%=h patient.full_name %>
+  </div>
+  <div class="age">
+    <span class="label">
+      <%=h t('.age') %>
+    </span>
+    <%=h patient.age %>
+  </div>
+  <div class="gender">
+    <span class="label">
+      <%=h t('.gender') %>
+    </span>
+    <%=h patient.gender %>
+  </div>
+  <div class="identifier">
+    <span class="label">
+      <%=h t('.identifier') %>
+    </span>
+    <%=h patient.identifier %>
+  </div>
+  <div class="address">
+    <span class="label">
+      <%=h t('.address') %>
+    </span>
+    <%=h patient.address %>
+  </div>
+</div>

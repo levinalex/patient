@@ -1,12 +1,15 @@
 <% labeled_form_for @patient do |f| %>
-  <%= f.error_messages %>
-  <%= f.text_field :given_name, :required => true, :label => t('patients.given_name')%>
-  <%= f.text_field :middle_name, :label => t('patients.middle_name') %>
-  <%= f.text_field :family_name, :required => true, :label => t('patients.family_name') %>
-  <%= f.text_field :family_name2, :label => t('patients.family_name2') %>
-  <%= f.select :gender, Patient::GENDER_TYPES, :prompt => "Select", :required => true, :label => t('patients.gender') %>
-  <%= f.date_select :birthdate, :label => t('patients.birthdate'), :required => true %>
-  <%= f.text_field :identifier, :label => t('patients.identifier') %>
-  <%= f.text_area :address, :label => t('patients.address') %>
-  <%= f.submit %>
+  <fieldset>
+  <legend>Patient Demographics</legend>
+    <%= f.error_messages %>
+    <%= f.text_field :given_name, :label => t('.given_name'), :required => true %>
+    <%= f.text_field :middle_name, :label => t('.middle_name') %>
+    <%= f.text_field :family_name, :required => true, :label => t('.family_name') %>
+    <%= f.text_field :family_name2, :label => t('.family_name2') %>
+    <%= f.select :gender, Patient::GENDER_TYPES, :prompt => t('.prompt_gender'), :required => true, :label => t('.gender') %>
+    <%= f.date_select :birthdate, :label => t('.birthdate'), :required => true, :start_year => Time.now.year, :end_year => 1900 %>
+    <%= f.text_field :identifier, :label => t('.identifier') %>
+    <%= f.text_area :address, :label => t('.address') %>
+    <%= f.submit %>
+  </fieldset>
 <% end %>

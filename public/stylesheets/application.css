@@ -26,11 +26,9 @@ body {
   color: #333333;
 }
 
-textarea,
-input,
-select {
+textarea, input, select {
   font-family: "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans", sans-serif;
-	font-size: 13px;
+	font-size: 12px;
   color: #333333;
 	border-width: 1px;
 	border-style: solid;
@@ -127,8 +125,33 @@ a {
   list-style: disc;
 }
 
+label {
+  width: 12em;
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  display: block
+}
+
 label.required {
   font-weight: bold;
+}
+
+.submit input {
+  margin-left: 13.5em;
+}
+
+fieldset {
+  border: 1px solid #e5e5e5;
+  -moz-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+  width: 50em;
+}
+
+legend {
+  padding: 2px 6px
 }
 
 #menu {
@@ -154,4 +177,26 @@ label.required {
 #menu li a:hover {
   color: white;
   background-color: #4a63b8;
+}
+
+.patient {
+  background-color: #e5e5e5;
+  padding: 10px 20px;
+  width: 45%;
+  -moz-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.patient .actions {
+  float: right;
+}
+
+.patient .full_name {
+  font-weight: bold;
+}
+
+.patient .label {
+  text-align: right;
 }

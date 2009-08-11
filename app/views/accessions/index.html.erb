@@ -9,29 +9,10 @@
     <th>Drawn At</th>
     <th>Drawn By</th>
     <th>Specimen Type</th>
-    <th>Received At</th>
-    <th>Received By</th>
+    <th>Reported At</th>
     <th>Stat</th>
     <th>Note</th>
     <th>Diagnosis</th>
   </tr>
-  <% for accession in @accessions %>
-    <tr>
-      <td><%=h accession.id %></td>
-      <td><%=h accession.patient.full_name %></td>
-      <td><%=h accession.other_id %></td>
-      <td><%=h accession.labels %></td>
-      <td><%=h accession.drawn_at %></td>
-      <td><%=h accession.drawn_by %></td>
-      <td><%=h accession.specimen_type_id %></td>
-      <td><%=h accession.received_at %></td>
-      <td><%=h accession.received_by %></td>
-      <td><%=h accession.stat %></td>
-      <td><%=h accession.note %></td>
-      <td><%=h accession.diagnosis %></td>
-      <td><%= link_to "Show", accession %></td>
-      <td><%= link_to "Edit", edit_accession_path(accession) %></td>
-      <td><%= link_to "Destroy", accession, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
+  <%= render @accessions %>
 </table>

@@ -7,7 +7,15 @@ class LabTestResult < ActiveRecord::Base
   def department
     lab_test.lab_test_department.name
   end
+  
+  def value_number
+    value.to_i
+  end
 
+  def value_number=(value)
+    self.value = value
+  end
+  
   def range_min
     # Missing age component to calculate valid range, instead of calling first
     unless lab_test.lab_test_normal_ranges.blank?

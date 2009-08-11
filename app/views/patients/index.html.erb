@@ -11,16 +11,7 @@
   <p class="content">No patients found. <%= link_to "All patients", patients_path %></p>
 <% else %>
   <div class="patients">
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Gender</th>
-        <th>Age</th>
-        <th>Identifier</th>
-        <th>Address</th>
-      </tr>
-      <%= render @patients %>
-    </table>
+    <%= render @patients %>
   </div>
 <% end %>
 

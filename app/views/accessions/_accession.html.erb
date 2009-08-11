@@ -1,0 +1,15 @@
+<tr>
+  <td><%=link_to accession.id, accession_lab_test_results_path(accession) %></td>
+  <td><%=h accession.patient.full_name %></td>
+  <td><%=h accession.other_id %></td>
+  <td><%=h accession.labels %></td>
+  <td><%=h accession.drawn_at %></td>
+  <td><%=h accession.drawn_by %></td>
+  <td><%=h accession.specimen_type_id %></td>
+  <td><%=h accession.reported_at %></td>
+  <td><%=h accession.stat %></td>
+  <td><%=h accession.note %></td>
+  <td><%=h accession.diagnosis %></td>
+  <td><%= link_to "Edit", edit_accession_path(accession) %></td>
+  <td><%= link_to "Destroy", accession, :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

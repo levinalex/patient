@@ -4,12 +4,12 @@ class LabeledFormBuilder < ActionView::Helpers::FormBuilder
   
   helpers.each do |method_name|
     define_method(method_name) do |field_name, *args|
-      @template.content_tag(:p, field_label(field_name, *args) + "<br />" + super)
+      @template.content_tag(:p, field_label(field_name, *args) + super)
     end
   end
     
   def submit(*args)
-    @template.content_tag(:p, super)
+    @template.content_tag(:p, super, :class => "submit")
   end
     
   private

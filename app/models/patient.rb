@@ -17,6 +17,8 @@ class Patient < ActiveRecord::Base
   has_many :accessions, :dependent => :destroy
   accepts_nested_attributes_for :accessions, :allow_destroy => true
   
+  named_scope :recent, :order => 'updated_at DESC'
+  
   def self.search(query)
     if query
       find(:all, :conditions => ['given_name LIKE ?', "%#{query}%"])

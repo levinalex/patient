@@ -1,11 +1,10 @@
 class AccessionsController < ApplicationController
   def index
-    @accessions = Accession.all
-  end
-  
-  def show
-    @accession = Accession.find(params[:id])
-    @results_grouped_by_departments = @accession.lab_test_results.group_by(&:department)
+    if params[:patient_id]
+      @accessions = Accession.find_all_by_patient_id(params[:patient_id])
+    else
+      @accessions = Accession.all
+    end
   end
   
   def new
@@ -18,7 +17,7 @@ class AccessionsController < ApplicationController
     @accession = @patient.accessions.build(params[:accession])
     if @accession.save
       flash[:notice] = "Successfully created accession."
-      redirect_to patient_url(@accession.patient_id)
+      redirect_to edit_results_accession_url(@accession)
     else
       render :action => 'new'
     end
@@ -27,22 +26,13 @@ class AccessionsController < ApplicationController
   def edit
     @accession = Accession.find(params[:id])
   end
-
-#  def results
-#    @accession = Accession.find(params[:id])
-#    if @accession.update_attributes(params[:accession])
-#      flash[:notice] = "Successfully edited results."
-#      redirect_to accession_results_url
-#    else
-#      render :action => 'results'
-#    end
-#  end
   
   def update
     @accession = Accession.find(params[:id])
     if @accession.update_attributes(params[:accession])
+      @accession.update_attributes(:reported_at => Time.now) if @accession.reported_at
       flash[:notice] = "Successfully updated accession."
-      redirect_to accession_url
+      redirect_to accession_lab_test_results_url(@accession)
     else
       render :action => 'edit'
     end
@@ -53,5 +43,16 @@ class AccessionsController < ApplicationController
     @accession.destroy
     flash[:notice] = "Successfully destroyed accession."
     redirect_to patient_url(@accession.patient_id)
+  end
+
+  def edit_results
+    @accession = Accession.find(params[:id])
+  end
+  
+  def report
+    @accession = Accession.find(params[:id])
+    @accession.update_attribute :reported_at, Time.now
+    flash[:notice] = "Reported accession"
+    redirect_to accession_lab_test_results_url(@accession)
   end
 end
