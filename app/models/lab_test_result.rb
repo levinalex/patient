@@ -8,6 +8,26 @@ class LabTestResult < ActiveRecord::Base
     lab_test.lab_test_department.name
   end
   
+  def formatted_value
+    if value.blank?
+      if lab_test.derivation
+        if accession.reported_at
+          ApplicationController.helpers.number_with_precision(accession.send(lab_test.code.underscore), :precision => lab_test.decimals, :delimiter => ',')
+        else
+          "calc."
+        end
+      else
+        "N/R"
+      end
+    else
+      if lab_test.lab_test_values.blank?
+        ApplicationController.helpers.number_with_precision(value, :precision => lab_test.decimals, :delimiter => ',')
+      else
+        LabTestValue.find(value).value
+      end
+    end
+  end
+  
   def value_number
     value.to_i
   end
@@ -15,7 +35,7 @@ class LabTestResult < ActiveRecord::Base
   def value_number=(value)
     self.value = value
   end
-  
+    
   def range_min
     # Missing age component to calculate valid range, instead of calling first
     unless lab_test.lab_test_normal_ranges.blank?

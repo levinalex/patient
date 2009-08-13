@@ -1,8 +1,8 @@
-<% title "Edit Patient" %>
+<% title t('.title') %>
 
 <%= render 'form' %>
 
 <p>
-  <%= link_to "Show", @patient %> |
+  <%= link_to "Accessions", patient_accessions_path(@patient) %> |
   <%= link_to "View All", patients_path %>
 </p>

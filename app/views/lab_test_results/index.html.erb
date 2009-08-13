@@ -2,17 +2,20 @@
 
 <%= render @accession.patient %>
 
-<p>
-<table>
-  <% @results.each do |department, results| %>
-    <tr><th><%=h department %></th></tr>
-    <%= render results %>
-  <% end %>
-</table>
-</p>
-<p>
+
+<% @results.each do |department, results| %>
+  <div class="results">
+    <div class="department">
+      <%=h department %>
+    </div>
+    <table>
+      <%= render results %>
+    </table>
+  </div>
+<% end %>
+
+<div class="actions">
   <%= link_to "Change Accession", edit_accession_path(@accession) %> |
   <%= link_to "Enter Results", edit_results_accession_url(@accession) %> |
   <%= link_to "Patient Report (PDF)", accession_lab_test_results_path(@accession, :format => 'pdf') if @accession.reported_at %>
-</p>
-
+</div>

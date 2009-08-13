@@ -9,7 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090808104857) do
+ActiveRecord::Schema.define(:version => 20090813090721) do
+
+  create_table "accession_panels", :force => true do |t|
+    t.integer  "accession_id"
+    t.integer  "lab_test_panel_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "accessions", :force => true do |t|
     t.integer  "patient_id"

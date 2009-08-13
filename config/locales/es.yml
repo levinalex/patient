@@ -2,6 +2,10 @@ es:
   patients:
     index:
       title: "Pacientes"
+      search: "Buscar"
+      all_patients: "Todos los Pacientes"
+      new_patient: "Nuevo Paciente"
+      not_found: "No se encontró ningún paciente"
     show:
       title: "Información del Paciente"
     new:
@@ -19,13 +23,10 @@ es:
       age: "Edad"
       identifier: "Cédula"
       address: "Dirección"
-      new_patient: "Nuevo Paciente"
-      show_patient: "Mostrar"
-      edit_patient: "Editar"
+      edit: "Editar"
       view_all: "Mostrar Todos"
       back_to_list: "Volver a la Lista"
       destroy: "Borrar"
-      confirm_destroy: "¿Está seguro?"
       submit: "Enviar"
       prompt_gender: "Elegir Sexo:"
       day: "Día:"
@@ -36,10 +37,17 @@ es:
       age: "Edad:"
       identifier: "Cédula:"
       address: "Dirección:"
+      accessions: "Muestras"
+      edit: "Editar"
+      delete: "Borrar"
+      confirm_destroy: "¿Está seguro?"      
   accessions:
-    drawn_at: "Extraído el"
-    received_at: "Recibido el"
-    reported_at: "Reportado el"
+    form:
+      labels: "Etiquetas"
+      drawn_at: "Extraído en"
+      drawn_by: "Extraído por"
+      received_at: "Recibido en"
+      reported_at: "Reportado en"
     
   flash:
     create: "Paciente creado exitosamente."

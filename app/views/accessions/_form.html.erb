@@ -1,21 +1,31 @@
 <%= render @accession.patient %>
 
-<% form_for [@patient, @accession] do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :labels %><br />
-    <%= f.text_field :labels %>
-  </p>
-  <p>
-    <%= f.label :drawn_at %><br />
-    <%= f.date_select :drawn_at %>
-  </p>
-  <p>
-    <%= f.label :drawn_by %><br />
-    <%= f.text_field :drawn_by %>
-  </p>
+<% labeled_form_for [@patient, @accession] do |f| %>
+  <fieldset>
+  <legend>Accession Details</legend>
+    <%= f.error_messages %>
+    <%= f.text_field :labels, :label => t('.labels') %>
+    <%= f.text_field :drawn_at, :label => t('.drawn_at') %>
+    <%= f.text_field :drawn_by, :label => t('.drawn_by') %>
+  </fieldset>
+
+  <fieldset>
+  <legend>Order Panels</legend>
+    <div id="panels">
+      <table>
+        <% for panel in LabTestPanel.all %>
+          <tr>
+            <td><%= check_box_tag 'accession[lab_test_panel_ids][]', panel.id, @accession.lab_test_panels.include?(panel) %></td>
+            <td><%=h panel.name %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <%= hidden_field_tag 'accession[lab_test_panel_ids][]', '' %>
+  </fieldset>
   
-  <h3>Order Tests</h3>
+  <fieldset>
+  <legend>Order Tests</legend>
   <div id="lab_tests">
     <ul>
       <% for department in LabTestDepartment.all %>
@@ -36,8 +46,7 @@
       </div>
     <% end %>
     </div>
+  </fieldset>
     
-  <%= hidden_field_tag 'accession[lab_test_ids][]', '' %>
-    
-  <p><%= f.submit "Submit" %></p>  
+  <%= f.submit %>
 <% end %>

@@ -1,18 +1,17 @@
 <% title "Accessions" %>
 
-<table>
-  <tr>
-    <th>Accession #</th>
-    <th>Patient</th>
-    <th>Other ID</th>
-    <th>Labels</th>
-    <th>Drawn At</th>
-    <th>Drawn By</th>
-    <th>Specimen Type</th>
-    <th>Reported At</th>
-    <th>Stat</th>
-    <th>Note</th>
-    <th>Diagnosis</th>
-  </tr>
-  <%= render @accessions %>
-</table>
+<%= render @patient if @patient %>
+
+<div class="accessions">
+  <table>
+    <tr>
+      <th>Accession #</th>
+      <th>Date of Extraction</th>
+      <th>Reported Date</th>
+      <th>Note</th>
+    </tr>
+    <%= render @accessions %>
+  </table>
+</div>
+
+<%= link_to "New Accession", new_patient_accession_path(@patient) if @patient %>

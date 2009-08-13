@@ -1,9 +1,10 @@
 class AccessionsController < ApplicationController
   def index
     if params[:patient_id]
-      @accessions = Accession.find_all_by_patient_id(params[:patient_id])
+      @patient = Patient.find(params[:patient_id])
+      @accessions = Accession.recent.find_all_by_patient_id(params[:patient_id])
     else
-      @accessions = Accession.all
+      @accessions = Accession.recent
     end
   end
   

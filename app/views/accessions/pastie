@@ -1,0 +1,6 @@
+    <% for panel in @accession.lab_test_panels %>
+      <% for lab_test in panel.lab_tests %>
+        <%= hidden_field_tag 'accession[lab_test_ids][]', lab_test.id %>
+      <% end %>
+    <% end %>
+    <%= hidden_field_tag 'accession[lab_test_ids][]', '' %>

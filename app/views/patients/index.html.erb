@@ -1,18 +1,18 @@
-<% title "Patients" %>
+<% title t('.title') %>
 
 <% form_tag patients_path, :method => 'get' do %>
   <p class="content">
     <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
+    <%= submit_tag t('.search'), :name => nil %>
   </p>
 <% end %>
 
 <% if @patients.empty? %>
-  <p class="content">No patients found. <%= link_to "All patients", patients_path %></p>
+  <p class="content"><%= t('.not_found') %><%= link_to t('.all_patients'), patients_path %></p>
 <% else %>
   <div class="patients">
     <%= render @patients %>
   </div>
 <% end %>
 
-<p><%= link_to "New Patient", new_patient_path %></p>
+<p><%= link_to t('.new_patient'), new_patient_path %></p>

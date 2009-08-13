@@ -1,24 +1,8 @@
-<div>
-  <tr>
+<div class="result">
+  <tr class="<%= cycle("even", "odd") %>">
     <td><%=h lab_test_result.lab_test.name %></td>
-    <% if !lab_test_result.value.blank? %>
-      <td>
-        <% if lab_test_result.lab_test.derivation %>
-          <%=h number_with_precision(@accession.send(lab_test_result.lab_test.code.underscore), :precision => lab_test_result.lab_test.decimals, :delimiter => ',') if @accession.reported_at %>
-        <% else %>
-          <% if lab_test_result.lab_test.lab_test_values.blank? %>
-            <%=h number_with_precision(lab_test_result.value, :precision => lab_test_result.lab_test.decimals, :delimiter => ',') %>
-          <% else %>
-            <%=h LabTestValue.find(lab_test_result.value).value %>
-          <% end %>
-        <% end %>
-      </td>
-      <td><%=h lab_test_result.lab_test.lab_test_unit.name if lab_test_result.lab_test.lab_test_unit %></td>
-      <td><%=h lab_test_result.range %></td>
-    <% else %>
-        <td>N/R</td>
-        <td></td>
-        <td></td>
-    <% end %>
+    <td><%=h lab_test_result.formatted_value %></td>
+    <td><%=h lab_test_result.lab_test.lab_test_unit.name if lab_test_result.lab_test.lab_test_unit %></td>
+    <td><%=h lab_test_result.range %></td>
   </tr>
 </div>

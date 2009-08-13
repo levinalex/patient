@@ -1,8 +1,8 @@
 <div class="patient">
   <div class="actions">
-    <%= link_to 'view', patient %> |
-    <%= link_to 'edit', edit_patient_path(patient) %> |
-    <%= link_to 'delete', patient, :method => :delete, :confirm => 'Are you sure?' %>
+    <%= link_to t('.accessions'), patient_accessions_path(patient) %> |
+    <%= link_to t('.edit'), edit_patient_path(patient) %> |
+    <%= link_to t('.delete'), patient, :method => :delete, :confirm => t('.confirm_destroy') %>
   </div>
   <div class="full_name">
     <%=h patient.full_name %>

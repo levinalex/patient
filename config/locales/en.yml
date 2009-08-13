@@ -2,6 +2,10 @@ en:
   patients:
     index:
       title: "Patients"
+      search: "Search"
+      all_patients: "All Patients"
+      new_patient: "New Patient"
+      not_found: "No patients found"
     new:
       title: "New Patient"
     show:
@@ -19,13 +23,10 @@ en:
       age: "Age"
       identifier: "SSN"
       address: "Address"
-      new_patient: "New Patient"
-      show_patient: "Show"
-      edit_patient: "Edit"
+      edit: "Edit"
       view_all: "View All"
       back_to_list: "Back to List"
       destroy: "Destroy"
-      confirm_destroy: "Are you sure?"
       submit: "Submit"
       prompt_gender: "Select Sex:"
       day: "Day:"
@@ -36,10 +37,17 @@ en:
       age: "Age:"
       identifier: "SSN:"
       address: "Address:"
+      accessions: "Accessions"
+      edit: "Edit"
+      delete: "Delete"
+      confirm_destroy: "Are you sure?"
   accessions:
-    drawn_at: "Drawn at"
-    received_at: "Received at"
-    reported_at: "Reported at"
+    form:
+      labels: "Labels"
+      drawn_at: "Drawn at"
+      drawn_by: "Drawn by"
+      received_at: "Received at"
+      reported_at: "Reported at"
           
   flash:
     create: "Successfully created patient."

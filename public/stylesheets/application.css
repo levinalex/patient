@@ -39,6 +39,31 @@ textarea, input, select {
 	border-radius: 4px;
 }
 
+table {
+  border-width: 0px;
+  border-spacing: 0;
+}
+
+th {
+  border-width: 2px;
+  border-style: none none solid;
+  border-color: #000;
+  padding: 0px;
+}
+
+td {
+  border-width: 0px;
+  padding: 0px;
+  border-style: none;
+}
+
+tr.even td {
+}
+
+tr.odd td {
+  background-color: #e5e5e5;
+}
+
 a img {
   border: none;
 }
@@ -147,10 +172,11 @@ fieldset {
 	-khtml-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
-  width: 50em;
 }
 
 legend {
+	font-size: 14px;
+  font-weight: bold;
   padding: 2px 6px
 }
 
@@ -180,6 +206,8 @@ legend {
 }
 
 .patient {
+  /*float: right;*/
+  /*display: block;*/
   background-color: #e5e5e5;
   padding: 10px 20px;
   width: 45%;
@@ -190,13 +218,23 @@ legend {
 }
 
 .patient .actions {
+	font-size: 10px;
   float: right;
 }
 
 .patient .full_name {
+	font-size: 14px;
   font-weight: bold;
 }
 
 .patient .label {
   text-align: right;
+}
+
+.accessions {
+}
+
+.results .department {
+  font-weight: bold;
+  padding: 10px 20px;
 }
