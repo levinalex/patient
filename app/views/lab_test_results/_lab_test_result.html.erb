@@ -1,8 +1,6 @@
-<div class="result">
-  <tr class="<%= cycle("even", "odd") %>">
-    <td><%=h lab_test_result.lab_test.name %></td>
-    <td><%=h lab_test_result.formatted_value %></td>
-    <td><%=h lab_test_result.lab_test.lab_test_unit.name if lab_test_result.lab_test.lab_test_unit %></td>
-    <td><%=h lab_test_result.range %></td>
-  </tr>
-</div>
+<tr class="<%= cycle("even", "odd") %>">
+  <td><%=h lab_test_result.lab_test.name %></td>
+  <td class="<%= lab_test_result.flag %>"><%=h lab_test_result.formatted_value %></td>
+  <td><%=h lab_test_result.lab_test.lab_test_unit.name if lab_test_result.lab_test.lab_test_unit %></td>
+  <td><%=h lab_test_result.range %></td>
+</tr>

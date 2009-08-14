@@ -6,9 +6,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
-  filter_parameter_logging :given_name, :middle_name, :family_name, :family_name2, :birthdate, :identifier, :address
+  filter_parameter_logging :password, :given_name, :middle_name, :family_name, :family_name2, :birthdate, :identifier, :address
   
   before_filter :set_user_language
+  
+  helper_method :current_user
   
   prawnto :prawn => {
     :info => {
@@ -19,6 +21,16 @@ class ApplicationController < ActionController::Base
   }
     
   private
+  
+  def current_user_session
+    return @current_user_session if defined?(@current_user_session)
+    @current_user_session = UserSession.find
+  end
+  
+  def current_user
+    return @current_user if defined?(@current_user)
+    @current_user = current_user_session && current_user_session.record
+  end
   
   def set_user_language
     I18n.locale = 'es'

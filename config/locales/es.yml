@@ -37,7 +37,7 @@ es:
       age: "Edad:"
       identifier: "Cédula:"
       address: "Dirección:"
-      accessions: "Muestras"
+      accessions: "Accesiones"
       edit: "Editar"
       delete: "Borrar"
       confirm_destroy: "¿Está seguro?"      

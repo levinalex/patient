@@ -67,4 +67,40 @@ class LabTestResult < ActiveRecord::Base
       end
     end
   end
+  
+  def flag
+    if !value.blank?
+      if range_max
+        if range_min
+          if range_max.to_d >= value.to_d && range_min.to_d < value.to_d
+            "normal_value"
+          else
+            if range_max.to_d < value.to_d
+              "high_value"
+            else
+              "low_value"
+            end
+          end
+        else
+          if range_max.to_d < value.to_d
+            "high_value"
+          else
+            "normal_value"
+          end
+        end
+      else
+        if range_min
+          if range_min.to_d >= value.to_d
+            "low_value"
+          else
+            "normal_value"
+          end
+        else
+          "normal_value"
+        end
+      end
+    else
+      "normal_value"
+    end
+  end
 end

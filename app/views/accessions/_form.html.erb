@@ -11,40 +11,36 @@
 
   <fieldset>
   <legend>Order Panels</legend>
-    <div id="panels">
-      <table>
-        <% for panel in LabTestPanel.all %>
-          <tr>
-            <td><%= check_box_tag 'accession[lab_test_panel_ids][]', panel.id, @accession.lab_test_panels.include?(panel) %></td>
-            <td><%=h panel.name %></td>
-          </tr>
-        <% end %>
-      </table>
+    <div class="panels">
+      <% for panel in LabTestPanel.all %>
+        <div class="panel">
+          <%= check_box_tag 'accession[lab_test_panel_ids][]', panel.id, @accession.lab_test_panels.include?(panel) %>
+          <%=h panel.name %>
+        </div>
+      <% end %>
     </div>
   <%= hidden_field_tag 'accession[lab_test_panel_ids][]', '' %>
   </fieldset>
   
   <fieldset>
-  <legend>Order Tests</legend>
-  <div id="lab_tests">
-    <ul>
-      <% for department in LabTestDepartment.all %>
-        <li><a href="#<%=h department.id %>"><%=h department.name %></a></li>
-      <% end %>
-    </ul>
-      
-    <% for department in LabTestDepartment.all %>
-      <div id="<%= department.id %>">
-        <table>
-        <% for lab_test in department.lab_tests %>
-          <tr>
-            <td><%= check_box_tag 'accession[lab_test_ids][]', lab_test.id, @accession.lab_tests.include?(lab_test) %></td>
-            <td><%=h lab_test.name %></td>
-          </tr>
+    <legend>Order Tests</legend>
+    <div id="lab_tests">
+      <ul>
+        <% for department in LabTestDepartment.all %>
+          <li><a href="#<%=h department.id %>"><%=h department.name %></a></li>
         <% end %>
-        </table>
-      </div>
-    <% end %>
+      </ul>
+        
+      <% for department in LabTestDepartment.all %>
+        <div id="<%= department.id %>">
+          <% for lab_test in department.lab_tests %>
+            <div class="lab_test">
+              <%= check_box_tag 'accession[lab_test_ids][]', lab_test.id, @accession.lab_tests.include?(lab_test) %>
+              <%=h lab_test.name %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </fieldset>
     

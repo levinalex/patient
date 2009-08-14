@@ -40,28 +40,53 @@ textarea, input, select {
 }
 
 table {
-  border-width: 0px;
-  border-spacing: 0;
+  table-layout:fixed;
+	margin: 2.5em 0;
+	width: 480px;
+	border-collapse: collapse;
+  border-spacing: 0 0;
+	text-align: left;
 }
 
 th {
-  border-width: 2px;
-  border-style: none none solid;
-  border-color: #000;
-  padding: 0px;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 8px 8px;
+	border-bottom: 2px solid #6678b1;
 }
 
 td {
-  border-width: 0px;
-  padding: 0px;
-  border-style: none;
+	padding: .4em .5em;
+  margin: none;
+  border: none;
 }
 
+td.high_value, td.low_value, td.normal_value {
+	text-align: right;
+}
+
+td.low_value {
+	color: #6678b1;
+}
+
+td.high_value {
+	color: #a66662;
+}
+
+
 tr.even td {
+  margin: none;
+  border: none;
 }
 
 tr.odd td {
+  margin: none;
+  border: none;
   background-color: #e5e5e5;
+}
+
+tr:last-child {
+  border-bottom: 1px solid #6678b1;
 }
 
 a img {
@@ -197,12 +222,13 @@ legend {
   display: list-item;
   padding: 4px 8px;
   text-decoration: none;
-  background-color: #aebbe2;
+  color: #b5cee5;
+  background-color: #8699aa;
 }
 
 #menu li a:hover {
   color: white;
-  background-color: #4a63b8;
+  background-color: #324d66;
 }
 
 .patient {
@@ -235,6 +261,8 @@ legend {
 }
 
 .results .department {
-  font-weight: bold;
-  padding: 10px 20px;
+}
+
+#user_nav {
+  float: right;
 }
