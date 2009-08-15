@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
   
   prawnto :prawn => {
     :info => {
-      :Title => "Result Report", :Author => "MasterLab", :Subject => "",
-      :Keywords => "", :Creator => "MasterLab", 
-      :Producer => "MasterLab", :CreationDate => Time.now
+      :Title => "Result Report", :Author => "yoshi", :Subject => "",
+      :Keywords => "lab test results", :Creator => "MasterLab",
+      :Producer => "", :CreationDate => Time.now
     }
   }
     

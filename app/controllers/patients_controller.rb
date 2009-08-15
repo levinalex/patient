@@ -21,7 +21,7 @@ class PatientsController < ApplicationController
     @patient = Patient.new(params[:patient])
     if @patient.save
       flash[:notice] = "Successfully created patient."
-      redirect_to @patient
+      redirect_to patient_accessions_url(@patient)
     else
       render :action => 'new'
     end
@@ -35,7 +35,7 @@ class PatientsController < ApplicationController
     @patient = Patient.find(params[:id])
     if @patient.update_attributes(params[:patient])
       flash[:notice] = "Successfully updated patient."
-      redirect_to @patient
+      redirect_to patient_accessions_url(@patient)
     else
       render :action => 'edit'
     end
