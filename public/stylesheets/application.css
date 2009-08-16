@@ -36,13 +36,13 @@ textarea, input, select {
 	-moz-border-radius: 4px;
 	-khtml-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	border-radius: 4px;
+	/*border-radius: 4px;*/
 }
 
 table {
   table-layout:fixed;
 	margin: 2.5em 0;
-	width: 480px;
+	width: 550px;
 	border-collapse: collapse;
   border-spacing: 0 0;
 	text-align: left;
@@ -57,7 +57,7 @@ th {
 
 td {
 	padding: .4em .5em;
-  margin: none;
+  /*margin: none;*/
   border: none;
 }
 
@@ -75,12 +75,12 @@ td.high_value {
 
 
 tr.even td {
-  margin: none;
+  /*margin: none;*/
   border: none;
 }
 
 tr.odd td {
-  margin: none;
+  /*margin: none;*/
   border: none;
   background-color: #e5e5e5;
 }
@@ -112,7 +112,7 @@ a {
   -moz-border-radius: 4px;
 	-khtml-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	border-radius: 4px;
+	/*border-radius: 4px;*/
   margin-top: 20px;
 }
 
@@ -122,7 +122,7 @@ a {
   -moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	border-radius: 3px;
+	/*border-radius: 3px;*/
   border: solid 1px;
   font-size: 11px;
 }
@@ -196,7 +196,7 @@ fieldset {
   -moz-border-radius: 4px;
 	-khtml-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	border-radius: 4px;
+	/*border-radius: 4px;*/
 }
 
 legend {
@@ -240,7 +240,7 @@ legend {
   -moz-border-radius: 4px;
 	-khtml-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	border-radius: 4px;
+	/*border-radius: 4px;*/
 }
 
 .patient .actions {
@@ -265,4 +265,8 @@ legend {
 
 #user_nav {
   float: right;
+}
+
+li .handle {
+  cursor: move;
 }

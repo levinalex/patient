@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :lab_test_linear_ranges
   map.resources :lab_test_critical_ranges
   map.resources :lab_test_normal_ranges
-  map.resources :lab_tests
+  map.resources :lab_tests, :collection => { :sort => :post }
   map.resources :lab_test_units
   map.resources :lab_test_departments
 

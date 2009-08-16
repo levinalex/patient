@@ -51,8 +51,9 @@ class AccessionsController < ApplicationController
   end
   
   def report
+    @user = current_user
     @accession = Accession.find(params[:id])
-    @accession.update_attribute :reported_at, Time.now
+    @accession.update_attributes(:reported_by => @user, :reported_at => Time.now)
     flash[:notice] = "Reported accession"
     redirect_to accession_lab_test_results_url(@accession)
   end

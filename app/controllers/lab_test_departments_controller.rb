@@ -1,7 +1,7 @@
 class LabTestDepartmentsController < ApplicationController
   
   def index
-    @lab_test_departments = LabTestDepartment.all :order => 'name ASC', :include => :lab_tests
+    @lab_test_departments = LabTestDepartment.all, :include => :lab_tests
   end
   
   def new

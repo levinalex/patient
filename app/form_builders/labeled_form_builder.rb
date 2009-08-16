@@ -1,6 +1,6 @@
 class LabeledFormBuilder < ActionView::Helpers::FormBuilder
 
-  helpers = %w{text_field password_field select date_select text_area}
+  helpers = %w{text_field password_field select date_select text_area collection_select}
   
   helpers.each do |method_name|
     define_method(method_name) do |field_name, *args|

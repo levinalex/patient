@@ -1,6 +1,6 @@
 class LabTestsController < ApplicationController
   def index
-    @lab_tests = LabTest.all
+    @lab_tests = LabTest.all(:order => "position")
   end
   
   def show
@@ -40,5 +40,12 @@ class LabTestsController < ApplicationController
     @lab_test.destroy
     flash[:notice] = "Successfully destroyed lab test."
     redirect_to lab_tests_url
+  end
+  
+  def sort
+    params[:lab_tests].each_with_index do |id, index|
+      LabTest.update_all(['position=?', index+1], ['id=?', id])
+    end
+    render :nothing => true
   end
 end

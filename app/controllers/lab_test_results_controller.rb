@@ -1,7 +1,9 @@
 class LabTestResultsController < ApplicationController
+  prawnto :prawn => { :top_margin => 150 }
+  
   def index
     @accession = Accession.find(params[:accession_id])
-    @results = @accession.lab_test_results.group_by(&:department)
+    @results = @accession.lab_test_results.all(:order => 'lab_test_id').group_by(&:department_name)
   end
   
 #  def show

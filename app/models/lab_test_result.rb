@@ -4,12 +4,16 @@ class LabTestResult < ActiveRecord::Base
   
   #validates_presence_of :accession_id, :lab_test_id
   
-  def department
+  def department_name
+    lab_test.lab_test_department.name
+  end
+
+  def lab_test_name
     lab_test.lab_test_department.name
   end
   
   def formatted_value
-    if value.blank?
+    if value.blank? || value.nil?
       if lab_test.derivation
         if accession.reported_at
           ApplicationController.helpers.number_with_precision(accession.send(lab_test.code.underscore), :precision => lab_test.decimals, :delimiter => ',')
@@ -52,10 +56,22 @@ class LabTestResult < ActiveRecord::Base
     end
   end
   
+  def range_interval_symbol
+    if range_max && range_min
+      "–"
+    elsif range_max
+      "<"
+    elsif range_min
+      ">"
+    else
+      ""
+    end
+  end
+  
   def range
     if range_min
       if range_max
-        [range_min, "-", range_max].join(' ')
+        [range_min, "–", range_max].join(' ')
       else
         [">", range_min].join(' ')
       end

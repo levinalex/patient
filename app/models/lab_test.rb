@@ -12,5 +12,8 @@ class LabTest < ActiveRecord::Base
   has_many :accessions, :through => :lab_test_results
   has_many :lab_test_value_option_joints
   has_many :lab_test_values, :through => :lab_test_value_option_joints
-  #named_scope :not_numeric, :conditions => { :lab_test_values.value => nil }
+  
+  acts_as_list :scope => :lab_test_department
+
+  default_scope :order => "position"
 end

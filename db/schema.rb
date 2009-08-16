@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090814131501) do
+ActiveRecord::Schema.define(:version => 20090816173355) do
 
   create_table "accession_panels", :force => true do |t|
     t.integer  "accession_id"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(:version => 20090814131501) do
     t.boolean  "range"
     t.boolean  "fraction"
     t.integer  "text_length"
+    t.integer  "position"
   end
 
   create_table "patients", :force => true do |t|
@@ -190,6 +191,7 @@ ActiveRecord::Schema.define(:version => 20090814131501) do
     t.string   "persistence_token", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "initials"
   end
 
 end

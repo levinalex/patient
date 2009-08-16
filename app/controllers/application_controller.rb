@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
   before_filter :set_user_language
   
   helper_method :current_user
+
+#       options[:info][:Producer] ||= "Prawn"
+# line 136
+# prawn/lib/prawn/document.rb
   
   prawnto :prawn => {
     :info => {

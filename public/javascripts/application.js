@@ -18,4 +18,5 @@ $(function() {
                  function () {
                  $(this).find("td:last").remove();
                  });
+  $("#sortable_lab_tests").sortable();
 });

@@ -6,7 +6,7 @@
     <%= f.error_messages %>
     <%= f.text_field :labels, :label => t('.labels') %>
     <%= f.text_field :drawn_at, :label => t('.drawn_at') %>
-    <%= f.text_field :drawn_by, :label => t('.drawn_by') %>
+    <%= f.collection_select :drawn_by, User.all, :id, :username, :label => t('.drawn_by') %>
   </fieldset>
 
   <fieldset>
