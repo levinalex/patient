@@ -1,16 +1,23 @@
 class AccessionsController < ApplicationController
+  before_filter :require_user
+  
   def index
     if params[:patient_id]
       @patient = Patient.find(params[:patient_id])
-      @accessions = Accession.recent.find_all_by_patient_id(params[:patient_id])
+      @pending_accessions = Accession.pending.find_all_by_patient_id(params[:patient_id])
+      @reported_accessions = Accession.reported.find_all_by_patient_id(params[:patient_id])
     else
-      @accessions = Accession.recent
+      @pending_accessions = Accession.pending
+      @reported_accessions = Accession.reported.recent
     end
   end
   
   def new
+    @departments = LabTestDepartment.all(:include => :lab_tests)
     @patient = Patient.find(params[:patient_id])
     @accession = @patient.accessions.build
+    @accession.drawn_at = Time.now
+    @accession.drawn_by = current_user.id
   end
   
   def create
@@ -25,7 +32,8 @@ class AccessionsController < ApplicationController
   end
   
   def edit
-    @accession = Accession.find(params[:id])
+    @departments = LabTestDepartment.all(:include => :lab_tests)
+    @accession = Accession.find(params[:id], :include => [:lab_test_panels, :lab_tests])
   end
   
   def update
@@ -35,7 +43,9 @@ class AccessionsController < ApplicationController
       flash[:notice] = "Successfully updated accession."
       redirect_to accession_lab_test_results_url(@accession)
     else
-      render :action => 'edit'
+      flash[:notice] = "Error!!!"
+      #render :action => 'edit'
+      redirect_to root_url
     end
   end
   
@@ -51,9 +61,8 @@ class AccessionsController < ApplicationController
   end
   
   def report
-    @user = current_user
     @accession = Accession.find(params[:id])
-    @accession.update_attributes(:reported_by => @user, :reported_at => Time.now)
+    @accession.update_attributes(:reported_by => current_user, :reported_at => Time.now)
     flash[:notice] = "Reported accession"
     redirect_to accession_lab_test_results_url(@accession)
   end

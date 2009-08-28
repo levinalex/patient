@@ -13,12 +13,13 @@
         <td><%=h r.object.lab_test.name %>
         <td>
           <% if r.object.lab_test.derivation %>
-            (calc.)
+            <%=h r.object.formatted_value %>
           <% else %>
             <% if r.object.lab_test.lab_test_values.blank? %>
               <%= r.text_field :value, :size => 13 %>
             <% else %>
-              <%= r.collection_select :value_number, LabTest.find(r.object.lab_test_id).lab_test_values, :id, :value, { :prompt => true } %>
+              <%= r.collection_select :value_number, LabTest.find(r.object.lab_test_id).lab_test_values, :id, :value, { :include_blank => true } %>
+              <%= r.text_field :value, :size => 13 if r.object.lab_test.also_numeric %>
             <% end %>
           <% end %>
         </td>

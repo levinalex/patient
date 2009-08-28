@@ -1,18 +1,21 @@
-<% title "Accession #" + @accession.id.to_s %>
+<% title "Accession ##{@accession.id.to_s}" %>
 
 <%= render @accession.patient %>
+
+<%= render @accession %>
 
 <% @results.each do |department, results| %>
   <table class="results">
     <thead>
       <tr>
-        <th class="department" colspan="4">
+        <th class="department" colspan="6">
           <%=h department %>
         </th>
       </tr>
     </thead>
     <tbody>
-      <%= render results %>          
+      <% reset_cycle("alternating_row_colors") %>         
+      <%= render results %>
     </tbody>
   </table>
 <% end %>

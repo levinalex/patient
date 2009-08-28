@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'jquery', 'jquery-ui', 'application' %>
+
 <%= render @accession.patient %>
 
 <% labeled_form_for [@patient, @accession] do |f| %>
@@ -12,33 +14,22 @@
   <fieldset>
   <legend>Order Panels</legend>
     <div class="panels">
-      <% for panel in LabTestPanel.all %>
-        <div class="panel">
-          <%= check_box_tag 'accession[lab_test_panel_ids][]', panel.id, @accession.lab_test_panels.include?(panel) %>
-          <%=h panel.name %>
-        </div>
-      <% end %>
+      <%= f.many_check_boxes :lab_test_panel_ids, LabTestPanel.all, :id, :name %>
     </div>
-  <%= hidden_field_tag 'accession[lab_test_panel_ids][]', '' %>
   </fieldset>
   
   <fieldset>
     <legend>Order Tests</legend>
-    <div id="lab_tests">
+    <div id="order_tests">
       <ul>
-        <% for department in LabTestDepartment.all %>
+        <% for department in @departments %>
           <li><a href="#<%=h department.id %>"><%=h department.name %></a></li>
         <% end %>
       </ul>
         
-      <% for department in LabTestDepartment.all %>
+      <% for department in @departments %>
         <div id="<%= department.id %>">
-          <% for lab_test in department.lab_tests %>
-            <div class="lab_test">
-              <%= check_box_tag 'accession[lab_test_ids][]', lab_test.id, @accession.lab_tests.include?(lab_test) %>
-              <%=h lab_test.name %>
-            </div>
-          <% end %>
+          <%= f.many_check_boxes :lab_test_ids, department.lab_tests, :id, :name %>
         </div>
       <% end %>
     </div>

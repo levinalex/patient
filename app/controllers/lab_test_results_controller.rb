@@ -3,13 +3,9 @@ class LabTestResultsController < ApplicationController
   
   def index
     @accession = Accession.find(params[:accession_id])
-    @results = @accession.lab_test_results.all(:order => 'lab_test_id').group_by(&:department_name)
+    @results = @accession.lab_test_results.all(:include => [{ :lab_test => [ :lab_test_department, :lab_test_unit, :lab_test_values ] }], :order => 'lab_test_id').group_by(&:department_name)
   end
-  
-#  def show
-#    @lab_test_result = @accession.lab_test_results.find(params[:id])
-#  end
-  
+    
   def new
     @lab_test_result = @accession.lab_test_results.new
   end

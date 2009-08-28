@@ -1,6 +1,8 @@
-<tr class="<%= cycle("even", "odd") %>">
+<tr class="<%= cycle("even", "odd", :name => "alternating_row_colors") %>">
   <td><%=h lab_test_result.lab_test.name %></td>
-  <td class="<%= lab_test_result.flag %>"><%=h lab_test_result.formatted_value %></td>
+  <td class="<%= lab_test_result.flag_color %>"><%=h lab_test_result.formatted_value %><%=h "⚑" if lab_test_result.flag %></td>
   <td><%=h lab_test_result.lab_test.lab_test_unit.name if lab_test_result.lab_test.lab_test_unit %></td>
-  <td><%=h lab_test_result.range %></td>
+  <td class="range_min"><%=h lab_test_result.range_min %></td>
+  <td class="range_interval_symbol"><%=h lab_test_result.range_interval_symbol %></td>
+  <td class="range_max"><%=h lab_test_result.range_max %></td>
 </tr>

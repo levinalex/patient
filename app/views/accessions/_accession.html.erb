@@ -5,8 +5,8 @@
     <td><%=h accession.reported_at.strftime('%d/%m/%Y') if accession.reported_at %></td>
     <td><%=h accession.note %></td>
     <td>
-      <%= link_to "Edit", edit_accession_path(accession) %>
-      <%= link_to "Destroy", accession, :confirm => 'Are you sure?', :method => :delete %>
+      <%= link_to "Change Accession", edit_accession_path(accession) %>
+      <%= link_to "Delete", accession, :confirm => 'Are you sure?', :method => :delete %>
     </td>
   </tr>
 </div>

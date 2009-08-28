@@ -1,5 +1,14 @@
 es:
+  user_sessions:
+    new:
+      username: "Usuario"
+      password: "Contraseña"
+      submit: "Enviar"
+
   patients:
+    female: "Femenino"
+    male: "Masculino"
+    unknown: "Desconocido"
     index:
       title: "Pacientes"
       search: "Buscar"
@@ -40,7 +49,8 @@ es:
       accessions: "Accesiones"
       edit: "Editar"
       delete: "Borrar"
-      confirm_destroy: "¿Está seguro?"      
+      confirm_destroy: "¿Está seguro?"
+      
   accessions:
     form:
       labels: "Etiquetas"
@@ -48,6 +58,58 @@ es:
       drawn_by: "Extraído por"
       received_at: "Recibido en"
       reported_at: "Reportado en"
+      
+  lab_test_results:
+    low: "BAJO"
+    high: "ALTO"
+    abnormal: "ANORMAL"
+    index:
+      full_name: "Nombre:"
+      identifier: "Cédula:"
+      doctor: "Doctor:"
+      phone: "Teléfono:"
+      age: "Edad:"
+      years: "años"
+      gender: "Sexo:"
+      accession: "Accesión:"
+      drawn_at: "Fecha de extracción:"
+      received_at: "Fecha de recepción:"
+      lab_test: "Prueba"
+      result: "Resultado"
+      units: "Unidades"
+      flag: "Marcas"
+      range: "Rango de Referencia"
+      run_by: "Corrido por:"
+      on_date: "el"
+      reviewed_by: "Revisado por:"
+      date: "Fecha:"
+      originally_printed_at: "Fecha original de impresión:"
+      printed_at: "Fecha de impresión:"
+      page: "Página"
+      of: "de"
+      results_of: "Resultados de:"
+      
+  authlogic:
+    error_messages:
+      login_blank: "en blanco."
+      login_not_found: "inválido."
+      login_invalid: "should use only letters, numbers, spaces, and .-_@ please."
+      consecutive_failed_logins_limit_exceeded: "Consecutive failed logins limit exceeded, account is disabled."
+      email_invalid: "should look like an email address."
+      password_blank: "en blanco."
+      password_invalid: "incorrecta."
+      not_active: "Your account is not active"
+      not_confirmed: "Your account is not confirmed"
+      not_approved: "Your account is not approved"
+      no_authentication_details: "Por favor, introduzca su nombre de usuario y contraseña."
+    models:
+      user_session: "UserSession"
+    attributes:
+      user_session:
+        login: "Nombre de usuario"
+        email: "email"
+        password: "Contraseña"
+        remember_me: "remember me"
     
   flash:
     create: "Paciente creado exitosamente."
@@ -70,7 +132,7 @@ es:
       format:
         # Where is the currency sign? %u is the currency unit, %n the number (default: $5.00)
         format: "%u %n"
-        unit: "B/." 
+        unit: "$" 
         # These three are to override number.format and are optional
         separator: "." 
         delimiter: "," 
@@ -181,7 +243,7 @@ es:
         even: "debe ser par"
 
         # Append your own errors here or at the model/attributes scope.
-
+        
       models:
         # Overrides default messages
 

@@ -1,11 +1,3 @@
-    <% for panel in @accession.lab_test_panels %>
-      <% for lab_test in panel.lab_tests %>
-        <%= hidden_field_tag 'accession[lab_test_ids][]', lab_test.id %>
-      <% end %>
-    <% end %>
-    <%= hidden_field_tag 'accession[lab_test_ids][]', '' %>
-
-
 <% title "Enter Results" %>
 
 <%= render @accession.patient %>
@@ -24,12 +16,41 @@
             (calc.)
           <% else %>
             <% if r.object.lab_test.lab_test_values.blank? %>
-              <%= r.text_field :value %>
+              <%= r.text_field :value, :size => 13 %>
             <% else %>
-              <%= r.collection_select :value_number, LabTest.find(r.object.lab_test_id).lab_test_values, :id, :value, { :prompt => true } %>
+              <%= r.collection_select :value_number, LabTest.find(r.object.lab_test_id).lab_test_values, :id, :value, { :include_blank => true } %>
             <% end %>
           <% end %>
         </td>
+        <td><%=h r.object.lab_test.lab_test_unit.name if r.object.lab_test.lab_test_unit %></td>
+        <td><%=h r.object.range %></td>
+      </tr>
+    <% end %>
+  </table>
+  </div>
+
+  <p>
+    <%= a.submit "Save" %>
+    <%= link_to "Report", report_accession_path(@accession), :method => :put unless @accession.reported_at %>
+  </p>  
+<% end %>
+
+
+
+<% title "Enter Results" %>
+
+<%= render @accession.patient %>
+
+<% results_form_for @accession do |a| %>
+  <%= a.error_messages %>
+  
+  <h3>Results</h3>
+  <div class="results">
+  <table>
+    <% a.fields_for :lab_test_results do |r| %>
+      <tr>
+        <td><%=h r.object.lab_test.name %>
+        <td><%=h value_input r.object.lab_test %></td>
         <td><%=h r.object.lab_test.lab_test_unit.name if r.object.lab_test.lab_test_unit %></td>
         <td><%=h r.object.range %></td>
       </tr>

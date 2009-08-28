@@ -1,5 +1,13 @@
 en:
+  user_sessions:
+    new:
+      username: "Username"
+      password: "Password"
+      submit: "Submit"
   patients:
+    female: "Female"
+    male: "Male"
+    unknown: "Unknown"
     index:
       title: "Patients"
       search: "Search"
@@ -41,6 +49,7 @@ en:
       edit: "Edit"
       delete: "Delete"
       confirm_destroy: "Are you sure?"
+      
   accessions:
     form:
       labels: "Labels"
@@ -48,6 +57,36 @@ en:
       drawn_by: "Drawn by"
       received_at: "Received at"
       reported_at: "Reported at"
+      
+  lab_test_results:
+    low: "LOW"
+    high: "HIGH"
+    abnormal: "ABNORMAL"
+    index:
+      full_name: "Name:"
+      identifier: "SSN:"
+      doctor: "Doctor:"
+      phone: "Phone:"
+      age: "Age:"
+      years: "years"
+      gender: "Gender:"
+      accession: "Accession:"
+      drawn_at: "Collected Date:"
+      received_at: "Received in Lab:"
+      lab_test: "Test Name"
+      result: "Result"
+      units: "Units"
+      flag: "Flag"
+      range: "Reference Range"
+      run_by: "Run By:"
+      on_date: "on"
+      reviewed_by: "Reviewed By:"
+      date: "Date:"
+      originally_printed_at: "Originally Printed On:"
+      printed_at: "Printed:"
+      page: "Page"
+      of: "of"
+      results_of: "Lab Results for:"
           
   flash:
     create: "Successfully created patient."

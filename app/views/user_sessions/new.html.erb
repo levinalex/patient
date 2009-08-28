@@ -1,16 +1,9 @@
-<% title "Login" %>
+<h1><%= link_to "MasterLab", "http://www.labtecsa.com" %></h1>
 
-<% form_for @user_session do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </p>
-  <p>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
+<%= render_error_messages @user_session %>
+
+<% labeled_form_for @user_session do |f| %>
+  <%= f.text_field :username, :label => t('.username') %>
+  <%= f.password_field :password, :label => t('.password') %>
+  <%= f.submit t('.submit') %>
 <% end %>
-
-

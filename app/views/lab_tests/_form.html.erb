@@ -4,14 +4,26 @@
   <%= f.text_field :code %>
   <%= f.text_field :name %>
   <%= f.collection_select :lab_test_unit_id, LabTestUnit.all, :id, :name, :prompt => "Select" %>
+  <%= f.text_field :decimals %>
+  <%= f.check_box :derivation %>
   <%= f.text_field :procedure %>
   <%= f.text_area :description %>
-  <%= f.text_field :decimals %>
-  <%= f.check_box :derivation, :label => "Derivation" %>
-  <%= f.check_box :also_numeric, :label => "Also allow numeric values?"%>
-  <%= f.check_box :ratio, :label => "N:N" %>
-  <%= f.check_box :range, :label => "N–N" %>
-  <%= f.check_box :fraction, :label => "N/N" %>
-  <%= f.text_field :text_length %>
+
+  <fieldset>
+    <legend>Also Allow</legend>
+    <%= f.check_box :also_numeric, :label => "Numeric" %>
+    <%= f.check_box :ratio, :label => "N:N" %>
+    <%= f.check_box :range, :label => "N–N" %>
+    <%= f.check_box :fraction, :label => "N ⁄ N" %>
+    <%= f.text_field :text_length, :label => "Text" %>
+  </fieldset>
+  
+  <fieldset>
+    <legend>Values</legend>
+      <div class="values">
+        <%= f.many_check_boxes :lab_test_value_ids, LabTestValue.all, :id, :value_with_flag %>
+      </div>
+  </fieldset>
+  
   <%= f.submit "Submit" %>
 <% end %>
