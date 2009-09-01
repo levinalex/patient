@@ -1,4 +1,4 @@
-<%= javascript_include_tag 'jquery', 'jquery-ui', 'application' %>
+<% javascript "jquery", "jquery-ui", "application" %>
 
 <%= render @accession.patient %>
 
@@ -9,6 +9,8 @@
     <%= f.text_field :labels, :label => t('.labels') %>
     <%= f.text_field :drawn_at, :label => t('.drawn_at') %>
     <%= f.collection_select :drawn_by, User.all, :id, :username, :label => t('.drawn_by') %>
+    <%= f.text_field :received_at, :label => t('.received_at') %>
+    <%= f.collection_select :received_by, User.all, :id, :username, :label => t('.received_by') %>
   </fieldset>
 
   <fieldset>

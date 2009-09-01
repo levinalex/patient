@@ -57,6 +57,7 @@ es:
       drawn_at: "Extraído en"
       drawn_by: "Extraído por"
       received_at: "Recibido en"
+      received_by: "Recibido por"
       reported_at: "Reportado en"
       
   lab_test_results:
@@ -64,6 +65,7 @@ es:
     high: "ALTO"
     abnormal: "ANORMAL"
     index:
+      preliminary: "Preliminar"
       full_name: "Nombre:"
       identifier: "Cédula:"
       doctor: "Doctor:"
@@ -77,9 +79,9 @@ es:
       lab_test: "Prueba"
       result: "Resultado"
       units: "Unidades"
-      flag: "Marcas"
+      flag: "Señal"
       range: "Rango de Referencia"
-      run_by: "Corrido por:"
+      run_by: "Ejecutado por:"
       on_date: "el"
       reviewed_by: "Revisado por:"
       date: "Fecha:"

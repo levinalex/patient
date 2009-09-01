@@ -1,6 +1,7 @@
 <% labeled_form_for @user do |f| %>
   <%= f.error_messages %>
   <%= f.text_field :username %>
+  <%= f.text_field :name_to_display %>
   <%= f.text_field :initials %>
   <%= f.text_field :email %>
   <%= f.select :language, [['Español', 'es'], ['English','en']] %>

@@ -3,4 +3,5 @@ class LabTestPanel < ActiveRecord::Base
   has_many :lab_tests, :through => :lab_test_panel_joints
   has_many :accession_panels
   has_many :accessions, :through => :accession_panels
+  #translates :name
 end

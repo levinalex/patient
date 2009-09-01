@@ -17,6 +17,12 @@ require "open-uri"
 logoimage = "http://localhost:3000/images/logo.png" 
 pdf.image open(logoimage), :at => [0,745], :scale => 0.5
 
+pdf.bounding_box([460, 730], :width => 80, :height => 15) do
+  pdf.fill_color colors[:high_value]
+  pdf.text "#{t('.preliminary') unless @accession.reported_at}", :size => 8, :align => :right
+  pdf.fill_color colors[:black]
+end
+
 pdf.bounding_box([125,730], :width => 350, :height => 50) do
   pdf.text "MasterLab - Laboratorio Clínico Especializado", :size => 12, :style => :bold
   pdf.text "Villa Lucre, Consultorios San Judas Tadeo, Local 107", :size => 10
@@ -51,7 +57,7 @@ pdf.bounding_box([200,641], :width => 30, :height => 50) do
 end
 pdf.bounding_box([230,641], :width => 40, :height => 50) do
   pdf.text "#{@accession.patient_age} #{t('.years')}", :size => 8
-  pdf.text @accession.patient.gender, :size => 8
+  pdf.text @accession.patient.gender_name, :size => 8
 end
 
 pdf.bounding_box([310,650], :width => 80, :height => 50) do
@@ -87,7 +93,7 @@ pdf.header pdf.margin_box.top_left do
   end
   pdf.bounding_box([140,620], :width => 60, :height => 15) do
     pdf.pad(5) do
-      pdf.text t('.result'), :size => 8, :style => :bold, :align => :left
+      pdf.text t('.result'), :size => 8, :style => :bold, :align => :center
     end
   end
   pdf.bounding_box([200,620], :width => 88, :height => 15) do
@@ -127,7 +133,8 @@ end
   end
   
   pdf.text department, :size => 8, :style => :bold, :at => [0,pdf.cursor-5]
-  pdf.text "#{t('.run_by')} #{User.find(@accession.reported_by).initials} #{t('.on_date')} #{@accession.reported_at.strftime('%d/%m/%Y %I:%M %p')}", :size => 7.5, :style => :italic, :align => :right
+  pdf.text "#{[t('.run_by'), User.find(@accession.reported_by).initials, t('.on_date'), @accession.reported_at.strftime('%d/%m/%Y %I:%M %p')].join(' ') if @accession.reported_at}", :size => 7.5, :style => :italic, :align => :right
+  pdf.text "#{' ' unless @accession.reported_at}", :size => 7.5
   pdf.table results_table,
 #    :headers => table_headers,
     :font_size => 8,
@@ -136,7 +143,7 @@ end
     :border_color => colors[:grey],
     :border_width => 0.75,
     :position => :left,
-    :align => { 0 => :left, 1 => :left, 2 => :left, 3 => :center, 4 => :right, 5 => :center, 6 => :left },
+    :align => { 0 => :left, 1 => :right, 2 => :left, 3 => :center, 4 => :right, 5 => :center, 6 => :left },
     :column_widths => { 0 => 140, 1 => 60, 2 => 88, 3 => 100, 4 => 65, 5 => 22, 6 => 65 }
 
   pdf.move_down(10)
@@ -152,7 +159,7 @@ pdf.stroke_line [356,pdf.cursor], [470,pdf.cursor]
 pdf.bounding_box([121,pdf.cursor], :width => 164, :height => 15) do
   pdf.stroke_horizontal_rule
   pdf.pad_top(5) do
-    pdf.text "Lic. #{User.find(current_user).username}", :size => 8, :align => :center
+    pdf.text "#{User.find(current_user).name_to_display}", :size => 8, :align => :center
   end
 end
 
@@ -162,20 +169,23 @@ end
 num_pag=0 
 pdf.footer [0,40] do
   pdf.font "Helvetica" do
-    pdf.move_down(15)
+    pdf.move_down 15
     pdf.line_width = 1
     pdf.stroke_horizontal_rule
     pdf.move_down 5
-    pdf.text "#{t('.originally_printed_at')} #{@accession.reported_at.strftime('%d/%m/%Y %I:%M %p')}", :size => 8
+    pdf.text "#{t('.originally_printed_at')} #{@accession.reported_at.strftime('%d/%m/%Y %I:%M %p') if @accession.reported_at}#{t('.preliminary') unless @accession.reported_at}", :size => 8
     pdf.text "#{t('.printed_at')} #{Time.now.strftime('%d/%m/%Y %I:%M %p')}", :size => 8
-    pdf.move_up 18
-    pdf.text "#{t('.accession')} #{@accession.id}", :size => 8, :align => :right
-    pdf.text "#{t('.results_of')} #{@accession.patient.full_name}", :size => 8, :align => :right
     num_pag += 1
     ##
     # Should be inside a lazy_bounding_box
     # #{pdf.page_count}
     ##
     pdf.text t('.page')+num_pag.to_s+" #{t('.of')} "+pdf.page_count.to_s, :size => 8, :align => :left
+    pdf.move_up 27
+    pdf.text "#{t('.accession')} #{@accession.id}", :size => 8, :align => :right
+    pdf.text "#{t('.results_of')} #{@accession.patient.full_name}", :size => 8, :align => :right
+    pdf.fill_color colors[:high_value]
+    pdf.text "#{t('.preliminary') unless @accession.reported_at}", :size => 8, :align => :right
+    pdf.fill_color colors[:black]
   end
 end

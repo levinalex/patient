@@ -56,6 +56,7 @@ en:
       drawn_at: "Drawn at"
       drawn_by: "Drawn by"
       received_at: "Received at"
+      received_by: "Received by"
       reported_at: "Reported at"
       
   lab_test_results:
@@ -63,13 +64,14 @@ en:
     high: "HIGH"
     abnormal: "ABNORMAL"
     index:
+      preliminary: "Preliminary"
       full_name: "Name:"
-      identifier: "SSN:"
+      identifier: "ID:"
       doctor: "Doctor:"
       phone: "Phone:"
       age: "Age:"
       years: "years"
-      gender: "Gender:"
+      gender: "Sex:"
       accession: "Accession:"
       drawn_at: "Collected Date:"
       received_at: "Received in Lab:"

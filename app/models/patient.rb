@@ -31,7 +31,7 @@ class Patient < ActiveRecord::Base
   end
   
   def full_name
-    [given_name, middle_name, family_name, family_name2].join(' ')
+    [given_name, middle_name, family_name, family_name2].join(' ').squeeze(' ').strip
   end
   memoize :full_name
   
@@ -46,7 +46,18 @@ class Patient < ActiveRecord::Base
     months = Date.today.month - birthdate.month
     age * 12 + months
   end
-    
+  
+  def gender_name
+    case gender
+    when "F"
+      I18n.translate('patients.female')
+    when "M"
+      I18n.translate('patients.male')
+    when "U"
+      I18n.translate('patients.unknown')
+    end
+  end
+  
   def validate
     errors.add(:birthdate, "cannot be in the future") if birthdate > Date.today unless birthdate.nil?
   end

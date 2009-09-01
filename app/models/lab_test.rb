@@ -1,4 +1,6 @@
 class LabTest < ActiveRecord::Base
+  #translates :name, :description
+  #http://github.com/joshmh/globalize2/tree/master
   belongs_to :lab_test_department
   belongs_to :lab_test_unit
   has_many :lab_test_normal_ranges

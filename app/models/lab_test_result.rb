@@ -1,37 +1,32 @@
 class LabTestResult < ActiveRecord::Base
-  belongs_to :lab_test
   belongs_to :accession
-    
+  belongs_to :lab_test
+  belongs_to :lab_test_value
+  
   def department_name
     lab_test.lab_test_department.name
   end
 
   def formatted_value
-    if value.blank? || value.nil?
+    if value.blank? && lab_test_value.nil?
       if lab_test.derivation
         ApplicationController.helpers.number_with_precision(accession.send(lab_test.code.underscore), :precision => lab_test.decimals, :delimiter => ',')
       else
         "N/R"
       end
+    elsif lab_test_value
+      lab_test_value.value
     else
-      if lab_test.lab_test_values.blank?
+      if lab_test.also_numeric
         ApplicationController.helpers.number_with_precision(value, :precision => lab_test.decimals, :delimiter => ',')
+#      elsif lab_test.ratio
+#      elsif lab_test.range
+#      elsif lab_test.fraction
+#      elsif lab_test.text_length
       else
-        if lab_test.also_numeric
-          ApplicationController.helpers.number_with_precision(value, :precision => lab_test.decimals, :delimiter => ',')
-        else
-          LabTestValue.find(value).value
-        end
+        ApplicationController.helpers.number_with_precision(value, :precision => lab_test.decimals, :delimiter => ',')
       end
     end
-  end
-  
-  def value_number
-    value.to_i
-  end
-
-  def value_number=(value)
-    self.value = value
   end
 
   def range_min
@@ -70,76 +65,36 @@ class LabTestResult < ActiveRecord::Base
     end
   end
 
-##
-# Refactor this function ASAP  
   def flag_color
-    if value.blank?
+    if value.blank? && lab_test_value.nil?
       if lab_test.derivation
-        if range_max && range_min
-          if range_max.to_d < formatted_value.to_d
-            "high_value"
-          elsif range_min.to_d >= formatted_value.to_d
-            "low_value"
-          else
-            "normal_value"
-          end
-        elsif range_max
-          if range_max.to_d < formatted_value.to_d
-            "high_value"
-          else
-            "normal_value"
-          end
-        elsif range_min
-          if range_min.to_d >= formatted_value.to_d
-            "low_value"
-          else
-            "normal_value"
-          end
-        else
-          "normal_value"
-        end
+        check_range
+      else
+        "normal_value"
+      end
+    elsif lab_test_value
+      case lab_test_value.flag
+      when "A"
+        "abnormal_value"
+      when "H"
+        "high_value"
+      when "L"
+        "low_value"
+      else
+        "normal_value"
       end
     else
-      if range_max && range_min
-        if range_max.to_d < value.to_d
-          "high_value"
-        elsif range_min.to_d >= value.to_d
-          "low_value"
-        else
-          "normal_value"
-        end
-      elsif range_max
-        if range_max.to_d < value.to_d
-          "high_value"
-        else
-          "normal_value"
-        end
-      elsif range_min
-        if range_min.to_d >= value.to_d
-          "low_value"
-        else
-          "normal_value"
-        end
-      elsif lab_test.lab_test_values.blank?
-        "normal_value"
-      # This elsif is just meanwhile
-      elsif lab_test.also_numeric
-        "normal_value"
-      else
-        case LabTestValue.find(value).flag
-        when "A"
-          "abnormal_value"
-        when "H"
-          "high_value"
-        when "L"
-          "low_value"
-        else
-          "normal_value"
-        end
-      end
+#      if lab_test.also_numeric
+#      elsif lab_test.ratio
+#      elsif lab_test.range
+#      elsif lab_test.fraction
+#      elsif lab_test.text_length
+#      else
+        check_range
+#      end
     end
   end
-  
+    
   def flag
     case flag_color
     when "high_value"
@@ -148,6 +103,32 @@ class LabTestResult < ActiveRecord::Base
       I18n.translate('lab_test_results.low')
     when "abnormal_value"
       I18n.translate('lab_test_results.abnormal')
+    end
+  end
+  
+  def check_range
+    if range_max && range_min
+      if range_max.to_d < formatted_value.to_d
+        "high_value"
+      elsif range_min.to_d >= formatted_value.to_d
+        "low_value"
+      else
+        "normal_value"
+      end
+    elsif range_max
+      if range_max.to_d < formatted_value.to_d
+        "high_value"
+      else
+        "normal_value"
+      end
+    elsif range_min
+      if range_min.to_d >= formatted_value.to_d
+        "low_value"
+      else
+        "normal_value"
+      end
+    else
+      "normal_value"
     end
   end
 end

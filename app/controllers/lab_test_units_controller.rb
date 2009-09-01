@@ -1,4 +1,6 @@
 class LabTestUnitsController < ApplicationController
+  before_filter :require_user
+
   def index
     @lab_test_units = LabTestUnit.all
   end

@@ -1,4 +1,5 @@
 class LabTestResultsController < ApplicationController
+  before_filter :require_user
   prawnto :prawn => { :top_margin => 150 }
   
   def index

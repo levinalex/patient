@@ -1,4 +1,6 @@
 class LabTestPanelsController < ApplicationController
+  before_filter :require_user
+
   def index
     @lab_test_panels = LabTestPanel.all
   end

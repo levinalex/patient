@@ -18,6 +18,8 @@ class AccessionsController < ApplicationController
     @accession = @patient.accessions.build
     @accession.drawn_at = Time.now
     @accession.drawn_by = current_user.id
+    @accession.received_at = Time.now
+    @accession.received_by = current_user.id
   end
   
   def create
