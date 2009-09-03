@@ -1,0 +1,12 @@
+<% title "Insurance Provider" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @insurance_provider.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_insurance_provider_path(@insurance_provider) %> |
+  <%= link_to "Destroy", @insurance_provider, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", insurance_providers_path %>
+</p>

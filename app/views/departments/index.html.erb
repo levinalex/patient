@@ -1,0 +1,25 @@
+<% title "Departments" %>
+<% javascript "jquery", "jquery-ui", "application" %>
+
+<div id="departments">
+  <ul>
+    <% for department in @departments %>
+      <li><%= link_to department.name, departments_url(:anchor => department.id) %></li>
+    <% end %>
+    <li><%= link_to "+", new_department_path %></li>
+  </ul>
+  
+  <% for department in @departments %>
+    <div id="<%= department.id %>">
+      <ul>
+      <% for lab_test in department.lab_tests %>
+        <li><%=h lab_test.name %></li>
+      <% end %>
+      </ul>
+      <p>
+        <%= link_to "Edit", edit_department_path(department) %> |
+        <%= link_to "Delete", department, :confirm => 'Are you sure?', :method => :delete %>
+      </p>
+    </div>
+  <% end %>
+</div>

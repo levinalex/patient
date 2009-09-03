@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :insurance_providers
+
+  map.resources :doctors
+
+  map.resources :partners
+
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
 
@@ -7,20 +13,17 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :patients, :shallow => true do |patient|
     patient.resources :accessions do |accession|
-      accession.resources :lab_test_results
+      accession.resources :results
     end
   end
   map.resources :accessions, :only => :index, :member => { :report => :put, :edit_results => :get }
-  map.resources :lab_test_panels
+  map.resources :panels
   map.resources :lab_test_values
   map.resources :lab_test_value_options
-  map.resources :lab_test_absurd_ranges
-  map.resources :lab_test_linear_ranges
-  map.resources :lab_test_critical_ranges
   map.resources :lab_test_normal_ranges
   map.resources :lab_tests, :collection => { :sort => :post }
-  map.resources :lab_test_units
-  map.resources :lab_test_departments
+  map.resources :units
+  map.resources :departments
 
   # The priority is based upon order of creation: first created -> highest priority.
 

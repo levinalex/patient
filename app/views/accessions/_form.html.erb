@@ -6,6 +6,7 @@
   <fieldset>
   <legend>Accession Details</legend>
     <%= f.error_messages %>
+    <%= f.collection_select :doctor_id, Doctor.all, :id, :name, { :include_blank => true }, :label => t('.doctor') %>
     <%= f.text_field :labels, :label => t('.labels') %>
     <%= f.text_field :drawn_at, :label => t('.drawn_at') %>
     <%= f.collection_select :drawn_by, User.all, :id, :username, :label => t('.drawn_by') %>
@@ -16,7 +17,7 @@
   <fieldset>
   <legend>Order Panels</legend>
     <div class="panels">
-      <%= f.many_check_boxes :lab_test_panel_ids, LabTestPanel.all, :id, :name %>
+      <%= f.many_check_boxes :panel_ids, Panel.all, :id, :name %>
     </div>
   </fieldset>
   

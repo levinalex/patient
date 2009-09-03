@@ -1,6 +1,6 @@
 <div class="accession">
   <tr class="<%= cycle("even", "odd") %>">
-    <td><%=link_to accession.id, accession_lab_test_results_path(accession) %></td>
+    <td><%=link_to accession.id, accession_results_path(accession) %></td>
     <td><%=h accession.drawn_at.strftime('%d/%m/%Y') %></td>
     <td><%=h accession.reported_at.strftime('%d/%m/%Y') if accession.reported_at %></td>
     <td><%=h accession.note %></td>

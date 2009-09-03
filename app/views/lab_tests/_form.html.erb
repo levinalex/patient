@@ -1,9 +1,9 @@
 <% labeled_form_for @lab_test do |f| %>
   <%= f.error_messages %>
-  <%= f.collection_select :lab_test_department_id, LabTestDepartment.all, :id, :name %>
+  <%= f.collection_select :department_id, Department.all, :id, :name %>
   <%= f.text_field :code %>
   <%= f.text_field :name %>
-  <%= f.collection_select :lab_test_unit_id, LabTestUnit.all, :id, :name, :prompt => "Select" %>
+  <%= f.collection_select :unit_id, Unit.all, :id, :name, :prompt => "Select", :label => "Units"%>
   <%= f.text_field :decimals %>
   <%= f.check_box :derivation %>
   <%= f.text_field :procedure %>

@@ -2,13 +2,13 @@ class Accession < ActiveRecord::Base
   extend ActiveSupport::Memoizable
 
   belongs_to :patient
-  belongs_to :order
-  has_many :lab_test_results, :dependent => :destroy
-  has_many :lab_tests, :through => :lab_test_results
+  belongs_to :doctor
+  has_many :results, :dependent => :destroy
+  has_many :lab_tests, :through => :results
   has_many :accession_panels, :dependent => :destroy
-  has_many :lab_test_panels, :through => :accession_panels
+  has_many :panels, :through => :accession_panels
   
-  accepts_nested_attributes_for :lab_test_results, :allow_destroy => true
+  accepts_nested_attributes_for :results, :allow_destroy => true
   accepts_nested_attributes_for :accession_panels, :allow_destroy => true
   
   validates_presence_of :patient_id
@@ -21,15 +21,23 @@ class Accession < ActiveRecord::Base
   
   def result_of_test_coded_as(code)
     lab_test = LabTest.find_by_code(code)
-    lab_test_results.find_by_lab_test_id(lab_test).value.to_d unless lab_test_results.find_by_lab_test_id(lab_test).value.blank?
+    results.find_by_lab_test_id(lab_test).value.to_d unless results.find_by_lab_test_id(lab_test).value.blank?
   end
 
   def patient_age
     days_per_year = 365.25
-    if reported_at
-      age = ((reported_at.to_date - patient.birthdate).to_i / days_per_year).floor
+    if drawn_at
+      age = ((drawn_at.to_date - patient.birthdate).to_i / days_per_year).floor
     else
       age = ((Date.today - patient.birthdate).to_i / days_per_year).floor
+    end
+  end
+  
+  def doctor_name
+    if doctor
+      doctor.name
+    else
+      "—"
     end
   end
   
@@ -50,7 +58,7 @@ class Accession < ActiveRecord::Base
   private
   
   def process_panel_selection
-    self.lab_test_panels.each do |panel|
+    self.panels.each do |panel|
       self.lab_test_ids |= panel.lab_test_ids
     end
   end

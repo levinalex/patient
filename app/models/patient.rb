@@ -1,17 +1,24 @@
 class Patient < ActiveRecord::Base
   extend ActiveSupport::Memoizable
 
-  GENDER_TYPES = [
+  GENDERS = [
     #Displayed  stored in db
     [ I18n.translate('patients.female'),  "F" ],
     [ I18n.translate('patients.male'),    "M" ],
     [ I18n.translate('patients.unknown'), "U" ]
   ]
 
+  TYPES = [
+    #Displayed  stored in db
+    [ I18n.translate('patients.canine'),   "1" ],
+    [ I18n.translate('patients.feline'),   "2" ],
+    [ I18n.translate('patients.dialysis'), "3" ]
+  ]
+
   attr_accessible :given_name, :middle_name, :family_name, :family_name2, :gender, :birthdate, :identifier, :address
   
   validates_presence_of :given_name, :family_name, :gender, :birthdate
-  validates_inclusion_of :gender, :in => GENDER_TYPES.map {|disp, value| value}
+  validates_inclusion_of :gender, :in => GENDERS.map {|disp, value| value}
   validates_uniqueness_of :identifier, :allow_blank => true
   
   has_many :accessions, :dependent => :destroy

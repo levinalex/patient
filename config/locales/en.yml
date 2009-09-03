@@ -8,6 +8,9 @@ en:
     female: "Female"
     male: "Male"
     unknown: "Unknown"
+    canine: "Canine"
+    feline: "Feline"
+    dialysis: "Dialysis"
     index:
       title: "Patients"
       search: "Search"
@@ -21,16 +24,17 @@ en:
     edit:
       title: "Edit Patient Info"
     form:
-      given_name: "Given Name"
-      middle_name: "Middle Name"
-      family_name: "Last Name"
-      family_name2: "Mother's Maiden Name"
+      given_name: "Given Name:"
+      middle_name: "Middle Name:"
+      family_name: "Last Name:"
+      family_name2: "Mother's Maiden Name:"
       full_name: "Name"
-      gender: "Sex"
-      birthdate: "Birth Date"
-      age: "Age"
-      identifier: "SSN"
-      address: "Address"
+      gender: "Sex:"
+      birthdate: "Birth Date:"
+      identifier: "National ID:"
+      type: "Type:"
+      address: "Address:"
+      insurance_provider: "Insurance Provider:"
       edit: "Edit"
       view_all: "View All"
       back_to_list: "Back to List"
@@ -43,7 +47,7 @@ en:
     patient:
       gender: "Sex:"
       age: "Age:"
-      identifier: "SSN:"
+      identifier: "National ID:"
       address: "Address:"
       accessions: "Accessions"
       edit: "Edit"
@@ -52,6 +56,7 @@ en:
       
   accessions:
     form:
+      doctor: "Ordering Doctor:"
       labels: "Labels"
       drawn_at: "Drawn at"
       drawn_by: "Drawn by"
@@ -59,7 +64,7 @@ en:
       received_by: "Received by"
       reported_at: "Reported at"
       
-  lab_test_results:
+  results:
     low: "LOW"
     high: "HIGH"
     abnormal: "ABNORMAL"

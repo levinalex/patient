@@ -5,13 +5,13 @@
   <% for lab_test in @lab_tests %>
     <% content_tag_for :li, lab_test do %>
       <span class="handle">[drag]</span>
-      <%=h lab_test.lab_test_department.name %>
+      <%=h lab_test.department.name %>
       <%=h lab_test.code %>
       <%=h lab_test.name %>
       <%=h lab_test.procedure %>
       <%=h lab_test.description %>
       <%=h lab_test.decimals %>
-      <%=h lab_test.lab_test_unit.name unless lab_test.lab_test_unit.nil? %>
+      <%=h lab_test.unit.name unless lab_test.unit.nil? %>
       <%= link_to "Show", lab_test %>
       <%= link_to "Edit", edit_lab_test_path(lab_test) %>
       <%= link_to "Destroy", lab_test, :confirm => 'Are you sure?', :method => :delete %>

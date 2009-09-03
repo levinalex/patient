@@ -8,7 +8,7 @@
   <h3>Results</h3>
   <div class="results">
   <table>
-    <% a.fields_for :lab_test_results do |r| %>
+    <% a.fields_for :results do |r| %>
       <tr>
         <td><%=h r.object.lab_test.name %>
         <td>
@@ -23,7 +23,7 @@
             <% end %>
           <% end %>
         </td>
-        <td><%=h r.object.lab_test.lab_test_unit.name if r.object.lab_test.lab_test_unit %></td>
+        <td><%=h r.object.lab_test.unit.name if r.object.lab_test.unit %></td>
         <td><%=h r.object.range %></td>
       </tr>
     <% end %>

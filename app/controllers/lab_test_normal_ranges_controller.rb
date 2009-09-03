@@ -1,6 +1,6 @@
 class LabTestNormalRangesController < ApplicationController
   def index
-    @lab_test_normal_ranges = LabTestNormalRange.all
+    @lab_test_normal_ranges = LabTestNormalRange.all(:order => "lab_test_id, age_unit, min_age")
   end
   
   def show

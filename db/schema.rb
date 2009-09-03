@@ -9,11 +9,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090829061937) do
+ActiveRecord::Schema.define(:version => 20090903062648) do
 
   create_table "accession_panels", :force => true do |t|
     t.integer  "accession_id"
-    t.integer  "lab_test_panel_id"
+    t.integer  "panel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -34,6 +34,26 @@ ActiveRecord::Schema.define(:version => 20090829061937) do
     t.datetime "updated_at"
     t.datetime "reported_at"
     t.integer  "reported_by"
+    t.integer  "doctor_id"
+  end
+
+  create_table "departments", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "doctors", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "gender"
+  end
+
+  create_table "insurance_providers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "lab_test_absurd_ranges", :force => true do |t|
@@ -56,12 +76,6 @@ ActiveRecord::Schema.define(:version => 20090829061937) do
     t.integer  "max_age"
     t.string   "age_unit"
     t.integer  "lab_test_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "lab_test_departments", :force => true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -90,32 +104,9 @@ ActiveRecord::Schema.define(:version => 20090829061937) do
     t.integer  "lab_test_id"
   end
 
-  create_table "lab_test_panel_joints", :force => true do |t|
-    t.integer  "lab_test_id"
-    t.integer  "lab_test_panel_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "lab_test_panels", :force => true do |t|
-    t.string   "code"
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "lab_test_results", :force => true do |t|
-    t.string   "value"
     t.integer  "lab_test_id"
-    t.integer  "accession_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "lab_test_value_id"
-  end
-
-  create_table "lab_test_units", :force => true do |t|
-    t.string   "name"
+    t.integer  "panel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -153,8 +144,8 @@ ActiveRecord::Schema.define(:version => 20090829061937) do
     t.integer  "decimals"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "lab_test_department_id"
-    t.integer  "lab_test_unit_id"
+    t.integer  "department_id"
+    t.integer  "unit_id"
     t.integer  "procedure"
     t.boolean  "derivation"
     t.boolean  "also_numeric"
@@ -163,6 +154,14 @@ ActiveRecord::Schema.define(:version => 20090829061937) do
     t.boolean  "fraction"
     t.integer  "text_length"
     t.integer  "position"
+  end
+
+  create_table "panels", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "patients", :force => true do |t|
@@ -176,10 +175,21 @@ ActiveRecord::Schema.define(:version => 20090829061937) do
     t.text     "address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "type"
+    t.integer  "insurance_provider_id"
   end
 
   create_table "results", :force => true do |t|
     t.string   "value"
+    t.integer  "lab_test_id"
+    t.integer  "accession_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "lab_test_value_id"
+  end
+
+  create_table "units", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,5 +1,5 @@
 class LabTestNormalRange < ActiveRecord::Base
-# Unify Normal, Linear, Critical and Absurd ranges into one table.
+# Unify Normal, Critical, Absurd and Linear ranges into one table.
 
   GENDER_TYPES = [
     #Displayed  stored in db
