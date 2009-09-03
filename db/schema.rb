@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090903062648) do
+ActiveRecord::Schema.define(:version => 20090903081122) do
 
   create_table "accession_panels", :force => true do |t|
     t.integer  "accession_id"
@@ -54,54 +54,6 @@ ActiveRecord::Schema.define(:version => 20090903062648) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "lab_test_absurd_ranges", :force => true do |t|
-    t.decimal  "min"
-    t.decimal  "max"
-    t.string   "gender"
-    t.integer  "min_age"
-    t.integer  "max_age"
-    t.string   "age_unit"
-    t.integer  "lab_test_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "lab_test_critical_ranges", :force => true do |t|
-    t.decimal  "min"
-    t.decimal  "max"
-    t.string   "gender"
-    t.integer  "min_age"
-    t.integer  "max_age"
-    t.string   "age_unit"
-    t.integer  "lab_test_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "lab_test_linear_ranges", :force => true do |t|
-    t.decimal  "min"
-    t.decimal  "max"
-    t.string   "gender"
-    t.integer  "min_age"
-    t.integer  "max_age"
-    t.string   "age_unit"
-    t.integer  "lab_test_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "lab_test_normal_ranges", :force => true do |t|
-    t.decimal  "min"
-    t.decimal  "max"
-    t.string   "gender"
-    t.integer  "min_age"
-    t.integer  "max_age"
-    t.string   "age_unit"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "lab_test_id"
   end
 
   create_table "lab_test_panels", :force => true do |t|
@@ -177,6 +129,18 @@ ActiveRecord::Schema.define(:version => 20090903062648) do
     t.datetime "updated_at"
     t.integer  "type"
     t.integer  "insurance_provider_id"
+  end
+
+  create_table "reference_ranges", :force => true do |t|
+    t.decimal  "min"
+    t.decimal  "max"
+    t.string   "gender"
+    t.integer  "min_age"
+    t.integer  "max_age"
+    t.string   "age_unit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "lab_test_id"
   end
 
   create_table "results", :force => true do |t|

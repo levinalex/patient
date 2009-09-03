@@ -19,11 +19,6 @@ class Accession < ActiveRecord::Base
   
   before_save :process_panel_selection
   
-  def result_of_test_coded_as(code)
-    lab_test = LabTest.find_by_code(code)
-    results.find_by_lab_test_id(lab_test).value.to_d unless results.find_by_lab_test_id(lab_test).value.blank?
-  end
-
   def patient_age
     days_per_year = 365.25
     if drawn_at
@@ -43,7 +38,7 @@ class Accession < ActiveRecord::Base
   
   ##
   # Derivative test definitions
-  # Eventually will grab a formula from the derivation field
+  # TODO: Grab a formula from the derivation field
   #
   
   def ldl
@@ -55,7 +50,32 @@ class Accession < ActiveRecord::Base
   end
   memoize :ldl
   
+  def ibil
+    if result_of_test_coded_as("TBIL") && result_of_test_coded_as("DBIL")
+      result_of_test_coded_as("TBIL") - result_of_test_coded_as("DBIL")
+    else
+      "calc."
+    end
+  end
+  memoize :ibil
+
+  def glo
+    if result_of_test_coded_as("TP") && result_of_test_coded_as("ALB")
+      result_of_test_coded_as("TP") - result_of_test_coded_as("ALB")
+    else
+      "calc."
+    end
+  end
+  memoize :glo
+  
   private
+  
+  def result_of_test_coded_as(code)
+    lab_test = LabTest.find_by_code(code)
+    if lab_test
+      results.find_by_lab_test_id(lab_test).value.to_d unless results.find_by_lab_test_id(lab_test).value.blank?
+    end
+  end
   
   def process_panel_selection
     self.panels.each do |panel|

@@ -8,40 +8,32 @@ class Result < ActiveRecord::Base
   end
 
   def formatted_value
-    if value.blank? && lab_test_value.nil?
-      if lab_test.derivation
-        ApplicationController.helpers.number_with_precision(accession.send(lab_test.code.underscore), :precision => lab_test.decimals, :delimiter => ',')
-      else
-        "pend."
-      end
+    if lab_test.derivation
+      format_value(accession.send(lab_test.code.underscore))
     elsif lab_test_value
       lab_test_value.value
+    elsif lab_test.ratio || lab_test.range || lab_test.fraction || lab_test.text_length
+      value
+    elsif value.blank?
+      "pend."
     else
-      if lab_test.also_numeric
-        ApplicationController.helpers.number_with_precision(value, :precision => lab_test.decimals, :delimiter => ',')
-#      elsif lab_test.ratio
-#      elsif lab_test.range
-#      elsif lab_test.fraction
-#      elsif lab_test.text
-      else
-        ApplicationController.helpers.number_with_precision(value, :precision => lab_test.decimals, :delimiter => ',')
-      end
+      format_value(value)
     end
   end
 
   def range_min
     # Missing age component to calculate valid range, instead of calling first
-    unless lab_test.lab_test_normal_ranges.blank?
-      range_min = lab_test.lab_test_normal_ranges.for_its_gender(accession.patient.gender).for_its_age(accession.patient_age).first.min
-      ApplicationController.helpers.number_with_precision(range_min, :precision => lab_test.decimals, :delimiter => ',')
+    unless lab_test.reference_ranges.blank?
+      range_min = lab_test.reference_ranges.for_its_gender(accession.patient.gender).for_its_age(accession.patient_age).first.min
+      format_value(range_min)
     end
   end
 
   def range_max
     # Missing age component to calculate valid range (see above)
-    unless lab_test.lab_test_normal_ranges.blank?
-      range_max = lab_test.lab_test_normal_ranges.for_its_gender(accession.patient.gender).for_its_age(accession.patient_age).first.max
-      ApplicationController.helpers.number_with_precision(range_max, :precision => lab_test.decimals, :delimiter => ',')
+    unless lab_test.reference_ranges.blank?
+      range_max = lab_test.reference_ranges.for_its_gender(accession.patient.gender).for_its_age(accession.patient_age).first.max
+      format_value(range_max)
     end
   end
   
@@ -66,35 +58,13 @@ class Result < ActiveRecord::Base
   end
 
   def flag_color
-    if value.blank? && lab_test_value.nil?
-      if lab_test.derivation
-        check_range
-      else
-        "normal_value"
-      end
-    elsif lab_test_value
-      case lab_test_value.flag
-      when "A"
-        "abnormal_value"
-      when "H"
-        "high_value"
-      when "L"
-        "low_value"
-      else
-        "normal_value"
-      end
+    if lab_test.ratio || lab_test.range || lab_test.fraction || lab_test.text_length
+      "normal_value"
     else
-#      if lab_test.also_numeric
-#      elsif lab_test.ratio
-#      elsif lab_test.range
-#      elsif lab_test.fraction
-#      elsif lab_test.text_length
-#      else
-        check_range
-#      end
+      check_range
     end
   end
-    
+  
   def flag
     case flag_color
     when "high_value"
@@ -107,6 +77,10 @@ class Result < ActiveRecord::Base
   end
 
 private
+
+  def format_value(number)
+    ApplicationController.helpers.number_with_precision(number, :precision => lab_test.decimals, :delimiter => ',')
+  end
 
   def check_range
     if range_max && range_min
@@ -125,6 +99,17 @@ private
       end
     elsif range_min
       if range_min.to_d >= formatted_value.to_d
+        "low_value"
+      else
+        "normal_value"
+      end
+    elsif lab_test_value
+      case lab_test_value.flag
+      when "A"
+        "abnormal_value"
+      when "H"
+        "high_value"
+      when "L"
         "low_value"
       else
         "normal_value"

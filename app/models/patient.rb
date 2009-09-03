@@ -21,6 +21,7 @@ class Patient < ActiveRecord::Base
   validates_inclusion_of :gender, :in => GENDERS.map {|disp, value| value}
   validates_uniqueness_of :identifier, :allow_blank => true
   
+  belongs_to :insurance_provider
   has_many :accessions, :dependent => :destroy
   accepts_nested_attributes_for :accessions, :allow_destroy => true
   

@@ -3,7 +3,7 @@ class LabTest < ActiveRecord::Base
   #http://github.com/joshmh/globalize2/tree/master
   belongs_to :department
   belongs_to :unit
-  has_many :lab_test_normal_ranges
+  has_many :reference_ranges
   has_many :lab_test_panels, :dependent => :destroy
   has_many :panels, :through => :lab_test_panels
   has_many :results, :dependent => :destroy

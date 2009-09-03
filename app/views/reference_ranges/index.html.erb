@@ -1,0 +1,29 @@
+<% title "Reference Ranges" %>
+
+<table>
+  <tr>
+    <th>Test</th>
+    <th>Min</th>
+    <th>Max</th>
+    <th>Gender</th>
+    <th>Min Age</th>
+    <th>Max Age</th>
+    <th>Age Unit</th>
+  </tr>
+  <% for reference_range in @reference_ranges %>
+    <tr>
+      <td><%=h reference_range.lab_test.name %></td>
+      <td><%=h reference_range.min %></td>
+      <td><%=h reference_range.max %></td>
+      <td><%=h reference_range.gender %></td>
+      <td><%=h reference_range.min_age %></td>
+      <td><%=h reference_range.max_age %></td>
+      <td><%=h reference_range.age_unit %></td>
+      <td><%= link_to "Show", reference_range %></td>
+      <td><%= link_to "Edit", edit_reference_range_path(reference_range) %></td>
+      <td><%= link_to "Destroy", reference_range, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Lab Test Normal Range", new_reference_range_path %></p>

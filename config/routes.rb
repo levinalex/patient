@@ -1,13 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :insurance_providers
-
-  map.resources :doctors
-
-  map.resources :partners
-
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
-
   map.resources :user_sessions, :as => 'try_again'
   map.resources :users
 
@@ -20,10 +13,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :panels
   map.resources :lab_test_values
   map.resources :lab_test_value_options
-  map.resources :lab_test_normal_ranges
+  map.resources :reference_ranges
   map.resources :lab_tests, :collection => { :sort => :post }
   map.resources :units
   map.resources :departments
+  map.resources :insurance_providers
+  map.resources :doctors
 
   # The priority is based upon order of creation: first created -> highest priority.
 

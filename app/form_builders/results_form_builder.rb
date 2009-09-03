@@ -19,7 +19,7 @@ class ResultsFormBuilder < ActionView::Helpers::FormBuilder
     @template.content_tag(:p, super + " " + field_label(field_name, *args))
   end
 
-  #<%= f.many_check_boxes :lab_test_panel_ids, LabTestPanel.all, :id, :name %>
+  #<%= f.many_check_boxes :panel_ids, Panel.all, :id, :name %>
   def many_check_boxes(name, subobjects, id_method, name_method, options = {})
     field_name = "#{object_name}[#{name}][]"
     subobjects.map do |subobject|
