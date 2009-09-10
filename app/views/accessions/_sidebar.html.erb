@@ -1,0 +1,18 @@
+<div class='sidebar'>
+  <div class='panel' id='summary'>
+    <span style='float:right'><%= image_tag("avatar.jpg", :class => "gravatar", :size => "50x50") %></span>
+    <h4><%=h @patient.full_name %></h4>
+    <div>
+      <%=h @patient.identifier %><br />
+      <%=h pluralize @patient.age, t('.year') %>
+    </div>
+    <div>
+      <%= t('.address') %> <%=h @patient.address %><br />
+      <%= t('.phone') %> <b><%=h @patient.phone %></b>
+    </div>
+    <div>
+      <%= t('.email') %> <b><%= mail_to @patient.email %></b>
+    </div>
+    <%= image_tag("axa.png", :size => "15x15") if @patient.insurance_provider %>
+  </div>
+</div>

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
-  filter_parameter_logging :password, :password_confirmation, :given_name, :middle_name, :family_name, :family_name2, :birthdate, :identifier, :address
+  filter_parameter_logging :password, :password_confirmation, :given_name, :middle_name, :family_name, :family_name2, :birthdate, :identifier, :email, :phone, :address, :type, :insurance_provider_id
   
   before_filter :set_user_language
   

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090903081122) do
+ActiveRecord::Schema.define(:version => 20090909101008) do
 
   create_table "accession_panels", :force => true do |t|
     t.integer  "accession_id"
@@ -20,22 +20,18 @@ ActiveRecord::Schema.define(:version => 20090903081122) do
 
   create_table "accessions", :force => true do |t|
     t.integer  "patient_id"
-    t.integer  "other_id"
-    t.integer  "labels"
     t.datetime "drawn_at"
     t.integer  "drawn_by"
-    t.integer  "specimen_type_id"
     t.datetime "received_at"
     t.integer  "received_by"
-    t.boolean  "stat"
-    t.text     "note"
-    t.decimal  "diagnosis"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "reported_at"
     t.integer  "reported_by"
     t.integer  "doctor_id"
   end
+
+  add_index "accessions", ["patient_id", "doctor_id"], :name => "index_accessions_on_patient_id_and_doctor_id"
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -108,6 +104,8 @@ ActiveRecord::Schema.define(:version => 20090903081122) do
     t.integer  "position"
   end
 
+  add_index "lab_tests", ["department_id", "unit_id"], :name => "index_lab_tests_on_department_id_and_unit_id"
+
   create_table "panels", :force => true do |t|
     t.string   "code"
     t.string   "name"
@@ -129,7 +127,11 @@ ActiveRecord::Schema.define(:version => 20090903081122) do
     t.datetime "updated_at"
     t.integer  "type"
     t.integer  "insurance_provider_id"
+    t.string   "phone",                 :limit => 32
+    t.string   "email",                 :limit => 64
   end
+
+  add_index "patients", ["insurance_provider_id"], :name => "index_patients_on_insurance_provider_id"
 
   create_table "reference_ranges", :force => true do |t|
     t.decimal  "min"
@@ -143,6 +145,8 @@ ActiveRecord::Schema.define(:version => 20090903081122) do
     t.integer  "lab_test_id"
   end
 
+  add_index "reference_ranges", ["lab_test_id"], :name => "index_reference_ranges_on_lab_test_id"
+
   create_table "results", :force => true do |t|
     t.string   "value"
     t.integer  "lab_test_id"
@@ -151,6 +155,8 @@ ActiveRecord::Schema.define(:version => 20090903081122) do
     t.datetime "updated_at"
     t.integer  "lab_test_value_id"
   end
+
+  add_index "results", ["accession_id", "lab_test_id", "lab_test_value_id"], :name => "index_results_on_accession_id_and_lab_test_id_and_lab_test_value_id"
 
   create_table "units", :force => true do |t|
     t.string   "name"

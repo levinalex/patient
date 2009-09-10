@@ -4,11 +4,13 @@ class ResultsController < ApplicationController
   prawnto :prawn => {
     :inline => true,
     :top_margin => 150,
-    :bottom_margin => 30}
+    :bottom_margin => 60}
   
   def index
     @accession = Accession.find(params[:accession_id])
-    @results = @accession.results.all(:include => [{ :lab_test => [ :department, :unit, :lab_test_values ] }], :order => 'lab_test_id').group_by(&:department_name)
+#    @results = @accession.results.all.group_by(&:department_name)
+#    @accession = Accession.find(params[:accession_id], :include => :patient)
+    @results = @accession.results.all(:order => "lab_tests.position", :include => [{:lab_test => [:department, :unit, :lab_test_values, :reference_ranges]}]).group_by(&:department_name)
   end
     
   def new

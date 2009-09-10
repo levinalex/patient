@@ -4,8 +4,8 @@ class AccessionsController < ApplicationController
   def index
     if params[:patient_id]
       @patient = Patient.find(params[:patient_id])
-      @pending_accessions = Accession.pending.find_all_by_patient_id(params[:patient_id])
-      @reported_accessions = Accession.reported.find_all_by_patient_id(params[:patient_id])
+      @pending_accessions = @patient.accessions.pending(:order => 'drawn_at ASC')
+      @reported_accessions = @patient.accessions.reported(:order => 'reported_at DESC')
     else
       @pending_accessions = Accession.pending
       @reported_accessions = Accession.reported.recent
@@ -13,13 +13,13 @@ class AccessionsController < ApplicationController
   end
   
   def new
-    @departments = Department.all(:include => :lab_tests)
     @patient = Patient.find(params[:patient_id])
     @accession = @patient.accessions.build
     @accession.drawn_at = Time.now
     @accession.drawn_by = current_user.id
     @accession.received_at = Time.now
     @accession.received_by = current_user.id
+    @departments = Department.all(:order => "lab_tests.position", :include => :lab_tests)
   end
   
   def create
@@ -34,8 +34,8 @@ class AccessionsController < ApplicationController
   end
   
   def edit
-    @departments = Department.all(:include => :lab_tests)
-    @accession = Accession.find(params[:id], :include => [:panels, :lab_tests])
+    @accession = Accession.find(params[:id], :include => [:panels, {:results => :lab_test}])
+    @departments = Department.all(:order => "lab_tests.position", :include => :lab_tests)
   end
   
   def update

@@ -1,12 +1,18 @@
 <div class="accession">
-  <tr class="<%= cycle("even", "odd") %>">
-    <td><%=link_to accession.id, accession_results_path(accession) %></td>
-    <td><%=h accession.drawn_at.strftime('%d/%m/%Y') %></td>
-    <td><%=h accession.reported_at.strftime('%d/%m/%Y') if accession.reported_at %></td>
-    <td><%=h accession.note %></td>
+  <tr class="task">
     <td>
-      <%= link_to "Change Accession", edit_accession_path(accession) %>
-      <%= link_to "Delete", accession, :confirm => 'Are you sure?', :method => :delete %>
+      <% unless accession.reported_at %>
+        <div class='meeting strip'>Pending</div>
+      <% end %>
+    </td>
+    <td><%=h accession.drawn_at.strftime('%d/%m/%Y') %></td>
+    <td><%=link_to accession.id, accession_results_path(accession) %></td>
+    <td><%=h User.find(accession.drawn_by).initials if accession.drawn_by %></td>
+    <td><%=h accession.reported_at.strftime('%d/%m/%Y') if accession.reported_at %></td>
+    <td><%=h truncate(accession.order_list, :length => 30) %></td>
+    <td>
+      <small><%= link_to "Change Order", edit_accession_path(accession) %></small>
+      <small><%= link_to "Delete", accession, :confirm => 'Are you sure?', :method => :delete %></small>
     </td>
   </tr>
 </div>

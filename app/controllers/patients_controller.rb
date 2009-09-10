@@ -2,12 +2,8 @@ class PatientsController < ApplicationController
   before_filter :require_user
 
   def index
-    if params[:search].blank?
-      @patients = Patient.recent
-      #@patients = Patient.all
-    else
-      @patients = Patient.search(params[:search])
-    end
+    @recent = Patient.recent
+    @patients = Patient.search(params[:search], params[:page])
   end
   
   def show
@@ -16,6 +12,8 @@ class PatientsController < ApplicationController
   
   def new
     @patient = Patient.new
+    # Remove below
+    @recent = Patient.recent
   end
   
   def create
@@ -30,6 +28,8 @@ class PatientsController < ApplicationController
   
   def edit
     @patient = Patient.find(params[:id])
+    # Remove below
+    @recent = Patient.recent
   end
   
   def update

@@ -20,3 +20,11 @@
   </table>
 </div>
 
+<% form_tag patients_path, :method => 'get' do %>
+  <p class="content">
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag t('.search'), :name => nil %>
+  </p>
+<% end %>
+
+

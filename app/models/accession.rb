@@ -35,11 +35,46 @@ class Accession < ActiveRecord::Base
       "—"
     end
   end
+
+  def order_list
+    list = []
+    panel_list = []
+    lab_test_list = []
+    panels.each do |panel|
+      list << panel.code
+      panel.lab_tests.each do |lab_test|
+        panel_list << lab_test.code
+      end
+    end
+    lab_tests.each do |lab_test|
+      lab_test_list << lab_test.code
+    end
+    list << lab_test_list - panel_list
+    list.join(', ')
+  end
   
   ##
   # Derivative test definitions
   # TODO: Grab a formula from the derivation field
   #
+
+  def mch
+    if result_of_test_coded_as("HGB") && result_of_test_coded_as("RBC")
+      result_of_test_coded_as("HGB") / result_of_test_coded_as("RBC") * 10
+    else
+      "calc."
+    end
+  end
+  memoize :mch
+  
+  def mchc
+    if result_of_test_coded_as("HGB") && result_of_test_coded_as("HCT")
+      result_of_test_coded_as("HGB") * 100 / result_of_test_coded_as("HCT")
+    else
+      "calc."
+    end
+  end
+  memoize :mchc
   
   def ldl
     if result_of_test_coded_as("CHOL") && result_of_test_coded_as("HDL") && result_of_test_coded_as("TRIG")

@@ -1,0 +1,23 @@
+<div class="sidebar">
+  <div class="filters">
+    <h4><%= t('.search_patients') %></h4>
+    <div style='margin: 0px 0px 6px 0px'>
+      <% form_tag patients_path, :method => 'get' do %>
+        <%= text_field_tag :search, params[:search], :size => 23 %>
+        <%= submit_tag t('.search'), :name => nil %>
+      <% end %>
+    </div>
+  </div>
+  <div class="panel" id="recent">
+    <div class="caption"><%= t('.recent_patients') %></div>
+    <ul>
+      <% for patient in @recent %>
+        <li>
+          <dt><%= link_to truncate(patient.full_name, :length => 15), patient_accessions_path(patient), :title => patient.full_name %></dt>
+          <tt><%= t('.patient') %></tt>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+

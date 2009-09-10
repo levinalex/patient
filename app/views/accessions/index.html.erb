@@ -1,31 +1,29 @@
-<% title "Accessions" %>
+<% title "Accessions for Patient" %>
 
-<%= render @patient if @patient %>
+<% if @patient %>
+  <div class='title_tools'>
+    <%= link_to "Order Tests", new_patient_accession_path(@patient) %>
+  </div>
+  <div class='title'><%=h @patient.full_name if @patient %></div>
+<% end %>
 
-<h3>Pending List</h3>
-<div class="pending_accessions">
-  <table>
-    <tr>
-      <th>Accession #</th>
-      <th>Date of Extraction</th>
-      <th>Reported Date</th>
-      <th>Note</th>
-    </tr>
+<table>
+  <tr>
+    <div>
+      <th class='subtitle'></th>
+      <th class='subtitle'>Draw Date</th>
+      <th class='subtitle'>Accession ID</th>
+      <th class='subtitle'>Drawn by</th>
+      <th class='subtitle'>Date Reported</th>
+      <th class='subtitle'>Panels/Tests Ordered</th>
+    </div>
+  </tr>
+
+  <div class="pending_accessions">
     <%= render @pending_accessions %>
-  </table>
-</div>
+  </div>
 
-<h3>Recently Reported</h3>
-<div class="reported_accessions">
-  <table>
-    <tr>
-      <th>Accession #</th>
-      <th>Date of Extraction</th>
-      <th>Reported Date</th>
-      <th>Note</th>
-    </tr>
+  <div class="reported_accessions">
     <%= render @reported_accessions %>
-  </table>
-</div>
-
-<%= link_to "New Accession", new_patient_accession_path(@patient) if @patient %>
+  </div>
+</table>

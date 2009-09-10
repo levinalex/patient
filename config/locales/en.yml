@@ -4,6 +4,13 @@ en:
       username: "Username"
       password: "Password"
       submit: "Submit"
+  layouts:
+    tabs:
+      patients: "Pacientes"
+      accessions: "Accesiones"
+  will_paginate:
+    next: "Next »"
+    previous: "« Previous"    
   patients:
     female: "Female"
     male: "Male"
@@ -11,12 +18,22 @@ en:
     canine: "Canine"
     feline: "Feline"
     dialysis: "Dialysis"
+    sidebar:
+      search_patients: "Search patients"
+      search: "Search"
+      recent_patients: "Recent Patients"
+      patient: "Patient:"
     index:
       title: "Patients"
-      search: "Search"
-      all_patients: "All Patients"
       new_patient: "New Patient"
+      options: "Options"
+    patients:
       not_found: "No patients found"
+      edit: "Edit"
+      delete?: "Delete?"
+      confirm_destroy: "Are you sure?"
+      phone: "Phone:"
+      year: "year"
     new:
       title: "New Patient"
     show:
@@ -24,26 +41,26 @@ en:
     edit:
       title: "Edit Patient Info"
     form:
-      given_name: "Given Name:"
-      middle_name: "Middle Name:"
-      family_name: "Last Name:"
-      family_name2: "Mother's Maiden Name:"
-      full_name: "Name"
+      given_name: "Given name:"
+      middle_name: "Middle name:"
+      family_name: "Last name:"
+      family_name2: "Mother's maiden name:"
       gender: "Sex:"
-      birthdate: "Birth Date:"
-      identifier: "National ID:"
-      type: "Type:"
-      address: "Address:"
-      insurance_provider: "Insurance Provider:"
-      edit: "Edit"
-      view_all: "View All"
-      back_to_list: "Back to List"
-      destroy: "Destroy"
-      submit: "Submit"
       prompt_gender: "Select Sex:"
+      birthdate: "Birth date:"
       day: "Day:"
       month: "Month:"
       year: "Year:"
+      identifier: "National ID:"
+      email: "Email:"
+      phone: "Phone:"
+      additional_information: "Additional Information"
+      address: "Address:"
+      type: "Type:"
+      insurance_provider: "Insurance provider:"
+      submit: "Save Patient"
+      or: "or"
+      cancel: "Cancel"
     patient:
       gender: "Sex:"
       age: "Age:"
@@ -63,6 +80,11 @@ en:
       received_at: "Received at"
       received_by: "Received by"
       reported_at: "Reported at"
+    sidebar:
+      year: "year"
+      phone: "Phone:"
+      address: "Address:"
+      email: "Email:"
       
   results:
     low: "LOW"

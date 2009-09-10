@@ -15,28 +15,58 @@ colors = {:black => "000000", :grey => "e5e5e5", :pink => "f096b8", :high_value 
 
 require "open-uri"
 logoimage = "http://localhost:3000/images/logo.png" 
-pdf.image open(logoimage), :at => [0,745], :scale => 0.5
+pdf.image open(logoimage), :at => [pdf.bounds.left, pdf.bounds.top + 150], :scale => 0.5
 
-pdf.bounding_box([460, 730], :width => 80, :height => 15) do
+pdf.bounding_box([pdf.bounds.right - 80, pdf.bounds.top + 100], :width => 80, :height => 15) do
   pdf.fill_color colors[:high_value]
   pdf.text "#{t('.preliminary') unless @accession.reported_at}", :size => 8, :align => :right
   pdf.fill_color colors[:black]
 end
 
-pdf.bounding_box([125,730], :width => 350, :height => 50) do
+##
+# TODO: Replace 125 to use the width of the logo image and 135 to center in its height also
+
+pdf.bounding_box([pdf.bounds.left + 125, pdf.bounds.top + 135], :width => 350, :height => 50) do
   pdf.text "MasterLab - Laboratorio Clínico Especializado", :size => 12, :style => :bold
   pdf.text "Villa Lucre, Consultorios San Judas Tadeo, Local 107", :size => 10
   pdf.text "Tel: 222-9200 ext. 1107 / Telefax: 277-7832", :size => 10
   pdf.text "Director: Lcdo. Erick Chu, TM, MSc - Email: masterlab@labtecsa.com", :size => 10
 end
 
-pdf.move_down(25)
+##
+# Footer
+
+num_pag=0 
+pdf.footer [pdf.bounds.left, pdf.bounds.bottom + 20] do
+  pdf.font "Helvetica" do
+    pdf.move_down 15
+    pdf.line_width = 1
+    pdf.stroke_horizontal_rule
+    pdf.move_down 5
+    pdf.text "#{t('.originally_printed_at')} #{@accession.reported_at.strftime('%d/%m/%Y %I:%M %p') if @accession.reported_at}#{t('.preliminary') unless @accession.reported_at}", :size => 8
+    pdf.text "#{t('.printed_at')} #{Time.now.strftime('%d/%m/%Y %I:%M %p')}", :size => 8
+    num_pag += 1
+    ##
+    # Should be inside a lazy_bounding_box
+    # #{pdf.page_count}
+    ##
+    pdf.text "#{t('.page')} " + num_pag.to_s + " #{t('.of')} " + pdf.page_count.to_s, :size => 8, :align => :left
+    pdf.move_up 27
+    pdf.text "#{t('.accession')} #{@accession.id}", :size => 8, :align => :right
+    pdf.text "#{t('.results_of')} #{@accession.patient.full_name}", :size => 8, :align => :right
+    pdf.fill_color colors[:high_value]
+    pdf.text "#{t('.preliminary') unless @accession.reported_at}", :size => 8, :align => :right
+    pdf.fill_color colors[:black]
+  end
+end
 
 ##
 # Report
 
 ##
 # Patient demographics
+
+pdf.move_down(10)
 
 pdf.stroke_horizontal_rule
 
@@ -162,32 +192,5 @@ pdf.bounding_box([121,pdf.cursor], :width => 164, :height => 15) do
   pdf.stroke_horizontal_rule
   pdf.pad_top(5) do
     pdf.text "#{User.find(current_user).name_to_display}", :size => 8, :align => :center
-  end
-end
-
-##
-# Footer
-
-num_pag=0 
-pdf.footer [0,40] do
-  pdf.font "Helvetica" do
-    pdf.move_down 15
-    pdf.line_width = 1
-    pdf.stroke_horizontal_rule
-    pdf.move_down 5
-    pdf.text "#{t('.originally_printed_at')} #{@accession.reported_at.strftime('%d/%m/%Y %I:%M %p') if @accession.reported_at}#{t('.preliminary') unless @accession.reported_at}", :size => 8
-    pdf.text "#{t('.printed_at')} #{Time.now.strftime('%d/%m/%Y %I:%M %p')}", :size => 8
-    num_pag += 1
-    ##
-    # Should be inside a lazy_bounding_box
-    # #{pdf.page_count}
-    ##
-    pdf.text t('.page')+num_pag.to_s+" #{t('.of')} "+pdf.page_count.to_s, :size => 8, :align => :left
-    pdf.move_up 27
-    pdf.text "#{t('.accession')} #{@accession.id}", :size => 8, :align => :right
-    pdf.text "#{t('.results_of')} #{@accession.patient.full_name}", :size => 8, :align => :right
-    pdf.fill_color colors[:high_value]
-    pdf.text "#{t('.preliminary') unless @accession.reported_at}", :size => 8, :align => :right
-    pdf.fill_color colors[:black]
   end
 end

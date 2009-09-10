@@ -14,4 +14,8 @@ class LabTest < ActiveRecord::Base
   acts_as_list :scope => :department
 
   default_scope :order => "position"
+  
+  def department_name
+    department.name
+  end
 end

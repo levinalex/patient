@@ -1,18 +1,19 @@
 <% title t('.title') %>
+<%= javascript "jquery" %>
+<%= javascript "jquery-ui" %>
+<%= javascript "pagination" %>
+<%= javascript "application" %>
 
-<% form_tag patients_path, :method => 'get' do %>
-  <p class="content">
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag t('.search'), :name => nil %>
-  </p>
-<% end %>
+<div class='title_tools'>
+  <%= link_to t('.new_patient'), new_patient_path %> |
+  <a href="#" onclick="new Ajax.Request('/contacts/options', {asynchronous:true, evalScripts:true, method:'get', parameters:{ cancel: Element.visible('options') }}); return false;"><abbr id="options_arrow">&#9658;</abbr>&nbsp;<%= t('.options') %></a>
+</div>
 
-<% if @patients.empty? %>
-  <p class="content"><%= t('.not_found') %><%= link_to t('.all_patients'), patients_path %></p>
-<% else %>
-  <div class="patients">
-    <%= render @patients %>
-  </div>
-<% end %>
+<div class='title'>
+  <span><%= t('.title')%></span>
+  <%= image_tag("loading.gif", :style => "display: none;", :size => "16x16") %>
+</div>
 
-<p><%= link_to t('.new_patient'), new_patient_path %></p>
+<div class='list' id="patients">
+  <%= render "patients" %>
+</div>

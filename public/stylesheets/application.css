@@ -22,7 +22,7 @@ body,
 }
 
 #order_tests {
-  height: 32em;
+  height: 35em;
 }
 
 body {
@@ -294,7 +294,13 @@ legend {
 }
 
 li .handle {
+  font-size: 9px;
+  color: #8699aa;
   cursor: move;
+}
+
+#lab_tests li {
+ list-style-type: none;
 }
 
 #login h1 a {

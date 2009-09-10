@@ -15,7 +15,7 @@ class Patient < ActiveRecord::Base
     [ I18n.translate('patients.dialysis'), "3" ]
   ]
 
-  attr_accessible :given_name, :middle_name, :family_name, :family_name2, :gender, :birthdate, :identifier, :address
+  attr_accessible :given_name, :middle_name, :family_name, :family_name2, :gender, :birthdate, :identifier, :email, :phone, :address, :type, :insurance_provider_id
   
   validates_presence_of :given_name, :family_name, :gender, :birthdate
   validates_inclusion_of :gender, :in => GENDERS.map {|disp, value| value}
@@ -30,12 +30,8 @@ class Patient < ActiveRecord::Base
   before_save :capitalize_names
 
   # Meanwhile... use thinking sphinx with delta instead
-  def self.search(query)
-    if query
-      find(:all, :conditions => ['given_name LIKE ? OR middle_name LIKE ? OR family_name LIKE ? OR family_name2 LIKE ? OR identifier LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"])
-    else
-      find(:all)
-    end
+  def self.search(query, page)
+    paginate :per_page => 20, :page => page, :conditions => ['given_name LIKE ? OR middle_name LIKE ? OR family_name LIKE ? OR family_name2 LIKE ? OR identifier LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"], :order => 'family_name ASC'
   end
   
   def full_name

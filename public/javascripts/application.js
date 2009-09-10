@@ -16,7 +16,20 @@ $(function() {
                     function () {
                                $("#new_user_session").effect("shake", { times:3, distance:10 }, 60);
                     });
-
+  $("li.contact").hover(
+                    function () {
+                        $(this).css({
+                                    'background' : 'seashell'
+                                    });
+                        $(this).children(".tools").show();
+                    },
+                    function () {
+                        $(this).css({
+                                    'background' : 'white'
+                                    });
+                        $(this).children(".tools").hide();
+                        });
+                    
   function toggleStatus() {
     if ($('#panel_1').is(':checked')) {
       $('#lab_test_1').attr('disabled', true);

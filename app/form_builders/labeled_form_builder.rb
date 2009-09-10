@@ -4,7 +4,7 @@ class LabeledFormBuilder < ActionView::Helpers::FormBuilder
   
   helpers.each do |method_name|
     define_method(method_name) do |field_name, *args|
-      @template.content_tag(:p, field_label(field_name, *args) + super)
+      @template.content_tag(:div, field_label(field_name, *args), :class => "label") + super
     end
   end
   
@@ -19,10 +19,6 @@ class LabeledFormBuilder < ActionView::Helpers::FormBuilder
         @template.check_box_tag(field_name, subobject.send(id_method), object.send(name).include?(subobject.send(id_method)), :id => "#{subobject.class.to_s.underscore}_#{subobject.send(id_method)}") + " " + subobject.send(name_method)
       end
     end.to_s + @template.hidden_field_tag(field_name, "")
-  end
-  
-  def submit(*args)
-    @template.content_tag(:p, super, :class => "submit")
   end
     
   private

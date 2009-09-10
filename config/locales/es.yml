@@ -4,7 +4,13 @@ es:
       username: "Usuario"
       password: "Contraseña"
       submit: "Enviar"
-
+  layouts:
+    tabs:
+      patients: "Pacientes"
+      accessions: "Accesiones"
+  will_paginate:
+    next: "Siguiente »"
+    previous: "« Anterior"
   patients:
     female: "Femenino"
     male: "Masculino"
@@ -12,12 +18,22 @@ es:
     canine: "Canino"
     feline: "Felino"
     dialysis: "Diálisis"
+    sidebar:
+      search_patients: "Buscar pacientes"
+      search: "Buscar"
+      recent_patients: "Pacientes Recientes"
+      patient: "Paciente:"
     index:
       title: "Pacientes"
-      search: "Buscar"
-      all_patients: "Todos los Pacientes"
       new_patient: "Nuevo Paciente"
+      options: "Opciones"
+    patients:
       not_found: "No se encontró ningún paciente"
+      edit: "Editar"
+      delete?: "¿Borrar?"
+      confirm_destroy: "¿Está seguro?"
+      phone: "Tel:"
+      year: "año"
     show:
       title: "Información del Paciente"
     new:
@@ -25,26 +41,26 @@ es:
     edit:
       title: "Editar Información del Paciente"
     form:
-      given_name: "Primer Nombre:"
-      middle_name: "Segundo Nombre:"
-      family_name: "Primer Apellido:"
-      family_name2: "Segundo Apellido:"
-      full_name: "Nombre"
+      given_name: "Primer nombre:"
+      middle_name: "Segundo nombre:"
+      family_name: "Primer apellido:"
+      family_name2: "Segundo apellido:"
       gender: "Sexo:"
-      birthdate: "Fecha de Nacimiento:"
-      identifier: "Cédula:"
-      type: "Tipo:"
-      address: "Dirección:"
-      insurance_provider: "Proveedor de Seguro:"
-      edit: "Editar"
-      view_all: "Mostrar Todos"
-      back_to_list: "Volver a la Lista"
-      destroy: "Borrar"
-      submit: "Enviar"
       prompt_gender: "Elegir Sexo:"
+      birthdate: "Fecha de Nacimiento:"
       day: "Día:"
       month: "Mes:"
       year: "Año:"
+      identifier: "Cédula:"
+      email: "Correo Electrónico:"
+      phone: "Teléfono:"
+      additional_information: "Información Adicional"
+      address: "Dirección:"
+      type: "Tipo:"
+      insurance_provider: "Proveedor de Seguro:"
+      submit: "Guardar Paciente"
+      or: "o"
+      cancel: "Cancelar"
     patient:
       gender: "Sexo:"
       age: "Edad:"
@@ -64,6 +80,11 @@ es:
       received_at: "Recibido en"
       received_by: "Recibido por"
       reported_at: "Reportado en"
+    sidebar:
+      year: "año"
+      phone: "Tel:"
+      address: "Dirección:"
+      email: "Correo Electrónico:"
       
   results:
     low: "BAJO"

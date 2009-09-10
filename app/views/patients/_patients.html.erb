@@ -1,0 +1,37 @@
+<% if @patients.empty? %>
+  <p class="content"><%= t('.not_found') %></p>
+<% else %>
+  <ul>
+    <% for patient in @patients %>
+      <li class='contact'>
+        <%= image_tag("avatar.jpg", :class => "gravatar", :size => "30x30") %>
+        <div class="tools" style="display:none">
+          <small>
+            <%= link_to t('.edit'), edit_patient_path(patient) %> |
+            <%= link_to t('.delete?'), patient, :method => :delete, :confirm => t('.confirm_destroy') %>
+          </small>
+        </div>
+        <%= link_to patient.full_name, patient_accessions_path(patient) %>
+        <tt><%=h patient.identifier %></tt>
+        <dt style='padding: 2px 0px 0px 0px'>
+          <% unless patient.email.blank? %>
+            <%= mail_to patient.email %> |
+          <% end %>
+          <% unless patient.phone.blank? %>
+            <%= t('.phone') %> <b><%=h patient.phone %></b> |
+          <% end %>
+          <%=h pluralize patient.age, t('.year') %>
+        </dt>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div id='paginate'>
+  <%= twill_paginate @patients %>
+  <div id="paging" style="display:none">  
+    <%= image_tag("loading.gif", :size => "16x16") %>
+  </div>
+</div>
+
+

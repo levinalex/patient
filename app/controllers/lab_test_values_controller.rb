@@ -2,7 +2,7 @@ class LabTestValuesController < ApplicationController
   before_filter :require_user
 
   def index
-    @lab_test_values = LabTestValue.all
+    @lab_test_values = LabTestValue.all(:order => "value ASC")
   end
   
   def show

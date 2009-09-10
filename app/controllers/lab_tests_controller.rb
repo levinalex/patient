@@ -1,6 +1,6 @@
 class LabTestsController < ApplicationController
   def index
-    @lab_tests = LabTest.all(:order => "position")
+    @lab_tests = LabTest.all(:order => "position").group_by(&:department_name)
   end
   
   def show
