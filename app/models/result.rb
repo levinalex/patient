@@ -83,7 +83,9 @@ private
   end
 
   def check_range
-    if range_max && range_min
+    if formatted_value == "pend."
+      "normal_value"
+    elsif range_max && range_min
       if range_max.to_d < formatted_value.to_d
         "high_value"
       elsif range_min.to_d >= formatted_value.to_d

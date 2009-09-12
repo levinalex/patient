@@ -71,17 +71,17 @@ td.high_value, td.low_value, td.abnormal_value, td.normal_value {
 }
 
 td.low_value {
-	background: url(/images/low_flag.png) no-repeat center right;
+	/* background: url(/images/low_flag.png) no-repeat center right; */
 	color: #6678b1;
 }
 
 td.high_value {
-	background: url(/images/high_flag.png) no-repeat center right;
+	/* background: url(/images/high_flag.png) no-repeat center right; */
 	color: #a66662;
 }
 
 td.abnormal_value {
-	background: url(/images/abnormal_flag.png) no-repeat center right;
+	/* background: url(/images/abnormal_flag.png) no-repeat center right; */
 	color: #800080;
 }
 

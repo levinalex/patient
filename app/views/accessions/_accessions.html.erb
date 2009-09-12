@@ -1,0 +1,47 @@
+<div class="log">
+
+<% unless @pending_accessions.blank? %>
+  <h3 class="overdue">Pending</h3>
+  <table>
+    <thead class='subtitle'>
+      <th></th>
+      <th>Accession</th>
+      <th>Date Collected</th>
+      <th>Collected by</th>
+      <th></th>
+      <th>Patient</th>
+      <th>Dorctor</th>
+      <th>Panels/Tests Ordered</th>
+    </thead>
+
+    <div class="pending_requisitions">
+      <%= render @pending_accessions %>
+    </div>
+  </table>
+<% end %>
+
+  <h3 class="due_later">Requisition Listing</h3>
+<table>
+  <thead class='subtitle'>
+    <th></th>
+    <th>Accession</th>
+    <th>Date Collected</th>
+    <th>Collected by</th>
+    <th>Date Reported</th>
+    <th>Patient</th>
+    <th>Dorctor</th>
+    <th>Panels/Tests Ordered</th>
+  </thead>
+
+  <div class="reported_requisitions">
+    <%= render @reported_accessions %>
+  </div>
+</table>
+
+<div id='paginate'>
+  <%= twill_paginate @reported_accessions %>
+  <div id="paging" style="display:none">  
+    <%= image_tag("loading.gif", :size => "16x16") %>
+  </div>
+</div>
+</div>

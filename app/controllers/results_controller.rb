@@ -3,7 +3,7 @@ class ResultsController < ApplicationController
 
   prawnto :prawn => {
     :inline => true,
-    :top_margin => 150,
+    :top_margin => 130,
     :bottom_margin => 60}
   
   def index

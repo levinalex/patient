@@ -18,6 +18,9 @@ en:
     canine: "Canine"
     feline: "Feline"
     dialysis: "Dialysis"
+    tabs:
+      patients: "Patients"
+      requisitions: "Requisitions"
     sidebar:
       search_patients: "Search patients"
       search: "Search"
@@ -75,16 +78,24 @@ en:
     form:
       doctor: "Ordering Doctor:"
       labels: "Labels"
-      drawn_at: "Drawn at"
-      drawn_by: "Drawn by"
+      drawn_at: "Collected at"
+      drawn_by: "Collected by"
       received_at: "Received at"
       received_by: "Received by"
       reported_at: "Reported at"
+      submit: "Save Accession"
+      or: "or"
+      cancel: "Cancel"
+    tabs:
+      patients: "Patients"
+      requisitions: "Requisitions"
     sidebar:
       year: "year"
       phone: "Phone:"
       address: "Address:"
       email: "Email:"
+      recent_patients: "Recent Patients"
+      patient: "Patient:"
       
   results:
     low: "LOW"
@@ -118,6 +129,10 @@ en:
       results_of: "Lab Results for:"
           
   flash:
+    login:
+      welcome: "Welcome "
+      last_login_at: " Your last login was on "
+      last_login_at_format: "%b %d, at %I:%M%p"
     create: "Successfully created patient."
     update: "Successfully updated patient."
     destroy: "Successfully destroyed patient."

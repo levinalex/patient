@@ -2,17 +2,20 @@ class AccessionsController < ApplicationController
   before_filter :require_user
   
   def index
+    @recent = Patient.recent
     if params[:patient_id]
       @patient = Patient.find(params[:patient_id])
       @pending_accessions = @patient.accessions.pending(:order => 'drawn_at ASC')
-      @reported_accessions = @patient.accessions.reported(:order => 'reported_at DESC')
+      @reported_accessions = @patient.accessions.reported.recently.paginate(:per_page => 10, :page => params[:page])
+
     else
-      @pending_accessions = Accession.pending
-      @reported_accessions = Accession.reported.recent
+      @pending_accessions = Accession.pending(:order => 'drawn_at ASC')
+      @reported_accessions = Accession.reported.recently.paginate(:per_page => 10, :page => params[:page])
     end
   end
   
   def new
+    @recent = Patient.recent
     @patient = Patient.find(params[:patient_id])
     @accession = @patient.accessions.build
     @accession.drawn_at = Time.now
@@ -36,6 +39,8 @@ class AccessionsController < ApplicationController
   def edit
     @accession = Accession.find(params[:id], :include => [:panels, {:results => :lab_test}])
     @departments = Department.all(:order => "lab_tests.position", :include => :lab_tests)
+    @recent = Patient.recent
+    #@patient = @accession.patient
   end
   
   def update
@@ -60,6 +65,8 @@ class AccessionsController < ApplicationController
 
   def edit_results
     @accession = Accession.find(params[:id])
+    @recent = Patient.recent
+    @patient = @accession.patient
   end
   
   def report

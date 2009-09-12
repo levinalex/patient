@@ -13,10 +13,10 @@ class Accession < ActiveRecord::Base
   
   validates_presence_of :patient_id
   
-  named_scope :recent, :order => 'updated_at DESC', :limit => 10
+  named_scope :recently, :order => 'updated_at DESC'
   named_scope :reported, :conditions => 'reported_at IS NOT NULL'
   named_scope :pending, :conditions => { :reported_at => nil }
-  
+
   before_save :process_panel_selection
   
   def patient_age

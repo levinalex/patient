@@ -29,7 +29,27 @@ $(function() {
                                     });
                         $(this).children(".tools").hide();
                         });
-                    
+
+  setTimeout(function(){ $("#flash").fadeOut(2000); }, 3000);
+
+/*  function flash(type, sticky) {
+  $("#flash").hide();
+  if (type == "warning" || type == "error") {
+  $("#flash").css({
+                 'color' : 'flash_warning';
+                 });
+  } else {
+  $("#flash").css({
+                 'color' : 'flash_notice';
+                 });
+  }
+  $("#flash").show(0.5);
+  if (!sticky) {
+  $("#flash").hide(3000);
+  }
+  };*/  
+  
+  
   function toggleStatus() {
     if ($('#panel_1').is(':checked')) {
       $('#lab_test_1').attr('disabled', true);
@@ -45,5 +65,5 @@ $(function() {
   $("#panel_2").click(function() {
                                $.getScript(this.href);
                                return false;
-                               });  
+                               });
 });

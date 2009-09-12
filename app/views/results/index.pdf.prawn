@@ -10,27 +10,63 @@ colors = {:black => "000000", :grey => "e5e5e5", :pink => "f096b8", :high_value 
 #pdf.stroke_line [pdf.bounds.left,pdf.bounds.bottom], [pdf.bounds.right,pdf.bounds.top]
 #pdf.stroke_color colors[:black]
 
-##
-# Header with logo and information
+pdf.header pdf.margin_box.top_left do
+  ##
+  # Header with logo and information
 
-require "open-uri"
-logoimage = "http://localhost:3000/images/logo.png" 
-pdf.image open(logoimage), :at => [pdf.bounds.left, pdf.bounds.top + 150], :scale => 0.5
+  require "open-uri"
+  logoimage = "http://localhost:3000/images/logo.png" 
+  pdf.image open(logoimage), :at => [pdf.bounds.left, pdf.bounds.top + 127], :scale => 0.5
 
-pdf.bounding_box([pdf.bounds.right - 80, pdf.bounds.top + 100], :width => 80, :height => 15) do
-  pdf.fill_color colors[:high_value]
-  pdf.text "#{t('.preliminary') unless @accession.reported_at}", :size => 8, :align => :right
+  pdf.bounding_box([pdf.bounds.right - 80, pdf.bounds.top + 110], :width => 80, :height => 15) do
+    pdf.fill_color colors[:high_value]
+    pdf.text "#{t('.preliminary') unless @accession.reported_at}", :size => 8, :align => :right
+    pdf.fill_color colors[:black]
+  end
+
+  ##
+  # TODO: Replace 125 to use the width of the logo image and 135 to center in its height also
+
+  pdf.bounding_box([pdf.bounds.left + 125, pdf.bounds.top + 110], :width => 350, :height => 50) do
+    pdf.text "MasterLab - Laboratorio Clínico Especializado", :size => 12, :style => :bold
+    pdf.text "Villa Lucre, Consultorios San Judas Tadeo, Local 107", :size => 10
+    pdf.text "Tel: 222-9200 ext. 1107 / Telefax: 277-7832", :size => 10
+    pdf.text "Director: Lcdo. Erick Chu, TM, MSc - Email: masterlab@labtecsa.com", :size => 10
+  end
+
+  pdf.fill_color colors[:pink]
+  pdf.fill_and_stroke do
+    pdf.rectangle [0, 620], 540, 15
+  end
   pdf.fill_color colors[:black]
-end
-
-##
-# TODO: Replace 125 to use the width of the logo image and 135 to center in its height also
-
-pdf.bounding_box([pdf.bounds.left + 125, pdf.bounds.top + 135], :width => 350, :height => 50) do
-  pdf.text "MasterLab - Laboratorio Clínico Especializado", :size => 12, :style => :bold
-  pdf.text "Villa Lucre, Consultorios San Judas Tadeo, Local 107", :size => 10
-  pdf.text "Tel: 222-9200 ext. 1107 / Telefax: 277-7832", :size => 10
-  pdf.text "Director: Lcdo. Erick Chu, TM, MSc - Email: masterlab@labtecsa.com", :size => 10
+  
+  pdf.bounding_box([5,620], :width => 140, :height => 15) do
+    pdf.pad(5) do
+      pdf.text t('.lab_test'), :size => 8, :style => :bold, :align => :left
+    end
+  end
+  pdf.bounding_box([140,620], :width => 60, :height => 15) do
+    pdf.pad(5) do
+      pdf.text t('.result'), :size => 8, :style => :bold, :align => :center
+    end
+  end
+  pdf.bounding_box([200,620], :width => 88, :height => 15) do
+    pdf.span(88, :position => 205) do
+      pdf.pad(5) do
+        pdf.text t('.units'), :size => 8, :style => :bold, :align => :left
+      end
+    end
+  end
+  pdf.bounding_box([288,620], :width => 100, :height => 15) do
+    pdf.pad(5) do
+      pdf.text t('.flag'), :size => 8, :style => :bold, :align => :center
+    end
+  end
+  pdf.bounding_box([388,620], :width => 152, :height => 15) do
+    pdf.pad(5) do
+      pdf.text t('.range'), :size => 8, :style => :bold, :align => :center
+    end
+  end
 end
 
 ##
@@ -66,84 +102,74 @@ end
 ##
 # Patient demographics
 
-pdf.move_down(10)
+pdf.stroke_line [pdf.bounds.left,655], [pdf.bounds.right,655]
 
-pdf.stroke_horizontal_rule
+########################
 
-pdf.bounding_box([5,650], :width => 45, :height => 50) do
+pdf.bounding_box([5,650], :width => 40, :height => 10) do
   pdf.text t('.full_name'), :size => 8, :style => :bold
+end
+pdf.bounding_box([5,640], :width => 40, :height => 10) do
   pdf.text t('.identifier'), :size => 8
+end
+pdf.bounding_box([5,630], :width => 40, :height => 10) do
   pdf.text t('.doctor'), :size => 8
 end
-pdf.bounding_box([45,650], :width => 150, :height => 50) do
+pdf.bounding_box([45,650], :width => 265, :height => 10) do
   pdf.text @accession.patient.full_name, :size => 8, :style => :bold
+end
+pdf.bounding_box([45,640], :width => 155, :height => 10) do
   pdf.text @accession.patient.identifier, :size => 8
+end
+pdf.bounding_box([45,630], :width => 155, :height => 10) do
   pdf.text @accession.doctor_name, :size => 8
 end
 
-pdf.bounding_box([200,641], :width => 30, :height => 50) do
+########################
+
+pdf.bounding_box([200,640], :width => 30, :height => 10) do
   pdf.text t('.age'), :size => 8
+end
+pdf.bounding_box([200,630], :width => 30, :height => 10) do
   pdf.text t('.gender'), :size => 8
 end
-pdf.bounding_box([230,641], :width => 40, :height => 50) do
+pdf.bounding_box([230,640], :width => 80, :height => 10) do
   pdf.text "#{@accession.patient_age} #{t('.years')}", :size => 8
+end
+pdf.bounding_box([230,630], :width => 80, :height => 10) do
   pdf.text @accession.patient.gender_name, :size => 8
 end
 
-pdf.bounding_box([310,650], :width => 80, :height => 50) do
+########################
+
+pdf.bounding_box([310,650], :width => 80, :height => 10) do
   pdf.text t('.accession'), :size => 8, :style => :bold
+end
+pdf.bounding_box([310,640], :width => 80, :height => 10) do
   pdf.text t('.drawn_at'), :size => 8
+end
+pdf.bounding_box([310,630], :width => 80, :height => 10) do
   pdf.text t('.received_at'), :size => 8
 end
-pdf.bounding_box([390,650], :width => 150, :height => 50) do
+pdf.bounding_box([390,650], :width => 150, :height => 10) do
   pdf.text @accession.id, :size => 8, :style => :bold
+end
+pdf.bounding_box([390,640], :width => 150, :height => 10) do
   pdf.text @accession.drawn_at.strftime('%d/%m/%Y %I:%M %p'), :size => 8
+end
+pdf.bounding_box([390,630], :width => 150, :height => 10) do
   pdf.text "#{@accession.received_at.strftime('%d/%m/%Y %I:%M %p') if @accession.received_at}", :size => 8
 end
+
+pdf.move_down(25)
 
 ##
 # Report values
 
 ##
-# - Change the range value for independent range_min & range_max to align them
+# TODO:
 # - Try adding the NOTES: with column_box check out example in github
 ##
-
-pdf.header pdf.margin_box.top_left do
-  pdf.fill_color colors[:pink]
-  pdf.fill_and_stroke do
-    pdf.rectangle [0, 620], 540, 15
-  end
-  pdf.fill_color colors[:black]
-  
-  pdf.bounding_box([5,620], :width => 140, :height => 15) do
-    pdf.pad(5) do
-      pdf.text t('.lab_test'), :size => 8, :style => :bold, :align => :left
-    end
-  end
-  pdf.bounding_box([140,620], :width => 60, :height => 15) do
-    pdf.pad(5) do
-      pdf.text t('.result'), :size => 8, :style => :bold, :align => :center
-    end
-  end
-  pdf.bounding_box([200,620], :width => 88, :height => 15) do
-    pdf.span(88, :position => 205) do
-      pdf.pad(5) do
-        pdf.text t('.units'), :size => 8, :style => :bold, :align => :left
-      end
-    end
-  end
-  pdf.bounding_box([288,620], :width => 100, :height => 15) do
-    pdf.pad(5) do
-      pdf.text t('.flag'), :size => 8, :style => :bold, :align => :center
-    end
-  end
-  pdf.bounding_box([388,620], :width => 152, :height => 15) do
-    pdf.pad(5) do
-      pdf.text t('.range'), :size => 8, :style => :bold, :align => :center
-    end
-  end
-end
 
 ##
 # Try a bounding box here accession 17

@@ -1,4 +1,8 @@
-<% title "Accessions for Patient" %>
+<% title "Requisitions for Patient" %>
+<%= javascript "jquery" %>
+<%= javascript "jquery-ui" %>
+<%= javascript "pagination" %>
+<%= javascript "application" %>
 
 <% if @patient %>
   <div class='title_tools'>
@@ -7,23 +11,6 @@
   <div class='title'><%=h @patient.full_name if @patient %></div>
 <% end %>
 
-<table>
-  <tr>
-    <div>
-      <th class='subtitle'></th>
-      <th class='subtitle'>Draw Date</th>
-      <th class='subtitle'>Accession ID</th>
-      <th class='subtitle'>Drawn by</th>
-      <th class='subtitle'>Date Reported</th>
-      <th class='subtitle'>Panels/Tests Ordered</th>
-    </div>
-  </tr>
-
-  <div class="pending_accessions">
-    <%= render @pending_accessions %>
-  </div>
-
-  <div class="reported_accessions">
-    <%= render @reported_accessions %>
-  </div>
-</table>
+<div class='list' id="accessions">
+  <%= render "accessions" %>
+</div>

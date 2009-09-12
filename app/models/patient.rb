@@ -31,7 +31,7 @@ class Patient < ActiveRecord::Base
 
   # Meanwhile... use thinking sphinx with delta instead
   def self.search(query, page)
-    paginate :per_page => 20, :page => page, :conditions => ['given_name LIKE ? OR middle_name LIKE ? OR family_name LIKE ? OR family_name2 LIKE ? OR identifier LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"], :order => 'family_name ASC'
+    paginate :per_page => 10, :page => page, :conditions => ['given_name LIKE ? OR middle_name LIKE ? OR family_name LIKE ? OR family_name2 LIKE ? OR identifier LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"], :order => 'family_name ASC'
   end
   
   def full_name

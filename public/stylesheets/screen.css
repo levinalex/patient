@@ -203,15 +203,14 @@ tt {
 
 .main {
   background: white;
-  padding: 8px 15px 15px 15px;
+  padding: 8px 15px 40px 15px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   margin: 12px 16px;
   min-width: 496px;
   float: center;
-  margin-right: 238px;
-  padding-bottom: 40px; }
-
+  margin-right: 238px; }
+  
 .sidebar {
   float: right;
   color: #3f3f3f;
@@ -258,7 +257,7 @@ tt {
   -webkit-border-radius: 4px;
   background: whitesmoke;
   margin: 0px;
-  padding: 0px 10px 10px 10px;
+  padding: 10px;
   position: relative; }
   .remote .close {
     background: lightblue;
@@ -300,8 +299,8 @@ tt {
   color: black; }
 
 .strip {
-  background: gainsboro;
-  color: black;
+  background: firebrick;
+  color: white;
   float: left;
   font-size: 11px;
   margin: 0px 6px 0px 0px;
@@ -551,12 +550,12 @@ tt {
   border-right: 1px solid lightpink;
   background: pink; }
 
-p.flash_warning, p.flash_error {
+.flash_warning, .flash_error {
   background: lightpink;
   color: maroon;
   margin: 0px;
   padding: 5px 0px 5px 16px; }
-p.flash_notice, p.flash_message {
+.flash_notice, .flash_message {
   background: #df9;
   color: darkgreen;
   margin: 0px;

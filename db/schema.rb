@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090909101008) do
+ActiveRecord::Schema.define(:version => 20090911155452) do
 
   create_table "accession_panels", :force => true do |t|
     t.integer  "accession_id"
@@ -167,14 +167,20 @@ ActiveRecord::Schema.define(:version => 20090909101008) do
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
-    t.string   "crypted_password",  :null => false
-    t.string   "password_salt",     :null => false
-    t.string   "persistence_token", :null => false
+    t.string   "crypted_password",                 :null => false
+    t.string   "password_salt",                    :null => false
+    t.string   "persistence_token",                :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "initials"
     t.string   "language"
     t.string   "name_to_display"
+    t.datetime "last_request_at"
+    t.datetime "last_login_at"
+    t.datetime "current_login_at"
+    t.string   "last_login_ip"
+    t.string   "current_login_ip"
+    t.integer  "login_count",       :default => 0, :null => false
   end
 
 end

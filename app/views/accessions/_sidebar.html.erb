@@ -1,18 +1,31 @@
 <div class='sidebar'>
-  <div class='panel' id='summary'>
-    <span style='float:right'><%= image_tag("avatar.jpg", :class => "gravatar", :size => "50x50") %></span>
-    <h4><%=h @patient.full_name %></h4>
-    <div>
-      <%=h @patient.identifier %><br />
-      <%=h pluralize @patient.age, t('.year') %>
+  <% if @patient %>
+    <div class='panel' id='summary'>
+      <span style='float:right'><%= image_tag("avatar.jpg", :class => "gravatar", :size => "50x50") %></span>
+      <h4><%=h @patient.full_name %></h4>
+      <div>
+        <%=h @patient.identifier %><br />
+        <%=h pluralize @patient.age, t('.year') %>
+      </div>
+      <div>
+        <%= t('.address') %> <%=h @patient.address %><br />
+        <%= t('.phone') %> <b><%=h @patient.phone %></b>
+      </div>
+      <div>
+        <%= t('.email') %> <b><%= mail_to @patient.email %></b>
+      </div>
+      <%= image_tag("axa.png", :size => "15x15") if @patient.insurance_provider %>
     </div>
-    <div>
-      <%= t('.address') %> <%=h @patient.address %><br />
-      <%= t('.phone') %> <b><%=h @patient.phone %></b>
-    </div>
-    <div>
-      <%= t('.email') %> <b><%= mail_to @patient.email %></b>
-    </div>
-    <%= image_tag("axa.png", :size => "15x15") if @patient.insurance_provider %>
+  <% end %>
+  <div class="panel" id="recent">
+    <div class="caption"><%= t('.recent_patients') %></div>
+    <ul>
+      <% for patient in @recent %>
+        <li>
+          <dt><%= link_to truncate(patient.full_name, :length => 15), patient_accessions_path(patient), :title => patient.full_name %></dt>
+          <tt><%= t('.patient') %></tt>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>

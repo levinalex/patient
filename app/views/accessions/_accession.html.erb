@@ -1,14 +1,16 @@
-<div class="accession">
+<div class="requisition">
   <tr class="task">
     <td>
       <% unless accession.reported_at %>
-        <div class='meeting strip'>Pending</div>
+        <div class="strip">Pending</div>
       <% end %>
     </td>
-    <td><%=h accession.drawn_at.strftime('%d/%m/%Y') %></td>
     <td><%=link_to accession.id, accession_results_path(accession) %></td>
+    <td><%=h accession.drawn_at.strftime('%e/%m/%Y %l:%m%p') %></td>
     <td><%=h User.find(accession.drawn_by).initials if accession.drawn_by %></td>
-    <td><%=h accession.reported_at.strftime('%d/%m/%Y') if accession.reported_at %></td>
+    <td><%=h accession.reported_at.strftime('%e/%m/%Y %l:%m%p') if accession.reported_at %></td>
+    <td><%=h accession.patient.full_name unless @patient %></td>
+    <td><%=h accession.doctor.name if accession.doctor %></td>
     <td><%=h truncate(accession.order_list, :length => 30) %></td>
     <td>
       <small><%= link_to "Change Order", edit_accession_path(accession) %></small>
