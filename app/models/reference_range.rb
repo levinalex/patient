@@ -19,8 +19,9 @@ class ReferenceRange < ActiveRecord::Base
 
   belongs_to :lab_test
   named_scope :for_its_gender, lambda { |gender| { :conditions => { :gender => [gender, "*"] } } }
-  # Missing age component (i.e. take into account age units, no newborns for now)
-  named_scope :for_its_age, lambda { |age| { :conditions => ["min_age < ? AND max_age > ? OR min_age IS NULL OR max_age IS NULL", age, age] } }
+  # TODO: Missing age component (i.e. take into account age units, no newborns for now)
+  named_scope :for_its_age, lambda { |age| { :conditions => ["min_age <= ? AND max_age > ? OR (min_age IS NULL AND max_age IS NULL) OR (min_age <= ? AND max_age IS NULL)", age, age, age] } }
+  # TODO: named_scope :human :joins => :patient, :type => human
 
   validates_inclusion_of :gender, :in => GENDERS.map {|disp, value| value}
 end

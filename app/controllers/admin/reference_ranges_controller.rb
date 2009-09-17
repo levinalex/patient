@@ -14,7 +14,7 @@ class Admin::ReferenceRangesController < Admin::ApplicationController
   def create
     @reference_range = ReferenceRange.new(params[:reference_range])
     if @reference_range.save
-      flash[:notice] = "Successfully created reference_range."
+      flash[:notice] = "Successfully created reference range."
       redirect_to [:admin, @reference_range]
     else
       render :action => 'new'
@@ -28,7 +28,7 @@ class Admin::ReferenceRangesController < Admin::ApplicationController
   def update
     @reference_range = ReferenceRange.find(params[:id])
     if @reference_range.update_attributes(params[:reference_range])
-      flash[:notice] = "Successfully updated reference_range."
+      flash[:notice] = "Successfully updated reference range."
       redirect_to [:admin, @reference_range]
     else
       render :action => 'edit'
@@ -38,7 +38,7 @@ class Admin::ReferenceRangesController < Admin::ApplicationController
   def destroy
     @reference_range = ReferenceRange.find(params[:id])
     @reference_range.destroy
-    flash[:notice] = "Successfully removed reference_range."
+    flash[:notice] = "Successfully removed reference range."
     redirect_to admin_reference_ranges_url
   end
 end
