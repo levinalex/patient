@@ -1,6 +1,3 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
@@ -9,6 +6,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation, :given_name, :middle_name, :family_name, :family_name2, :birthdate, :identifier, :email, :phone, :address, :type, :insurance_provider_id
   
   before_filter :set_user_language
+  before_filter :set_active_tab
   
   helper_method :current_user_session, :current_user
   
@@ -19,6 +17,12 @@ class ApplicationController < ActionController::Base
       :Producer => "", :CreationDate => Time.now
     }
   }
+  
+  protected
+  
+  def set_active_tab
+    @active_tab ||= self.controller_name.to_sym
+  end
     
   private
   

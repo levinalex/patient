@@ -3,29 +3,34 @@
 <% form_for @accession do |a| %>
   <%= a.error_messages %>
   
-  <h3>Results</h3>
-  <div class="results">
-  <table>
-    <% a.fields_for :results do |r| %>
-      <tr>
-        <td><%=h r.object.lab_test.name %>
-        <td>
-          <% if r.object.lab_test.derivation %>
-            <%=h r.object.formatted_value %>
-          <% else %>
-            <% if r.object.lab_test.lab_test_values.blank? %>
-              <%= r.text_field :value, :size => 13 %>
-            <% else %>
-              <%= r.collection_select :lab_test_value_id, LabTest.find(r.object.lab_test_id).lab_test_values, :id, :value, { :include_blank => true } %>
-              <%= r.text_field :value, :size => 13 if r.object.lab_test.also_numeric %>
-            <% end %>
-          <% end %>
-        </td>
-        <td><%=h r.object.lab_test.unit.name if r.object.lab_test.unit %></td>
-        <td><%=h r.object.range %></td>
-      </tr>
-    <% end %>
-  </table>
+  <div class="title">Enter Results</div>
+  <div class="log">
+  <% a.object.results.group_by(&:department_name).each do |department, results| %>
+    <h3 class="due_later"><%=h department %></h3>
+    <table>
+      <% results.each do |result| %>
+        <% fields_for "accession[result_attributes][]", result do |r| %>
+          <tr>
+            <td><%=h result.lab_test.name %>
+            <td>
+              <% if result.lab_test.derivation %>
+                <%= r.text_field :formatted_value, :size => 13, :disabled => true %>
+              <% else %>
+                <% if result.lab_test.lab_test_values.blank? %>
+                  <%= r.text_field :value, :size => 13 %>
+                <% else %>
+                  <%= r.collection_select :lab_test_value_id, LabTest.find(result.lab_test_id).lab_test_values, :id, :value, { :include_blank => true } %>
+                  <%= r.text_field :value, :size => 13 if result.lab_test.also_numeric || result.lab_test.ratio || result.lab_test.range || result.lab_test.fraction %>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%=h result.lab_test.unit.name if result.lab_test.unit %></td>
+            <td><%=h result.range %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  <% end %>
   </div>
 
   <p>

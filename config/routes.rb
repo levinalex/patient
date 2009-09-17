@@ -1,24 +1,34 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :notes
+
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
-  map.resources :user_sessions, :as => 'try_again'
+  map.resources :user_sessions, :as => "try_again"
+
   map.resources :users
+  map.profile "profile", :controller => "users", :action => "edit"
 
   map.resources :patients, :shallow => true do |patient|
     patient.resources :accessions do |accession|
       accession.resources :results
     end
   end
+  
   map.resources :accessions, :only => :index, :member => { :report => :put, :edit_results => :get }
-  map.resources :panels
-  map.resources :lab_test_values
-  map.resources :lab_test_value_options
-  map.resources :reference_ranges
-  map.resources :lab_tests, :collection => { :sort => :post }
-  map.resources :units
-  map.resources :departments
-  map.resources :insurance_providers
-  map.resources :doctors
+  map.admin "admin", :controller => "admin/users", :action => "index"
+
+  map.namespace :admin do |admin|
+    admin.resources :users
+    admin.resources :doctors
+    admin.resources :insurance_providers
+    admin.resources :panels
+    admin.resources :lab_test_values
+    admin.resources :lab_test_value_options
+    admin.resources :reference_ranges
+    admin.resources :lab_tests, :collection => { :sort => :put }
+    admin.resources :units
+    admin.resources :departments
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
 

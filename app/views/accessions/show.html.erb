@@ -1,0 +1,23 @@
+<% title "Accession ##{@accession.id.to_s}" %>
+
+<% @results.each do |department, results| %>
+  <table class="results">
+    <thead>
+      <tr>
+        <th class="department" colspan="6">
+          <%=h department %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% reset_cycle("alternating_row_colors") %>         
+      <%= render results %>
+    </tbody>
+  </table>
+<% end %>
+
+<div class="actions">
+  <%= link_to "Change Accession", edit_accession_path(@accession) %> |
+  <%= link_to "Enter Results", edit_results_accession_url(@accession) %> |
+  <%= link_to "Patient Report (PDF)", accession_results_path(@accession, :format => 'pdf') %>
+</div>

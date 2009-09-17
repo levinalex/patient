@@ -1,0 +1,9 @@
+<div id="tabs">
+  <%= navigation [:admin_users, t('.users')], [:admin_doctors, t('.doctors')], [:admin_lab_tests, t('.lab_tests')], [:admin_panels, t('.panels')] %>
+</div>
+
+<% flash.each do |name, msg| %>
+  <div id="flash" class="flash_notice">
+    <%=h msg %>
+  </div>
+<% end %>

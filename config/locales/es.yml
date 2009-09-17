@@ -4,13 +4,40 @@ es:
       username: "Usuario"
       password: "Contraseña"
       submit: "Enviar"
+
+  users:
+    form:
+      username: "Nombre de usuario:"
+      initials: "Iniciales:"
+      language: "Idioma:"
+      password: "Contraseña:"
+      password_confirmation: "Confirmación de contraseña:"
+      admin: "El usuario es Administrador"
+      personal_information: "Información Personal"
+      prefix: "Prefijo:"
+      first_name: "Nombre:"
+      last_name: "Apellido:"
+      suffix: "Sufijo:"
+      email: "Correo electrónico:"
+      submit: "Guardar Usuario"
+      or: "o"
+      cancel: "Cancelar"
+      
   layouts:
     tabs:
       patients: "Pacientes"
-      accessions: "Accesiones"
+      requisitions: "Requisas"
+    admin:
+      tabs:
+        users: "Usuarios"
+        lab_tests: "Pruebas"
+        panels: "Paneles"
+        doctors: "Doctores"
+      
   will_paginate:
     next: "Siguiente »"
     previous: "« Anterior"
+    
   patients:
     female: "Femenino"
     male: "Masculino"
@@ -18,9 +45,6 @@ es:
     canine: "Canino"
     feline: "Felino"
     dialysis: "Diálisis"
-    tabs:
-      patients: "Pacientes"
-      requisitions: "Requisiciones"
     sidebar:
       search_patients: "Buscar pacientes"
       search: "Buscar"
@@ -86,9 +110,6 @@ es:
       submit: "Guardar Accesión"
       or: "o"
       cancel: "Cancelar"
-    tabs:
-      patients: "Pacientes"
-      requisitions: "Requisiciones"
     sidebar:
       year: "año"
       phone: "Tel:"
@@ -125,6 +146,11 @@ es:
       page: "Página"
       of: "de"
       results_of: "Resultados de:"
+    sidebar:
+      year: "año"
+      phone: "Tel:"
+      address: "Dirección:"
+      email: "Correo Electrónico:"
       
   authlogic:
     error_messages:
@@ -150,7 +176,7 @@ es:
     
   flash:
     login:
-      welcome: "¡Bienvenido "
+      hello: "¡Hola "
       last_login_at: " Su último inico de sesión fue el "
       last_login_at_format: "%d de %B, a las %I:%M%p"
     create: "Paciente creado exitosamente."

@@ -7,7 +7,7 @@
       </div>
       <div class="section">
         <%= f.error_messages %>
-        <%= f.collection_select :doctor_id, Doctor.all, :id, :name, { :include_blank => true }, :label => t('.doctor') %>
+        <%= f.collection_select :doctor_id, Doctor.all, :id, :name, :include_blank => true, :label => t('.doctor') %>
         <%= f.text_field :drawn_at, :label => t('.drawn_at') %>
         <%= f.collection_select :drawn_by, User.all, :id, :username, :label => t('.drawn_by') %>
         <%= f.text_field :received_at, :label => t('.received_at') %>

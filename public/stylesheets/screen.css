@@ -120,7 +120,7 @@ tt {
   #tabs a:hover {
     background: #97baff;
     color: navy; }
-  #tabs a:link.active, #tabs a:visited.active {
+  #tabs li.active a, #tabs a:visited.active {
     background: azure;
     color: navy;
     text-decoration: none; }
@@ -253,8 +253,6 @@ tt {
 
 .remote {
   border: 5px lightblue solid;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
   background: whitesmoke;
   margin: 0px;
   padding: 10px;

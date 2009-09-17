@@ -4,13 +4,40 @@ en:
       username: "Username"
       password: "Password"
       submit: "Submit"
+      
+  users:
+    form:
+      username: "Username:"
+      initials: "Initials:"
+      language: "Language:"
+      password: "Password:"
+      password_confirmation: "Password confirmation:"
+      admin: "The user is Administrator"
+      personal_information: "Personal Information"
+      prefix: "Prefix:"
+      first_name: "First name:"
+      last_name: "Last name:"
+      suffix: "Suffix:"
+      email: "Email:"
+      submit: "Save User"
+      or: "or"
+      cancel: "Cancel"
+      
   layouts:
     tabs:
-      patients: "Pacientes"
-      accessions: "Accesiones"
+      patients: "Patients"
+      requisitions: "Requisitions"
+    admin:
+      tabs:
+        users: "Users"
+        lab_tests: "Lab Tests"
+        panels: "Panels"
+        doctors: "Doctors"
+      
   will_paginate:
     next: "Next »"
-    previous: "« Previous"    
+    previous: "« Previous"
+    
   patients:
     female: "Female"
     male: "Male"
@@ -18,9 +45,6 @@ en:
     canine: "Canine"
     feline: "Feline"
     dialysis: "Dialysis"
-    tabs:
-      patients: "Patients"
-      requisitions: "Requisitions"
     sidebar:
       search_patients: "Search patients"
       search: "Search"
@@ -86,9 +110,6 @@ en:
       submit: "Save Accession"
       or: "or"
       cancel: "Cancel"
-    tabs:
-      patients: "Patients"
-      requisitions: "Requisitions"
     sidebar:
       year: "year"
       phone: "Phone:"
@@ -127,10 +148,17 @@ en:
       page: "Page"
       of: "of"
       results_of: "Lab Results for:"
+    sidebar:
+      year: "year"
+      phone: "Phone:"
+      address: "Address:"
+      email: "Email:"
+      recent_patients: "Recent Patients"
+      patient: "Patient:"
           
   flash:
     login:
-      welcome: "Welcome "
+      hello: "Hello "
       last_login_at: " Your last login was on "
       last_login_at_format: "%b %d, at %I:%M%p"
     create: "Successfully created patient."

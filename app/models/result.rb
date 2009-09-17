@@ -2,6 +2,7 @@ class Result < ActiveRecord::Base
   belongs_to :accession
   belongs_to :lab_test
   belongs_to :lab_test_value
+  has_many :notes, :as => :noticeable
   
   def department_name
     lab_test.department.name
@@ -18,6 +19,12 @@ class Result < ActiveRecord::Base
       "pend."
     else
       format_value(value)
+    end
+  end
+  
+  def units
+    if lab_test.unit
+      lab_test.unit.name unless lab_test_value_id
     end
   end
 

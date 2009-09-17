@@ -7,17 +7,33 @@ class Accession < ActiveRecord::Base
   has_many :lab_tests, :through => :results
   has_many :accession_panels, :dependent => :destroy
   has_many :panels, :through => :accession_panels
+  has_many :notes, :as => :noticeable
   
   accepts_nested_attributes_for :results, :allow_destroy => true
   accepts_nested_attributes_for :accession_panels, :allow_destroy => true
   
   validates_presence_of :patient_id
+  validates_associated :results
   
   named_scope :recently, :order => 'updated_at DESC'
   named_scope :reported, :conditions => 'reported_at IS NOT NULL'
   named_scope :pending, :conditions => { :reported_at => nil }
 
   before_save :process_panel_selection
+  after_update :save_results
+
+  def result_attributes=(result_attributes)
+    results.reject(&:new_record?).each do |result|
+      unless result.lab_test.derivation
+        attributes = result_attributes[result.id.to_s]
+        if attributes['_delete'] == '1'
+          results.delete(result)
+        else
+          result.attributes = attributes
+        end
+      end
+    end
+  end
   
   def patient_age
     days_per_year = 365.25
@@ -56,6 +72,7 @@ class Accession < ActiveRecord::Base
   ##
   # Derivative test definitions
   # TODO: Grab a formula from the derivation field
+  # TODO: In the meantime, refactor the current formulas
   #
 
   def mch
@@ -115,6 +132,12 @@ class Accession < ActiveRecord::Base
   def process_panel_selection
     self.panels.each do |panel|
       self.lab_test_ids |= panel.lab_test_ids
+    end
+  end
+
+  def save_results
+    results.each do |result|
+      result.save(false)
     end
   end
 end

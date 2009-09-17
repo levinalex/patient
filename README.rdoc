@@ -45,7 +45,7 @@ the database:
 The next step is to load default OpenLIS settings, such as default tests,
 default colors, etc. This is done by running the following rake task:
 
-   $ rake lis:setup
+   $ rake db:setup
 
 
 === Loading Demo Data

@@ -23,11 +23,13 @@ class Patient < ActiveRecord::Base
   
   belongs_to :insurance_provider
   has_many :accessions, :dependent => :destroy
+  has_many :notes, :as => :noticeable
+  
   accepts_nested_attributes_for :accessions, :allow_destroy => true
   
   named_scope :recent, :order => 'updated_at DESC', :limit => 10
   
-  before_save :capitalize_names
+  before_save :titleize_names
 
   # Meanwhile... use thinking sphinx with delta instead
   def self.search(query, page)
@@ -70,10 +72,10 @@ class Patient < ActiveRecord::Base
 
   ##
   # Must be extended to capitalize international characters (á, é ...)
-  def capitalize_names
-    self.given_name = given_name.capitalize if given_name
-    self.middle_name = middle_name.capitalize if middle_name
-    self.family_name = family_name.capitalize if family_name
-    self.family_name2 = family_name2.capitalize if family_name2
+  def titleize_names
+    self.given_name = given_name.titleize if given_name
+    self.middle_name = middle_name.titleize if middle_name
+    self.family_name = family_name.titleize if family_name
+    self.family_name2 = family_name2.titleize if family_name2
   end
 end

@@ -3,19 +3,19 @@
     <% if @current_user %>
       <span><%=h @current_user.name_to_display %></span>
       <span>&nbsp;&nbsp;</span>
-      <a href="#" id="jumper">Quick find</a> |
-      <%= link_to "Profile", edit_user_path(:current) %> |
+      
+      <%= link_to ("Quick find", "#", :id => "jumper") %> |
+      <%= link_to "Profile", profile_path %> |
       <% if @current_user.admin? %>
-        Admin |
+        <%= link_to "Admin", admin_path %> |
       <% end %>
       <%= link_to "Logout", logout_path %>
+      <%= render "layouts/jumpbox" %>
     <% else %>
       <%= link_to "Login", login_path %> |
       <%= link_to "Sign Up", signup_path %> |
       <%= link_to "About", "#about" %>
     <% end %>
   </div>
-  <h3>
-    <%= link_to "MasterLab", root_path %>
-  </h3>
+  <h3><%= link_to "MasterLab", root_path %></h3>
 </div>

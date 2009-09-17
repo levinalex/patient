@@ -10,6 +10,18 @@ module ApplicationHelper
     form_for(*(args + [options]), &block)
   end
   
+  def navigation(*links)
+    items = []
+    links.each do |link|
+      if controller.controller_name.to_sym == link[0] || "admin_#{controller.controller_name}".to_sym == link[0]
+        items << content_tag(:li, link_to("#{link[1].to_s}", link[0]), :class => "active")
+      else
+        items << content_tag(:li, link_to("#{link[1].to_s}", link[0]))
+      end
+    end
+    content_tag :ul, items
+  end
+  
   def twill_paginate(collection = nil, options = {})
     will_paginate collection, {:previous_label => t('will_paginate.previous'), :next_label => t('will_paginate.next')}.merge(options)
   end

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title><%= h(yield(:title) || "Untitled") %></title>
+    <%= javascript_include_tag 'jquery' %>
+    <%= javascript_include_tag 'jquery-ui' %>
+    <%= javascript_include_tag 'pagination' %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+    <%= stylesheet_link_tag 'screen' %>
+    <%= stylesheet_link_tag 'jquery-ui' %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <%= render 'layouts/admin/header' %>
+    <%= render 'layouts/admin/tabs' %>
+    
+    <div class='main'>
+      <%= yield %>
+    </div>
+
+    <div id='footer'>
+      Powered by <a href="http://www.labtecsa.com" onclick="window.open(this.href);return false;">OpenLIS</a>
+      © 2008-2009 by MasterLab
+      | <a href="#about" rel="facebox">About</a>
+    </div>
+  </body>
+</html>

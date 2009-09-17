@@ -1,7 +1,7 @@
 $(function() {
-  $(".pagination a").live("click", function() {
-                          $("#paging").show();
-                          $.getScript(this.href);
-                          return false;
-                          });
-  });
+	$(".pagination a").live("click", function() {
+		$("#paging").show();
+		$.getScript(this.href);
+		return false;
+	});
+});

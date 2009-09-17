@@ -1,0 +1,15 @@
+<% labeled_form_for [:admin, @panel] do |f| %>
+  <%= f.error_messages %>
+    <%= f.text_field :code %>
+    <%= f.text_field :name %>
+    <%= f.text_field :description %>
+
+  <fieldset>
+    <legend>Values</legend>
+      <div class="values">
+        <%= f.many_check_boxes :lab_test_ids, LabTest.all, :id, :name %>
+      </div>
+  </fieldset>
+
+  <p><%= f.submit "Submit" %></p>
+<% end %>
