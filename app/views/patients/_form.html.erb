@@ -1,25 +1,19 @@
 <% labeled_form_for @patient do |f| %>
-  <fieldset class="remote">
+  <fieldset>
     <%= f.error_messages %>
-    <div class="section">
-      <%= f.text_field :given_name, :label => t('.given_name'), :required => true %>
-      <%= f.text_field :middle_name, :label => t('.middle_name') %>
-      <%= f.text_field :family_name, :required => true, :label => t('.family_name') %>
-      <%= f.text_field :family_name2, :label => t('.family_name2') %>
-      <%= f.select :gender, Patient::GENDERS, :prompt => t('.prompt_gender'), :required => true, :label => t('.gender') %>
-      <%= f.date_select :birthdate, :label => t('.birthdate'), :required => true, :start_year => Time.now.year, :end_year => 1900, :prompt => {:day => t('.day'), :month => t('.month'), :year => t('.year')} %>
-      <%= f.text_field :identifier, :label => t('.identifier') %>
-      <%= f.text_field :email, :label => t('.email') %>
-      <%= f.text_field :phone, :label => t('.phone') %>
-    </div>
-    <div class="subtitle">
-      <%= t('.additional_information') %>
-    </div>
-    <div class="section">
-      <%= f.text_area :address, :label => t('.address'), :style =>"width:240px", :rows => 3 %>
-      <%= f.select :type, Patient::TYPES, :include_blank => true, :label => t('.type') %>
-      <%= f.collection_select :insurance_provider_id, InsuranceProvider.all, :id, :name, { :include_blank => true }, :label => t('.insurance_provider') %>
-    </div>
+    <%= f.text_field :given_name, :label => t('.given_name'), :required => true %>
+    <%= f.text_field :middle_name, :label => t('.middle_name') %>
+    <%= f.text_field :family_name, :required => true, :label => t('.family_name') %>
+    <%= f.text_field :family_name2, :label => t('.family_name2') %>
+    <%= f.select :gender, Patient::GENDERS, :prompt => t('.prompt_gender'), :required => true, :label => t('.gender') %>
+    <%= f.date_select :birthdate, :label => t('.birthdate'), :required => true, :start_year => Time.now.year, :end_year => 1900, :prompt => {:day => t('.day'), :month => t('.month'), :year => t('.year')} %>
+    <%= f.text_field :identifier, :label => t('.identifier') %>
+    <%= f.text_field :email, :label => t('.email') %>
+    <%= f.text_field :phone, :label => t('.phone') %>
+    <h2><%= t('.additional_information') %></h2>
+    <%= f.text_area :address, :label => t('.address'), :rows => 3 %>
+    <%= f.select :type, Patient::TYPES, :include_blank => true, :label => t('.type') %>
+    <%= f.collection_select :insurance_provider_id, InsuranceProvider.all, :id, :name, { :include_blank => true }, :label => t('.insurance_provider') %>
     <div class="buttonbar">
       <%= f.submit t('.submit') %> <%= t('.or') %> <%= link_to t('.cancel'), patients_path %>
     </div>

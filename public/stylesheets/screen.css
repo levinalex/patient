@@ -17,8 +17,109 @@ body, h1, h2, h3, h4, h5, h6, ol, ul, li {
   margin: 0px;
   padding: 0px; }
 
+label.required {
+  font-weight: bold; }
+
 form {
-  margin: 0px; }
+	text-align: left; }
+  form h2 {
+    padding-top: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px silver solid;
+    color: #2f2f2f;
+    clear: both;
+    font-size: 13px;
+    font-weight: bold; }
+  form label {
+    display: block; }
+  form div {
+    float: left;
+    margin: 5px 8px; }
+  form div.given_name,
+  form div.family_name,
+  form div.gender,
+  form div.email,
+  form div.address,
+  form div.type,
+  form div.drawn_at,
+  form div.received_at,
+  form div.username,
+  form div.password,
+  form div.admin,
+  form div.prefix {
+    clear: left; }
+  form div.given_name,
+  form div.middle_name,
+  form div.family_name,
+  form div.family_name2,
+  form div.address,
+  form div.username,
+  form div.password,
+  form div.password_confirmation {
+    width: 240px; }
+  form div.gender {
+    width: 110px; }
+  form div.birthdate {
+    width: 230px; }
+  form div.identifier {
+    width: 124px; }
+  form div.email {
+    width: 325px; }
+  form div.phone {
+    width: 155px; }
+  form div.initials {
+    width: 120px; }
+  form div.prefix,
+  form div.suffix {
+    width: 50px; }
+  form div.first_name,
+  form div.last_name {
+    width: 172px; }
+  form div.given_name input,
+  form div.middle_name input,
+  form div.family_name input,
+  form div.family_name2 input,
+  form div.address textarea,
+  form div.username input,
+  form div.password input,
+  form div.password_confirmation input {
+    width: 240px; }
+  form div.identifier input {
+    width: 124px; }
+  form div.email input {
+    width: 325px; }
+  form div.phone input {
+    width: 155px; }
+  form div.initials input {
+    width: 120px; }
+  form div.prefix input,
+  form div.suffix input {
+    width: 50px; }
+  form div.first_name input,
+  form div.last_name input {
+    width: 172px; }
+  form div.admin input,
+  form div.admin label {
+    clear: none;
+    display: inline; }
+
+fieldset {
+  min-width: 550px;
+  border: 5px lightblue solid;
+  background: whitesmoke;
+  color: #3f3f3f;
+	padding: 16px;
+	text-indent:0;
+	clear: left;
+	position: relative; }
+
+legend {
+ padding: 5px 5px 10px 5px;
+ margin: 0; 
+ font-size: 14px;
+ font-weight: bold;
+ position: relative;
+ left: 0; }
 
 ul li {
   list-style-type: none; }
@@ -274,8 +375,10 @@ tt {
     width: 17px; }
 
 .buttonbar {
+  clear: both;
+  float: none;
   border-top: 1px gray solid;
-  margin: 8px auto;
+  margin: auto;
   padding-top: 8px; }
 
 .section input, .sidebar input, .inline input,

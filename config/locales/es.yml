@@ -26,13 +26,14 @@ es:
   layouts:
     tabs:
       patients: "Pacientes"
-      requisitions: "Requisas"
+      requisitions: "Peticiones"
     admin:
       tabs:
         users: "Usuarios"
         lab_tests: "Pruebas"
         panels: "Paneles"
         doctors: "Doctores"
+        insurance_providers: "Aseguradoras"
       
   will_paginate:
     next: "Siguiente »"
@@ -93,7 +94,7 @@ es:
       age: "Edad:"
       identifier: "Cédula:"
       address: "Dirección:"
-      accessions: "Accesiones"
+      accessions: "Peticiones"
       edit: "Editar"
       delete: "Borrar"
       confirm_destroy: "¿Está seguro?"
@@ -107,7 +108,7 @@ es:
       received_at: "Recibido el"
       received_by: "Recibido por"
       reported_at: "Reportado el"
-      submit: "Guardar Accesión"
+      submit: "Guardar"
       or: "o"
       cancel: "Cancelar"
     sidebar:
@@ -115,6 +116,17 @@ es:
       phone: "Tel:"
       address: "Dirección:"
       email: "Correo Electrónico:"
+      recent_patients: "Pacientes Recientes"
+      patient: "Paciente:"
+    edit_results:
+      submit: "Guardar Resultados"
+      or: "o"
+      cancel: "Cancelar"
+    index:
+      enter_results: "Ingresar Resultados"
+      change_requisition: "Cambiar Petición"
+      delete?: "¿Borrar?"
+      ordered_by: "Ordenado por:"
       
   results:
     low: "BAJO"

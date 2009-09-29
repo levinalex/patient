@@ -7,11 +7,11 @@
   <% for insurance_provider in @insurance_providers %>
     <tr>
       <td><%=h insurance_provider.name %></td>
-      <td><%= link_to "Show", insurance_provider %></td>
-      <td><%= link_to "Edit", edit_insurance_provider_path(insurance_provider) %></td>
-      <td><%= link_to "Destroy", insurance_provider, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Show", [:admin, insurance_provider] %></td>
+      <td><%= link_to "Edit", edit_admin_insurance_provider_path(insurance_provider) %></td>
+      <td><%= link_to "Destroy", [:admin, insurance_provider], :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Insurance Provider", new_insurance_provider_path %></p>
+<p><%= link_to "New Insurance Provider", new_admin_insurance_provider_path %></p>

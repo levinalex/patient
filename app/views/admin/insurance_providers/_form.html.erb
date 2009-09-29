@@ -1,4 +1,4 @@
-<% form_for @insurance_provider do |f| %>
+<% form_for [:admin, @insurance_provider] do |f| %>
   <%= f.error_messages %>
   <p>
     <%= f.label :name %><br />

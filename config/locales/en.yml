@@ -33,6 +33,7 @@ en:
         lab_tests: "Lab Tests"
         panels: "Panels"
         doctors: "Doctors"
+        insurance_providers: "Providers"
       
   will_paginate:
     next: "Next »"
@@ -117,6 +118,15 @@ en:
       email: "Email:"
       recent_patients: "Recent Patients"
       patient: "Patient:"
+    edit_results:
+      submit: "Save Results"
+      or: "or"
+      cancel: "Cancel"
+    index:
+      enter_results: "Enter Results"
+      change_requisition: "Change Requisition"
+      delete?: "Delete?"
+      ordered_by: "Ordered by:"
       
   results:
     low: "LOW"
@@ -147,7 +157,7 @@ en:
       printed_at: "Printed:"
       page: "Page"
       of: "of"
-      results_of: "Lab Results for:"
+      results_of: "Lab Results For:"
     sidebar:
       year: "year"
       phone: "Phone:"

@@ -1,8 +1,4 @@
 <% title "Requisitions for Patient" %>
-<%= javascript "jquery" %>
-<%= javascript "jquery-ui" %>
-<%= javascript "pagination" %>
-<%= javascript "application" %>
 
 <% if @patient %>
   <div class='title_tools'>
@@ -11,6 +7,61 @@
   <div class='title'><%=h @patient.full_name if @patient %></div>
 <% end %>
 
-<div class='list' id="accessions">
-  <%= render "accessions" %>
+<div class='list' id="patients">
+<div class="log">
+<% unless @pending_accessions.blank? %>
+  <h3 class="overdue">Pending Requisitions</h3>
+  <ul>
+    <% for requisition in @pending_accessions %>
+      <li class='contact'>
+        <div class="tools" style="display:none">
+          <small>
+            <%= link_to t('.enter_results'), edit_results_accession_url(requisition) %> |
+            <%= link_to t('.change_requisition'), edit_accession_path(requisition)  %>
+            <% if @current_user.admin? %>
+              | <%= link_to t('.delete?'), requisition, :method => :delete, :confirm => t('.confirm_destroy') %>
+            <% end %>
+          </small>
+        </div>
+        <%= link_to "Accession ##{requisition.id}", accession_path(requisition) %>
+        <tt><%=h requisition.patient.full_name unless @patient %></tt>
+        <dt style='padding: 2px 0px 0px 0px'>
+          Extracted at: <b><%=h requisition.drawn_at.strftime('%b %e %Y %l:%m%p') %></b>
+          by: <b><%=h User.find(requisition.drawn_by).initials if requisition.drawn_by %></b>
+          <% unless requisition.doctor_id.blank? %>
+            | <%= t('.ordered_by') %> <b> Dr. <%=h requisition.doctor.name %></b>
+          <% end %>
+          | Tests Ordered: <b><%=h truncate(requisition.order_list, :length => 30) %></b>
+        </dt>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+    <h3 class="due_later">Requisition History</h3>
+    <table>
+      <thead class='subtitle'>
+        <th></th>
+        <th>Accession</th>
+        <th>Date Collected</th>
+        <th>Collected by</th>
+        <th>Date Reported</th>
+        <th>Patient</th>
+        <th>Dorctor</th>
+        <th>Panels/Tests Ordered</th>
+      </thead>
+
+      <div class="reported_requisitions">
+        <%= render @reported_accessions %>
+      </div>
+    </table>
+
+    <div id='paginate'>
+      <%= twill_paginate @reported_accessions %>
+      <div id="paging" style="display:none">  
+        <%= image_tag("loading.gif", :size => "16x16") %>
+      </div>
+    </div>
+
+  </div>
 </div>

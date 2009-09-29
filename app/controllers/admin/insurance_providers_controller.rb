@@ -15,7 +15,7 @@ class Admin::InsuranceProvidersController < Admin::ApplicationController
     @insurance_provider = InsuranceProvider.new(params[:insurance_provider])
     if @insurance_provider.save
       flash[:notice] = "Successfully created insurance provider."
-      redirect_to @insurance_provider
+      redirect_to [:admin, @insurance_provider]
     else
       render :action => 'new'
     end
@@ -29,7 +29,7 @@ class Admin::InsuranceProvidersController < Admin::ApplicationController
     @insurance_provider = InsuranceProvider.find(params[:id])
     if @insurance_provider.update_attributes(params[:insurance_provider])
       flash[:notice] = "Successfully updated insurance provider."
-      redirect_to @insurance_provider
+      redirect_to [:admin, @insurance_provider]
     else
       render :action => 'edit'
     end
@@ -39,6 +39,6 @@ class Admin::InsuranceProvidersController < Admin::ApplicationController
     @insurance_provider = InsuranceProvider.find(params[:id])
     @insurance_provider.destroy
     flash[:notice] = "Successfully destroyed insurance provider."
-    redirect_to insurance_providers_url
+    redirect_to admin_insurance_providers_url
   end
 end

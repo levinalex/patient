@@ -19,5 +19,6 @@
 <div class="actions">
   <%= link_to "Change Accession", edit_accession_path(@accession) %> |
   <%= link_to "Enter Results", edit_results_accession_url(@accession) %> |
+  <%= link_to "Report", report_accession_path(@accession), :method => :put unless @accession.reported_at %> |
   <%= link_to "Patient Report (PDF)", accession_results_path(@accession, :format => 'pdf') %>
 </div>

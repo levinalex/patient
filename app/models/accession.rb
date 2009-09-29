@@ -65,7 +65,7 @@ class Accession < ActiveRecord::Base
     lab_tests.each do |lab_test|
       lab_test_list << lab_test.code
     end
-    list << lab_test_list - panel_list
+    list << lab_test_list - panel_list unless (lab_test_list -panel_list).empty?
     list.join(', ')
   end
   

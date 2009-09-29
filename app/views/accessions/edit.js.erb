@@ -1,1 +1,14 @@
-$("#<%= escape_javascript('#lab_test_1') %>").attr('disabled', true);
+<% for panel in Panel.all %>
+  var panel = <%= panel.id.to_json %>
+  var labTests = <%= panel.lab_test_ids.to_json %>;
+
+  if ($('#panel_' + panel).is(':checked')) {
+    for (i=0;i<labTests.length;i++) {
+      $('#lab_test_' + labTests[i]).attr('disabled', true);
+    }
+  } else {
+    for (i=0;i<labTests.length;i++) {
+      $('#lab_test_' + labTests[i]).removeAttr('disabled');
+    }
+  }
+<% end %>

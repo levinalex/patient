@@ -4,12 +4,12 @@ class LabeledFormBuilder < ActionView::Helpers::FormBuilder
   
   helpers.each do |method_name|
     define_method(method_name) do |field_name, *args|
-      @template.content_tag(:div, field_label(field_name, *args), :class => "label") + super
+      @template.content_tag(:div, field_label(field_name, *args) + super, :class => field_name)
     end
   end
-  
+    
   def check_box(field_name, *args)
-    @template.content_tag(:p, super + " " + field_label(field_name, *args))
+    @template.content_tag(:div, super + " " + field_label(field_name, *args), :class => field_name)
   end
   
   def many_check_boxes(name, subobjects, id_method, name_method, options = {})

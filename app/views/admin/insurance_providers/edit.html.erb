@@ -3,6 +3,6 @@
 <%= render :partial => 'form' %>
 
 <p>
-  <%= link_to "Show", @insurance_provider %> |
-  <%= link_to "View All", insurance_providers_path %>
+  <%= link_to "Show", [:admin, @insurance_provider] %> |
+  <%= link_to "View All", admin_insurance_providers_path %>
 </p>

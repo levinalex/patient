@@ -1,12 +1,10 @@
 <% title "Enter Results" %>
 
+<fieldset>
 <% form_for @accession do |a| %>
   <%= a.error_messages %>
-  
-  <div class="title">Enter Results</div>
-  <div class="log">
   <% a.object.results.group_by(&:department_name).each do |department, results| %>
-    <h3 class="due_later"><%=h department %></h3>
+    <h2><%=h department %></h2>
     <table>
       <% results.each do |result| %>
         <% fields_for "accession[result_attributes][]", result do |r| %>
@@ -31,10 +29,8 @@
       <% end %>
     </table>
   <% end %>
+  <div class="buttonbar">
+    <%= a.submit t('.submit') %> <%= t('.or') %> <%= link_to t('.cancel'), accession_path(@accession) %>
   </div>
-
-  <p>
-    <%= a.submit "Save" %>
-    <%= link_to "Report", report_accession_path(@accession), :method => :put unless @accession.reported_at %>
-  </p>  
 <% end %>
+</fieldset>

@@ -1,48 +1,33 @@
-<%= javascript "jquery", "jquery-ui", "application" %>
-
-<fieldset class="remote">
+<fieldset>
   <% labeled_form_for [@patient, @accession] do |f| %>
-      <div class="subtitle">
-        Order Details
-      </div>
-      <div class="section">
-        <%= f.error_messages %>
-        <%= f.collection_select :doctor_id, Doctor.all, :id, :name, :include_blank => true, :label => t('.doctor') %>
-        <%= f.text_field :drawn_at, :label => t('.drawn_at') %>
-        <%= f.collection_select :drawn_by, User.all, :id, :username, :label => t('.drawn_by') %>
-        <%= f.text_field :received_at, :label => t('.received_at') %>
-        <%= f.collection_select :received_by, User.all, :id, :username, :label => t('.received_by') %>
-      </div>
-      <div class="subtitle">
-        Order Panels
-      </div>
-      <div class="section">
-        <div class="panels">
-          <%= f.many_check_boxes :panel_ids, Panel.all, :id, :name %>
+    <%= f.error_messages %>
+    <h2>Order Details</h2>
+    <%= f.collection_select :doctor_id, Doctor.all, :id, :name, :include_blank => true, :label => t('.doctor') %>
+    <%= f.text_field :drawn_at, :label => t('.drawn_at') %>
+    <%= f.collection_select :drawn_by, User.all, :id, :username, :label => t('.drawn_by') %>
+    <%= f.text_field :received_at, :label => t('.received_at') %>
+    <%= f.collection_select :received_by, User.all, :id, :username, :label => t('.received_by') %>
+    <h2>Order Panels</h2>
+    <div id="panels">
+      <%= f.many_check_boxes :panel_ids, Panel.all, :id, :name %>
+    </div>
+    <h2>Order Tests</h2>
+    <div id="order_tests">
+      <ul>
+        <% for department in @departments %>
+          <li><a href="#<%=h department.id %>"><%=h department.name %></a></li>
+        <% end %>
+        <li><a href="#microbiology">Microbiology</a></li>
+      </ul>
+      <% for department in @departments %>
+        <div id="<%= department.id %>">
+          <%= f.many_check_boxes :lab_test_ids, department.lab_tests, :id, :name %>
         </div>
+      <% end %>
+      <div id="microbiology">
+        Not yet implemented.
       </div>
-      <div class="subtitle">
-        Order Tests
-      </div>
-      <div class="section">
-        <div id="order_tests">
-          <ul>
-            <% for department in @departments %>
-              <li><a href="#<%=h department.id %>"><%=h department.name %></a></li>
-            <% end %>
-            <li><a href="#microbiology">Microbiology</a></li>
-          </ul>
-            
-          <% for department in @departments %>
-            <div id="<%= department.id %>">
-              <%= f.many_check_boxes :lab_test_ids, department.lab_tests, :id, :name %>
-            </div>
-          <% end %>
-          <div id="microbiology">
-            TODO
-          </div>
-        </div>
-      </div>
+    </div>
     <div class="buttonbar">
       <%= f.submit t('.submit') %> <%= t('.or') %> <%= link_to t('.cancel'), patients_path %>
     </div>

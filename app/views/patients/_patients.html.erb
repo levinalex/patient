@@ -7,8 +7,10 @@
         <%= image_tag("avatar.jpg", :class => "gravatar", :size => "30x30") %>
         <div class="tools" style="display:none">
           <small>
-            <%= link_to t('.edit'), edit_patient_path(patient) %> |
-            <%= link_to t('.delete?'), patient, :method => :delete, :confirm => t('.confirm_destroy') %>
+            <%= link_to t('.edit'), edit_patient_path(patient) %>
+            <% if @current_user.admin? %>
+              | <%= link_to t('.delete?'), patient, :method => :delete, :confirm => t('.confirm_destroy') %>
+            <% end %>
           </small>
         </div>
         <%= link_to patient.full_name, patient_accessions_path(patient) %>
