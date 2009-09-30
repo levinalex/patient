@@ -122,8 +122,9 @@ en:
       submit: "Save Results"
       or: "or"
       cancel: "Cancel"
-    index:
+    accession:
       enter_results: "Enter Results"
+      change_results: "Change Results"
       change_requisition: "Change Requisition"
       delete?: "Delete?"
       ordered_by: "Ordered by:"

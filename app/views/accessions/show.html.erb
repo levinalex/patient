@@ -1,24 +1,22 @@
 <% title "Accession ##{@accession.id.to_s}" %>
 
-<% @results.each do |department, results| %>
-  <table class="results">
-    <thead>
-      <tr>
-        <th class="department" colspan="6">
-          <%=h department %>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% reset_cycle("alternating_row_colors") %>         
-      <%= render results %>
-    </tbody>
-  </table>
-<% end %>
+<fieldset>
+  <% @results.each do |department, results| %>
+    <h2><%=h department %></h2>
+    <table class="results">
+      <tbody>
+        <% reset_cycle("alternating_row_colors") %>         
+        <%= render results %>
+      </tbody>
+    </table>
+  <% end %>
 
-<div class="actions">
-  <%= link_to "Change Accession", edit_accession_path(@accession) %> |
-  <%= link_to "Enter Results", edit_results_accession_url(@accession) %> |
-  <%= link_to "Report", report_accession_path(@accession), :method => :put unless @accession.reported_at %> |
-  <%= link_to "Patient Report (PDF)", accession_results_path(@accession, :format => 'pdf') %>
-</div>
+  <div class="buttonbar">
+    <%= link_to "Change Accession", edit_accession_path(@accession) %> |
+    <%= link_to "Enter Results", edit_results_accession_url(@accession) %> |
+    <% unless @accession.reported_at %>
+      <%= link_to "Report", report_accession_path(@accession), :method => :put %> |
+    <% end %>
+    <%= link_to "Print Report (PDF)", accession_results_path(@accession, :format => 'pdf') %>
+  </div>
+</fieldset>

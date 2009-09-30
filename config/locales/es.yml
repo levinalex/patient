@@ -124,6 +124,7 @@ es:
       cancel: "Cancelar"
     index:
       enter_results: "Ingresar Resultados"
+      change_results: "Cambiar Resultados"
       change_requisition: "Cambiar Petición"
       delete?: "¿Borrar?"
       ordered_by: "Ordenado por:"

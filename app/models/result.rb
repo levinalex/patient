@@ -13,10 +13,10 @@ class Result < ActiveRecord::Base
       format_value(accession.send(lab_test.code.underscore))
     elsif lab_test_value
       lab_test_value.value
-    elsif lab_test.ratio? || lab_test.range? || lab_test.fraction? || lab_test.text_length?
-      value
     elsif value.blank?
       "pend."
+    elsif lab_test.ratio? || lab_test.range? || lab_test.fraction? || lab_test.text_length?
+      value
     else
       format_value(value)
     end

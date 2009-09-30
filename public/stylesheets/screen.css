@@ -22,14 +22,6 @@ label.required {
 
 form {
 	text-align: left; }
-  form h2 {
-    padding-top: 10px;
-    margin-bottom: 5px;
-    border-bottom: 1px silver solid;
-    color: #2f2f2f;
-    clear: both;
-    font-size: 13px;
-    font-weight: bold; }
   form label {
     display: block; }
   form div {
@@ -112,6 +104,14 @@ fieldset {
 	text-indent:0;
 	clear: left;
 	position: relative; }
+  fieldset h2 {
+    padding-top: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px silver solid;
+    color: #2f2f2f;
+    clear: both;
+    font-size: 13px;
+    font-weight: bold; }
 
 legend {
  padding: 5px 5px 10px 5px;
@@ -286,6 +286,49 @@ tt {
 .tabless {
   margin: auto;
   width: 480px; }
+
+table {
+	border-collapse: collapse;
+  border-spacing: 0 0;
+	text-align: left; }
+  th {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 8px;
+    border-bottom: 2px solid #6678b1; }
+  td {
+    padding: .4em .5em;
+    border: none; }
+    td.lab_test {
+      width: 250px; }
+    td.units {
+      width: 100px; }
+    td.high_value, td.low_value, td.abnormal_value, td.normal_value {
+      width: 100px;
+      text-align: right;
+      padding-right: 15px; }
+    td.low_value {
+      color: #6678b1; }
+    td.high_value {
+      color: #a66662; }
+    td.abnormal_value {
+      color: #800080; }
+    td.range_min {
+      width: 100px;
+      text-align: right;
+      padding-right: 0; }
+    td.range_interval_symbol {
+      text-align: center;
+      padding: 0; }
+    td.range_max {
+      width: 100px;
+      text-align: left;
+      padding-left: 0; }
+  tr.even td {
+    border: none; }
+  tr.odd td {
+    border: none;
+    background-color: #e5e5e5; }
 
 .standalone {
   background: whitesmoke;
@@ -471,15 +514,16 @@ tt {
   .log h3 {
     border-bottom: 1px #2f2f2f dotted;
     color: #2f2f2f;
-    margin: 0px 0px 4px 0px;
-    padding: 2px 0px 2px 86px; }
+    padding: 2px 0px; }
     .log h3.overdue {
+      margin: 4px 0px 0px 0px;
       color: crimson;
       border-bottom: 1px crimson dotted; }
     .log h3.due_asap {
       color: darkred;
       border-bottom: 1px darkred dotted; }
     .log h3.due_today {
+      margin: 20px 0px 4px 0px;
       color: darkgreen;
       border-bottom: 1px darkgreen dotted; }
   .log li {
@@ -523,7 +567,7 @@ tt {
       font-weight: bold;
       text-decoration: none; }
 
-.filters, .panel {
+.filters, .sidebar .panel {
   background: snow;
   margin: 0px 0px 10px 0px;
   padding: 6px 8px 6px 8px;
