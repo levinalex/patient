@@ -37,7 +37,7 @@ class AccessionsController < ApplicationController
     @accession = @patient.accessions.build(params[:accession])
     if @accession.save
       flash[:notice] = "Successfully created accession."
-      redirect_to edit_results_accession_url(@accession)
+      redirect_to accession_url(@accession)
     else
       render :action => 'new'
     end
@@ -55,11 +55,11 @@ class AccessionsController < ApplicationController
     if @accession.update_attributes(params[:accession])
       @accession.update_attributes(:reported_by => current_user.id, :reported_at => Time.now) if @accession.reported_at
       flash[:notice] = "Successfully updated accession."
-      redirect_to accession_results_url(@accession)
+      redirect_to accession_url(@accession)
     else
       flash[:notice] = "Error!!!"
       #render :action => 'edit'
-      redirect_to root_url
+      redirect_to accessions_url
     end
   end
   
@@ -80,6 +80,6 @@ class AccessionsController < ApplicationController
     @accession = Accession.find(params[:id])
     @accession.update_attributes(:reported_by => current_user.id, :reported_at => Time.now)
     flash[:notice] = "Reported accession"
-    redirect_to accession_results_url(@accession)
+    redirect_to accession_url(@accession)
   end
 end

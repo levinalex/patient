@@ -122,7 +122,7 @@ es:
       submit: "Guardar Resultados"
       or: "o"
       cancel: "Cancelar"
-    index:
+    accession:
       enter_results: "Ingresar Resultados"
       change_results: "Cambiar Resultados"
       change_requisition: "Cambiar Petición"

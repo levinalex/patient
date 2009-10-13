@@ -1,8 +1,11 @@
+<%= javascript "panels", "jquery.autocomplete", "doctors" %>
+<%= stylesheet "jquery.autocomplete" %>
+
 <fieldset>
   <% labeled_form_for [@patient, @accession] do |f| %>
     <%= f.error_messages %>
     <h2>Order Details</h2>
-    <%= f.collection_select :doctor_id, Doctor.all, :id, :name, :include_blank => true, :label => t('.doctor') %>
+    <%= f.text_field :doctor_name, :label => t('.doctor') %>
     <%= f.text_field :drawn_at, :label => t('.drawn_at') %>
     <%= f.collection_select :drawn_by, User.all, :id, :username, :label => t('.drawn_by') %>
     <%= f.text_field :received_at, :label => t('.received_at') %>
@@ -29,7 +32,7 @@
       </div>
     </div>
     <div class="buttonbar">
-      <%= f.submit t('.submit') %> <%= t('.or') %> <%= link_to t('.cancel'), patients_path %>
+      <%= f.submit t('.submit') %> <%= t('.or') %> <%= link_to t('.cancel'), patient_accessions_path(@patient) %>
     </div>
   <% end %>
 </fieldset>

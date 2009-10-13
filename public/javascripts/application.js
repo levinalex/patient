@@ -17,6 +17,5 @@ $(function() {
                                     });
                         $(this).children(".tools").hide();
                         });
-  
   setTimeout(function(){ $("#flash").fadeOut(2000); }, 3000);
 });

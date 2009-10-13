@@ -303,8 +303,8 @@ table {
       width: 250px; }
     td.units {
       width: 100px; }
-    td.high_value, td.low_value, td.abnormal_value, td.normal_value {
-      width: 100px;
+    td.high_value, td.low_value, td.abnormal_value, td.normal_value, td.result {
+      width: 200px;
       text-align: right;
       padding-right: 15px; }
     td.low_value {
@@ -314,14 +314,14 @@ table {
     td.abnormal_value {
       color: #800080; }
     td.range_min {
-      width: 100px;
+      width: 50px;
       text-align: right;
       padding-right: 0; }
     td.range_interval_symbol {
       text-align: center;
       padding: 0; }
     td.range_max {
-      width: 100px;
+      width: 50px;
       text-align: left;
       padding-left: 0; }
   tr.even td {
@@ -344,6 +344,10 @@ table {
     width: 355px; }
   .standalone input[type="submit"] {
     font-size: 14px; }
+
+.lab_test {
+  display: block;
+  clear: both; }
 
 .main {
   background: white;

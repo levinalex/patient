@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users
   map.profile "profile", :controller => "users", :action => "edit"
+  map.resources :doctors, :only => :index
 
   map.resources :patients, :shallow => true do |patient|
     patient.resources :accessions do |accession|

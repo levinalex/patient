@@ -6,24 +6,27 @@
   <% a.object.results.group_by(&:department_name).each do |department, results| %>
     <h2><%=h department %></h2>
     <table>
+      <% reset_cycle("alternating_row_colors") %>         
       <% results.each do |result| %>
         <% fields_for "accession[result_attributes][]", result do |r| %>
-          <tr>
-            <td><%=h result.lab_test.name %>
-            <td>
+          <tr class="<%= cycle("even", "odd", :name => "alternating_row_colors") %>">
+            <td class="lab_test"><%=h result.lab_test.name %>
+            <td class="result">
               <% if result.lab_test.derivation %>
-                <%= r.text_field :formatted_value, :size => 13, :disabled => true %>
+                <%= r.text_field :formatted_value, :size => 10, :disabled => true %>
               <% else %>
                 <% if result.lab_test.lab_test_values.blank? %>
-                  <%= r.text_field :value, :size => 13 %>
+                  <%= r.text_field :value, :size => 10 %>
                 <% else %>
                   <%= r.collection_select :lab_test_value_id, LabTest.find(result.lab_test_id).lab_test_values, :id, :value, { :include_blank => true } %>
-                  <%= r.text_field :value, :size => 13 if result.lab_test.also_numeric || result.lab_test.ratio || result.lab_test.range || result.lab_test.fraction %>
+                  <%= r.text_field :value, :size => 10 if result.lab_test.also_numeric || result.lab_test.ratio || result.lab_test.range || result.lab_test.fraction %>
                 <% end %>
               <% end %>
             </td>
-            <td><%=h result.lab_test.unit.name if result.lab_test.unit %></td>
-            <td><%=h result.range %></td>
+            <td class="units"><%=h result.lab_test.unit.name if result.lab_test.unit %></td>
+            <td class="range_min"><%=h result.range_min %></td>
+            <td class="range_interval_symbol"><%=h result.range_interval_symbol %></td>
+            <td class="range_max"><%=h result.range_max %></td>
           </tr>
         <% end %>
       <% end %>
