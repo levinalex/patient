@@ -18,7 +18,7 @@ pdf.header pdf.margin_box.top_left do
 
   require "open-uri"
   logoimage = "http://localhost:3000/images/logo.png" 
-  pdf.image open(logoimage), :at => [pdf.bounds.left, pdf.bounds.top + 127], :scale => 0.5
+  pdf.image open(logoimage), :at => [pdf.bounds.left, pdf.bounds.top + 110], :scale => 0.5
 
   pdf.bounding_box([pdf.bounds.right - 80, pdf.bounds.top + 110], :width => 80, :height => 15) do
     pdf.fill_color colors[:high_value]

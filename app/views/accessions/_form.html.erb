@@ -32,7 +32,12 @@
       </div>
     </div>
     <div class="buttonbar">
-      <%= f.submit t('.submit') %> <%= t('.or') %> <%= link_to t('.cancel'), patient_accessions_path(@patient) %>
+      <%= f.submit t('.submit') %> <%= t('.or') %> 
+      <% if @patient %>
+        <%= link_to t('.cancel'), patient_accessions_path(@patient) %>
+      <% else %>
+        <%= link_to t('.cancel'), accession_path %>
+      <% end %>
     </div>
   <% end %>
 </fieldset>

@@ -80,6 +80,6 @@ class AccessionsController < ApplicationController
     @accession = Accession.find(params[:id])
     @accession.update_attributes(:reported_by => current_user.id, :reported_at => Time.now)
     flash[:notice] = "Reported accession"
-    redirect_to accession_url(@accession)
+    redirect_to accession_results_url(@accession, :format => 'pdf')
   end
 end

@@ -3,7 +3,7 @@ class PatientsController < ApplicationController
 
   def index
     @recent = Patient.recent
-    @patients = Patient.search(params[:search], params[:page])
+    @patients = Patient.ordered.search(params[:search], params[:page])
   end
   
   def show

@@ -1,9 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  lab_test_id: 1
-  lab_test_panel_id: 1
-
-two:
-  lab_test_id: 1
-  lab_test_panel_id: 1

@@ -6,7 +6,9 @@
     </ul>
   <% end %>
 
-  <% unless @reported_accessions.blank? %>
+  <% if @reported_accessions.blank? %>
+    No requisitions yet. <%= link_to "Order Tests", new_patient_accession_path(@patient) %>
+  <% else %>
     <h3 class="due_today">Requisition History</h3>
     <ul>
       <%= render @reported_accessions %>

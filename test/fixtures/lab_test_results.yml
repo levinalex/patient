@@ -1,9 +1,0 @@
-one:
-  value: MyString
-  lab_test_id: 1
-  accession_id: 1
-
-two:
-  value: MyString
-  lab_test_id: 1
-  accession_id: 1

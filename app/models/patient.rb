@@ -28,12 +28,15 @@ class Patient < ActiveRecord::Base
   accepts_nested_attributes_for :accessions, :allow_destroy => true
   
   named_scope :recent, :order => 'updated_at DESC', :limit => 10
+  named_scope :ordered, lambda { |*order|
+    { :order => order.flatten.first || 'created_at DESC' }
+  }
   
   before_save :titleize_names
 
   # Meanwhile... use thinking sphinx with delta instead
   def self.search(query, page)
-    paginate :per_page => 10, :page => page, :conditions => ['given_name LIKE ? OR middle_name LIKE ? OR family_name LIKE ? OR family_name2 LIKE ? OR identifier LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"], :order => 'family_name ASC'
+    paginate :per_page => 10, :page => page, :conditions => ['given_name LIKE ? OR middle_name LIKE ? OR family_name LIKE ? OR family_name2 LIKE ? OR identifier LIKE ?', "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"]
   end
   
   def full_name
