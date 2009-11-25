@@ -4,7 +4,7 @@
       <span><%=h @current_user.name_to_display %></span>
       <span>&nbsp;&nbsp;</span>
       
-      <%= link_to (t('.quick_find'), "#", :id => "jumper") %> |
+      <strike><%= link_to (t('.quick_find'), "#", :id => "jumper") %></strike> |
       <%= link_to t('.profile'), profile_path %> |
       <% if @current_user.admin? %>
         <%= link_to t('.admin'), admin_path %> |

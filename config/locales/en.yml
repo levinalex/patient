@@ -112,6 +112,12 @@ en:
       title: "Change Order"
     new:
       title: "New Order"
+    show:
+      title: "Accession"
+      change_accession: "Change Order"
+      enter_results: "Enter Results"
+      report: "Report"
+      print_report: "Print Report (PDF)"
     form:
       order_details: "Order Details"
       doctor: "Ordering Doctor:"
@@ -134,6 +140,7 @@ en:
       recent_patients: "Recent Patients"
       patient: "Patient:"
     edit_results:
+      title: "Enter Results"
       submit: "Save Results"
       or: "or"
       cancel: "Cancel"

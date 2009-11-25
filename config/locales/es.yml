@@ -112,6 +112,12 @@ es:
       title: "Cambiar Petición"
     new:
       title: "Nueva Petición"
+    show:
+      title: "Accesión"
+      change_accession: "Cambiar Petición"
+      enter_results: "Ingresar Resultados"
+      report: "Reportar"
+      print_report: "Imprimir Reporte (PDF)"
     form:
       order_details: "Detalles de la Petición"
       doctor: "Doctor que ordena:"
@@ -134,6 +140,7 @@ es:
       recent_patients: "Pacientes Recientes"
       patient: "Paciente:"
     edit_results:
+      title: "Ingresar Resultados"
       submit: "Guardar Resultados"
       or: "o"
       cancel: "Cancelar"

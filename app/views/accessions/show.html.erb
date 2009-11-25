@@ -1,4 +1,4 @@
-<% title "Accession ##{@accession.id.to_s}" %>
+<% title "#{t('.title')} ##{@accession.id.to_s}" %>
 
 <fieldset>
   <% @results.each do |department, results| %>
@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="buttonbar">
-    <%= link_to "Change Accession", edit_accession_path(@accession) %> |
-    <%= link_to "Enter Results", edit_results_accession_url(@accession) %> |
+    <%= link_to t('.change_accession'), edit_accession_path(@accession) %> |
+    <%= link_to t('.enter_results'), edit_results_accession_url(@accession) %> |
     <% unless @accession.reported_at %>
-      <%= link_to "Report", report_accession_path(@accession), :method => :put %> |
+      <%= link_to t('.report'), report_accession_path(@accession), :method => :put %> |
     <% end %>
-    <%= link_to "Print Report (PDF)", accession_results_path(@accession, :format => 'pdf') %>
+    <%= link_to t('.print_report'), accession_results_path(@accession, :format => 'pdf') %>
   </div>
 </fieldset>
