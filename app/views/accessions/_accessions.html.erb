@@ -1,15 +1,15 @@
 <div class="log">
   <% unless @pending_accessions.blank? %>
-    <h3 class="overdue">Pending Requisitions</h3>
+    <h3 class="overdue"><%= t('.pending_requisitions') %></h3>
     <ul>
       <%= render @pending_accessions %>
     </ul>
   <% end %>
 
   <% if @reported_accessions.blank? %>
-    No requisitions yet. <%= link_to "Order Tests", new_patient_accession_path(@patient) %>
+    No requisitions yet. <%= link_to t('.order_tests'), new_patient_accession_path(@patient) %>
   <% else %>
-    <h3 class="due_today">Requisition History</h3>
+    <h3 class="due_today"><%= t('.requisition_history') %></h3>
     <ul>
       <%= render @reported_accessions %>
     </ul>

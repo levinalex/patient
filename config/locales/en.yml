@@ -24,6 +24,11 @@ en:
       cancel: "Cancel"
       
   layouts:
+    header:
+      quick_find: "Quick find"
+      profile: "Profile"
+      admin: "Admin"
+      logout: "Logout"
     tabs:
       patients: "Patients"
       requisitions: "Requisitions"
@@ -100,7 +105,15 @@ en:
       confirm_destroy: "Are you sure?"
       
   accessions:
+    index:
+      title: "Requisitions"
+      order_tests: "Order Tests"
+    edit:
+      title: "Change Order"
+    new:
+      title: "New Order"
     form:
+      order_details: "Order Details"
       doctor: "Ordering Doctor:"
       labels: "Labels"
       drawn_at: "Collected at"
@@ -108,6 +121,8 @@ en:
       received_at: "Received at"
       received_by: "Received by"
       reported_at: "Reported at"
+      order_panels: "Order Panels"
+      order_tests: "Order Tests"
       submit: "Save Accession"
       or: "or"
       cancel: "Cancel"
@@ -128,6 +143,10 @@ en:
       change_requisition: "Change Requisition"
       delete?: "Delete?"
       ordered_by: "Ordered by:"
+    accessions:
+      pending_requisitions: "Pending Requisitions"
+      requisition_history: "Requisition History"
+      order_tests: "Order Tests"
       
   results:
     low: "LOW"

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     :info => {
       :Title => "Result Report", :Author => "MasterLab", :Subject => "",
       :Keywords => "lab test results", :Creator => "MasterLab",
-      :Producer => "", :CreationDate => Time.now
+      :Producer => "MasterLab", :CreationDate => Time.now
     }
   }
   

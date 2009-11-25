@@ -24,6 +24,11 @@ es:
       cancel: "Cancelar"
       
   layouts:
+    header:
+      quick_find: "Búsqueda rápida"
+      profile: "Perfil"
+      admin: "Admin"
+      logout: "Salir"
     tabs:
       patients: "Pacientes"
       requisitions: "Peticiones"
@@ -100,7 +105,15 @@ es:
       confirm_destroy: "¿Está seguro?"
       
   accessions:
+    index:
+      title: "Peticiones"
+      order_tests: "Ordenar Pruebas"
+    edit:
+      title: "Cambiar Petición"
+    new:
+      title: "Nueva Petición"
     form:
+      order_details: "Detalles de la Petición"
       doctor: "Doctor que ordena:"
       labels: "Etiquetas"
       drawn_at: "Recolectado el"
@@ -108,6 +121,8 @@ es:
       received_at: "Recibido el"
       received_by: "Recibido por"
       reported_at: "Reportado el"
+      order_panels: "Ordenar Paneles"
+      order_tests: "Ordernar Pruebas"
       submit: "Guardar"
       or: "o"
       cancel: "Cancelar"
@@ -128,6 +143,10 @@ es:
       change_requisition: "Cambiar Petición"
       delete?: "¿Borrar?"
       ordered_by: "Ordenado por:"
+    accessions:
+      pending_requisitions: "Peticiones Pendientes"
+      requisition_history: "Historial de Peticiones"
+      order_tests: "Ordenar Pruebas"
       
   results:
     low: "BAJO"
@@ -191,7 +210,7 @@ es:
     login:
       hello: "¡Hola "
       last_login_at: " Su último inico de sesión fue el "
-      last_login_at_format: "%d de %B, a las %I:%M%p"
+      last_login_at_format: "%e de %B, a las %I:%M%p"
     create: "Paciente creado exitosamente."
     update: "Paciente actualizado exitosamente."
     destroy: "Paciente borrado exitosamente."
