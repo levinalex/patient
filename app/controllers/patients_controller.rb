@@ -19,7 +19,7 @@ class PatientsController < ApplicationController
   def create
     @patient = Patient.new(params[:patient])
     if @patient.save
-      flash[:notice] = "Successfully created patient."
+      flash[:notice] = t('flash.patient.create')
       redirect_to patient_accessions_url(@patient)
     else
       render :action => 'new'
@@ -35,7 +35,7 @@ class PatientsController < ApplicationController
   def update
     @patient = Patient.find(params[:id])
     if @patient.update_attributes(params[:patient])
-      flash[:notice] = "Successfully updated patient."
+      flash[:notice] = t('flash.patient.update')
       redirect_to patient_accessions_url(@patient)
     else
       render :action => 'edit'
@@ -45,7 +45,7 @@ class PatientsController < ApplicationController
   def destroy
     @patient = Patient.find(params[:id])
     @patient.destroy
-    flash[:notice] = "Successfully destroyed patient."
+    flash[:notice] = t('flash.patient.destroy')
     redirect_to patients_url
   end
 end

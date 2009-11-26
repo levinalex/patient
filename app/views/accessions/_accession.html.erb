@@ -12,19 +12,19 @@
       <% end %>
     </small>
   </div>
-  <%= link_to "Accession ##{accession.id}", accession_path(accession) %>
+  <%= link_to "#{t('.accession')} ##{accession.id}", accession_path(accession) %>
   <tt><%=h accession.patient.full_name unless @patient %></tt>
   <dt style='padding: 2px 0px 0px 0px'>
     <% if accession.reported_at %>
-      Reported at: <b><%=h accession.reported_at.strftime('%b %e %Y %l:%m%p') %></b>
-      by: <b><%=h User.find(accession.reported_by).initials if accession.reported_by %></b>
+      <%= t('.reported_at') %><b><%=h accession.reported_at.strftime('%e-%b-%Y %l:%m%p') %></b>
+      <%= t('.by') %><b><%=h User.find(accession.reported_by).initials if accession.reported_by %></b>
     <% else %>
-      Extracted at: <b><%=h accession.drawn_at.strftime('%b %e %Y %l:%m%p') %></b>
+      <%= t('.drawn_at') %><b><%=h accession.drawn_at.strftime('%b %e %Y %l:%m%p') %></b>
       by: <b><%=h User.find(accession.drawn_by).initials if accession.drawn_by %></b>
     <% end %>
     <% unless accession.doctor_id.blank? %>
-      | <%= t('.ordered_by') %> <b> Dr. <%=h accession.doctor.name %></b>
+      | <%= t('.ordered_by') %> <b>Dr. <%=h accession.doctor.name %></b>
     <% end %>
-    | Tests Ordered: <b><%=h truncate(accession.order_list, :length => 30) %></b>
+    | <%= t('.tests_ordered') %><b><%=h truncate(accession.order_list, :length => 30) %></b>
   </dt>
 </li>

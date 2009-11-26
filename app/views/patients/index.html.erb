@@ -2,7 +2,7 @@
 
 <div class='title_tools'>
   <%= link_to t('.new_patient'), new_patient_path %> |
-  <a href="#" onclick="new Ajax.Request('/contacts/options', {asynchronous:true, evalScripts:true, method:'get', parameters:{ cancel: Element.visible('options') }}); return false;"><abbr id="options_arrow">&#9658;</abbr>&nbsp;<%= t('.options') %></a>
+  <strike><a href="#" onclick="new Ajax.Request('/contacts/options', {asynchronous:true, evalScripts:true, method:'get', parameters:{ cancel: Element.visible('options') }}); return false;"><abbr id="options_arrow">&#9658;</abbr>&nbsp;<%= t('.options') %></a></strike>
 </div>
 
 <div class='title'>

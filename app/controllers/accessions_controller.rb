@@ -36,7 +36,7 @@ class AccessionsController < ApplicationController
     @patient = Patient.find(params[:patient_id])
     @accession = @patient.accessions.build(params[:accession])
     if @accession.save
-      flash[:notice] = "Successfully created accession."
+      flash[:notice] = t('flash.accession.create')
       redirect_to accession_url(@accession)
     else
       render :action => 'new'
@@ -54,7 +54,7 @@ class AccessionsController < ApplicationController
     @accession = Accession.find(params[:id])
     if @accession.update_attributes(params[:accession])
       @accession.update_attributes(:reported_by => current_user.id, :reported_at => Time.now) if @accession.reported_at
-      flash[:notice] = "Successfully updated accession."
+      flash[:notice] = t('flash.accession.update')
       redirect_to accession_url(@accession)
     else
       flash[:notice] = "Error!!!"
@@ -66,7 +66,7 @@ class AccessionsController < ApplicationController
   def destroy
     @accession = Accession.find(params[:id])
     @accession.destroy
-    flash[:notice] = "Successfully destroyed accession."
+    flash[:notice] = t('flash.accession.destroy')
     redirect_to patient_url(@accession.patient_id)
   end
 
@@ -79,7 +79,7 @@ class AccessionsController < ApplicationController
   def report
     @accession = Accession.find(params[:id])
     @accession.update_attributes(:reported_by => current_user.id, :reported_at => Time.now)
-    flash[:notice] = "Reported accession"
+    flash[:notice] = t('flash.accession.report')
     redirect_to accession_results_url(@accession, :format => 'pdf')
   end
 end

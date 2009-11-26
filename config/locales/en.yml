@@ -145,12 +145,18 @@ en:
       or: "or"
       cancel: "Cancel"
     accession:
+      accession: "Accession"
+      reported_at: "Reported at: "
+      by: "by: "
+      ordered_by: "Ordered by: "
+      drawn_at: "Drawn at: "
+      tests_ordered: "Tests ordered: "
       enter_results: "Enter Results"
       change_results: "Change Results"
       change_requisition: "Change Requisition"
       delete?: "Delete?"
-      ordered_by: "Ordered by:"
     accessions:
+      no_requisitions_yet: "No requisitions history."
       pending_requisitions: "Pending Requisitions"
       requisition_history: "Requisition History"
       order_tests: "Order Tests"
@@ -198,6 +204,13 @@ en:
       hello: "Hello "
       last_login_at: " Your last login was on "
       last_login_at_format: "%b %d, at %I:%M%p"
-    create: "Successfully created patient."
-    update: "Successfully updated patient."
-    destroy: "Successfully destroyed patient."
+    patient:
+      create: "Successfully created patient."
+      update: "Successfully updated patient."
+      destroy: "Successfully removed patient."
+    accession:
+      create: "Successfully created requisition."
+      update: "Successfully updated requisition."
+      destroy: "Successfully removed requisition."
+      report: "Reported requisition."
+      

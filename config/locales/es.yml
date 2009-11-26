@@ -145,12 +145,18 @@ es:
       or: "o"
       cancel: "Cancelar"
     accession:
+      accession: "Accesión"
+      reported_at: "Reportado el: "
+      by: "por: "
+      ordered_by: "Ordenado por: "
+      drawn_at: "Extraído el: "
+      tests_ordered: "Pruebas ordenadas:"
       enter_results: "Ingresar Resultados"
       change_results: "Cambiar Resultados"
       change_requisition: "Cambiar Petición"
       delete?: "¿Borrar?"
-      ordered_by: "Ordenado por:"
     accessions:
+      no_requisitions_yet: "Sin historial de peticiones."
       pending_requisitions: "Peticiones Pendientes"
       requisition_history: "Historial de Peticiones"
       order_tests: "Ordenar Pruebas"
@@ -218,9 +224,15 @@ es:
       hello: "¡Hola "
       last_login_at: " Su último inico de sesión fue el "
       last_login_at_format: "%e de %B, a las %I:%M%p"
-    create: "Paciente creado exitosamente."
-    update: "Paciente actualizado exitosamente."
-    destroy: "Paciente borrado exitosamente."
+    patient:
+      create: "Paciente creado exitosamente."
+      update: "Paciente actualizado exitosamente."
+      destroy: "Paciente borrado exitosamente."
+    accession:
+      create: "Petición creada exitosamente."
+      update: "Petición actualizada exitosamente."
+      destroy: "Petición eliminada exitosamente."
+      report: "Petición reportada."
     
   number:
     # Used in number_with_delimiter()
