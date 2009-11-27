@@ -12,7 +12,7 @@ class Admin::DepartmentsController < Admin::ApplicationController
     @department = Department.new(params[:department])
     if @department.save
       flash[:notice] = "Department created successfully."
-      redirect_to departments_url
+      redirect_to [:admin, @department]
     else
       render :action => 'new'
     end
@@ -26,7 +26,7 @@ class Admin::DepartmentsController < Admin::ApplicationController
     @department = Department.find(params[:id])
     if @department.update_attributes(params[:department])
       flash[:notice] = "Department updated successfully."
-      redirect_to departments_url
+      redirect_to [:admin, @department]
     else
       render :action => 'edit'
     end
@@ -36,6 +36,6 @@ class Admin::DepartmentsController < Admin::ApplicationController
     @department = Department.find(params[:id])
     @department.destroy
     flash[:notice] = "Department deleted."
-    redirect_to departments_url
+    redirect_to admin_departments_url
   end
 end

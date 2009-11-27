@@ -7,11 +7,11 @@
   <% for unit in @units %>
     <tr>
       <td><%= unit.name %></td>
-      <td><%= link_to "Show", unit %></td>
-      <td><%= link_to "Edit", edit_unit_path(unit) %></td>
-      <td><%= link_to "Destroy", unit, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to "Show", [:admin, unit] %></td>
+      <td><%= link_to "Edit", edit_admin_unit_path(unit) %></td>
+      <td><%= link_to "Destroy", [:admin, unit], :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "Unit", new_unit_path %></p>
+<p><%= link_to "Unit", new_admin_unit_path %></p>

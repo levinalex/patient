@@ -15,7 +15,7 @@ class Admin::LabTestValuesController < Admin::ApplicationController
     @lab_test_value = LabTestValue.new(params[:lab_test_value])
     if @lab_test_value.save
       flash[:notice] = "Successfully created lab test value."
-      redirect_to @lab_test_value
+      redirect_to [:admin, @lab_test_value]
     else
       render :action => 'new'
     end
@@ -29,7 +29,7 @@ class Admin::LabTestValuesController < Admin::ApplicationController
     @lab_test_value = LabTestValue.find(params[:id])
     if @lab_test_value.update_attributes(params[:lab_test_value])
       flash[:notice] = "Successfully updated lab test value."
-      redirect_to @lab_test_value
+      redirect_to [:admin, @lab_test_value]
     else
       render :action => 'edit'
     end
@@ -39,6 +39,6 @@ class Admin::LabTestValuesController < Admin::ApplicationController
     @lab_test_value = LabTestValue.find(params[:id])
     @lab_test_value.destroy
     flash[:notice] = "Successfully destroyed lab test value."
-    redirect_to lab_test_values_url
+    redirect_to admin_lab_test_values_url
   end
 end

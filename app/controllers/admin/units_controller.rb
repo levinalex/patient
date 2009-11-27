@@ -15,7 +15,7 @@ class Admin::UnitsController < Admin::ApplicationController
     @unit = Unit.new(params[:unit])
     if @unit.save
       flash[:notice] = "Successfully created unit."
-      redirect_to @unit
+      redirect_to [:admin, @unit]
     else
       render :action => 'new'
     end
@@ -29,7 +29,7 @@ class Admin::UnitsController < Admin::ApplicationController
     @unit = Unit.find(params[:id])
     if @unit.update_attributes(params[:unit])
       flash[:notice] = "Successfully updated unit."
-      redirect_to @unit
+      redirect_to [:admin, @unit]
     else
       render :action => 'edit'
     end
@@ -39,6 +39,6 @@ class Admin::UnitsController < Admin::ApplicationController
     @unit = Unit.find(params[:id])
     @unit.destroy
     flash[:notice] = "Successfully destroyed unit."
-    redirect_to units_url
+    redirect_to admin_units_url
   end
 end

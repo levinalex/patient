@@ -4,9 +4,9 @@
 <div id="departments">
   <ul>
     <% for department in @departments %>
-      <li><%= link_to department.name, departments_url(:anchor => department.id) %></li>
+      <li><%= link_to department.name, admin_departments_url(:anchor => department.id) %></li>
     <% end %>
-    <li><%= link_to "+", new_department_path %></li>
+    <li><%= link_to "+", new_admin_department_path %></li>
   </ul>
   
   <% for department in @departments %>
@@ -17,8 +17,8 @@
       <% end %>
       </ul>
       <p>
-        <%= link_to "Edit", edit_department_path(department) %> |
-        <%= link_to "Delete", department, :confirm => 'Are you sure?', :method => :delete %>
+        <%= link_to "Edit", edit_admin_department_path(department) %> |
+        <%= link_to "Delete", [:admin, department], :confirm => 'Are you sure?', :method => :delete %>
       </p>
     </div>
   <% end %>

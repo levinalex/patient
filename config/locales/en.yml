@@ -39,6 +39,10 @@ en:
         panels: "Panels"
         doctors: "Doctors"
         insurance_providers: "Providers"
+        departments: "Departments"
+        units: "Units"
+        reference_ranges: "Ranges"
+        lab_test_values: "Values"
       
   will_paginate:
     next: "Next »"
