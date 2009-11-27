@@ -135,6 +135,7 @@ class Accession < ActiveRecord::Base
   end
 
   def process_panel_selection
+    # Save previous results before overwriting them (http://github.com/jlduran/patient/issues#issue/2)
     self.panels.each do |panel|
       self.lab_test_ids |= panel.lab_test_ids
     end

@@ -16,10 +16,10 @@
   <tt><%=h accession.patient.full_name unless @patient %></tt>
   <dt style='padding: 2px 0px 0px 0px'>
     <% if accession.reported_at %>
-      <%= t('.reported_at') %><b><%=h accession.reported_at.strftime('%e-%b-%Y %l:%m%p') %></b>
+      <%= t('.reported_at') %><b><%=h l(accession.reported_at, :format => '%e %b %Y %l:%m%p') %></b>
       <%= t('.by') %><b><%=h User.find(accession.reported_by).initials if accession.reported_by %></b>
     <% else %>
-      <%= t('.drawn_at') %><b><%=h accession.drawn_at.strftime('%b %e %Y %l:%m%p') %></b>
+      <%= t('.drawn_at') %><b><%=h l(accession.drawn_at, :format => '%e %b %Y %l:%m%p') %></b>
       by: <b><%=h User.find(accession.drawn_by).initials if accession.drawn_by %></b>
     <% end %>
     <% unless accession.doctor_id.blank? %>

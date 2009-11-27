@@ -11,7 +11,7 @@ class UserSessionsController < ApplicationController
     if @user_session.save
       flash[:notice] = t('flash.login.hello') << @user_session.user.first_name << "!"
       if @user_session.user.login_count > 1
-        flash[:notice] << t('flash.login.last_login_at') << @user_session.user.last_login_at.strftime(t('flash.login.last_login_at_format'))
+        flash[:notice] << t('flash.login.last_login_at') << l(@user_session.user.last_login_at, :format => t('flash.login.last_login_at_format'))
       end
       redirect_to root_url
     else
