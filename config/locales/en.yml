@@ -155,6 +155,7 @@ en:
       change_results: "Change Results"
       change_requisition: "Change Requisition"
       delete?: "Delete?"
+      confirm_destroy: "Are you sure?"
     accessions:
       no_requisitions_yet: "No requisitions history."
       pending_requisitions: "Pending Requisitions"

@@ -87,7 +87,7 @@ class Accession < ActiveRecord::Base
       "calc."
     end
   end
-  memoize :mch
+#  memoize :mch
   
   def mchc
     if result_of_test_coded_as("HGB") && result_of_test_coded_as("HCT")
@@ -96,7 +96,7 @@ class Accession < ActiveRecord::Base
       "calc."
     end
   end
-  memoize :mchc
+#  memoize :mchc
   
   def ldl
     if result_of_test_coded_as("CHOL") && result_of_test_coded_as("HDL") && result_of_test_coded_as("TRIG")
@@ -105,7 +105,7 @@ class Accession < ActiveRecord::Base
       "calc."
     end
   end
-  memoize :ldl
+#  memoize :ldl
   
   def ibil
     if result_of_test_coded_as("TBIL") && result_of_test_coded_as("DBIL")
@@ -114,7 +114,7 @@ class Accession < ActiveRecord::Base
       "calc."
     end
   end
-  memoize :ibil
+#  memoize :ibil
 
   def glo
     if result_of_test_coded_as("TP") && result_of_test_coded_as("ALB")
@@ -123,17 +123,17 @@ class Accession < ActiveRecord::Base
       "calc."
     end
   end
-  memoize :glo
+#  memoize :glo
   
   private
-  
+
   def result_of_test_coded_as(code)
     lab_test = LabTest.find_by_code(code)
     if lab_test
       results.find_by_lab_test_id(lab_test).value.to_d unless results.find_by_lab_test_id(lab_test).value.blank?
     end
   end
-  
+
   def process_panel_selection
     self.panels.each do |panel|
       self.lab_test_ids |= panel.lab_test_ids

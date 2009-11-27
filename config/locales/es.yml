@@ -155,6 +155,7 @@ es:
       change_results: "Cambiar Resultados"
       change_requisition: "Cambiar Petición"
       delete?: "¿Borrar?"
+      confirm_destroy: "¿Está seguro?"
     accessions:
       no_requisitions_yet: "Sin historial de peticiones."
       pending_requisitions: "Peticiones Pendientes"

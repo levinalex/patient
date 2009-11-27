@@ -67,7 +67,7 @@ class AccessionsController < ApplicationController
     @accession = Accession.find(params[:id])
     @accession.destroy
     flash[:notice] = t('flash.accession.destroy')
-    redirect_to patient_url(@accession.patient_id)
+    redirect_to patient_accessions_url(@accession.patient_id)
   end
 
   def edit_results
