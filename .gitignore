@@ -1,0 +1,8 @@
+.DS_Store
+.svn
+*~
+log/*.log
+tmp/**/*
+doc/api
+doc/app
+db/*.sqlite3
