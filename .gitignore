@@ -1,7 +1,7 @@
 .DS_Store
 .svn
 *~
-log/*
+log/*.log
 tmp/**/*
 doc/api
 doc/app
