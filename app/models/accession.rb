@@ -52,7 +52,6 @@ class Accession < ActiveRecord::Base
     end
   end
   
-  # Does not erase a previous doctor
   def doctor_name=(name)
     self.doctor = Doctor.find_or_create_by_name(name) unless (name.blank? or name == "—")
   end

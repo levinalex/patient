@@ -31,6 +31,10 @@
         <% end %>
       <% end %>
     </table>
+    <br /><em>Notes:</em><br />
+    Notes here...
+    <%= a.text_area :notes, :rows => 3 %><br/>
+    <br />
   <% end %>
   <div class="buttonbar">
     <%= a.submit t('.submit') %> <%= t('.or') %> <%= link_to t('.cancel'), accession_path(@accession) %>

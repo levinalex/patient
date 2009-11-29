@@ -66,7 +66,7 @@ class Patient < ActiveRecord::Base
       I18n.translate('patients.unknown')
     end
   end
-  
+
   def validate
     errors.add(:birthdate, "cannot be in the future") if birthdate > Date.today unless birthdate.nil?
   end

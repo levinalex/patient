@@ -324,10 +324,12 @@ table {
       width: 50px;
       text-align: left;
       padding-left: 0; }
-  tr.even td {
-    border: none; }
-  tr.odd td {
+  tr.even {
     border: none;
+    clear: both; }
+  tr.odd {
+    border: none;
+    clear: both;
     background-color: #e5e5e5; }
 
 span.handle {
