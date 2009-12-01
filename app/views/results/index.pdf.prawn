@@ -108,6 +108,7 @@ end
 
 pdf.stroke_line [pdf.bounds.left,655], [pdf.bounds.right,655]
 
+
 ########################
 
 pdf.bounding_box([5,650], :width => 40, :height => 10) do
