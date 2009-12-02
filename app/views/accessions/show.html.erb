@@ -9,9 +9,10 @@
         <%= render results %>
       </tbody>
     </table>
-    <br /><em>Notes:</em>
-      Notes here if any...<br />
-      <br />
+    <% if @accession.department_notes(Department.find_by_name(department).id) %>
+      <br /><em><%= t('.notes') %></em>
+      <%=h @accession.department_notes(Department.find_by_name(department).id).content %><br /><br />
+    <% end %>
   <% end %>
 
   <div class="buttonbar">

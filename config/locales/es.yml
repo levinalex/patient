@@ -122,6 +122,7 @@ es:
       enter_results: "Ingresar Resultados"
       report: "Reportar"
       print_report: "Imprimir Reporte (PDF)"
+      notes: "Observaciones:"
     form:
       order_details: "Detalles de la Petición"
       doctor: "Doctor que ordena:"
@@ -148,6 +149,7 @@ es:
       submit: "Guardar Resultados"
       or: "o"
       cancel: "Cancelar"
+      notes: "Observaciones:"
     accession:
       accession: "Accesión"
       reported_at: "Reportado el: "
@@ -196,6 +198,7 @@ es:
       page: "Página"
       of: "de"
       results_of: "Resultados de:"
+      notes: "Observaciones:"
     sidebar:
       year: "año"
       phone: "Tel:"

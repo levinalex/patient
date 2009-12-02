@@ -215,8 +215,18 @@ pdf.move_down(25)
     :position => :left,
     :align => { 0 => :left, 1 => :right, 2 => :left, 3 => :center, 4 => :right, 5 => :center, 6 => :left },
     :column_widths => { 0 => 140, 1 => 60, 2 => 88, 3 => 100, 4 => 65, 5 => 22, 6 => 65 }
+  
+  if @accession.department_notes(Department.find_by_name(department).id)
+    pdf.move_down(5)
+    pdf.indent(50) do
+      pdf.fill_color colors[:abnormal_value]
+      pdf.text "#{t('.notes')} #{@accession.department_notes(Department.find_by_name(department).id).content}", :style => :bold_italic
+    end
+    pdf.fill_color colors[:black]
+  end
 
   pdf.move_down(10)
+
 end
 
 ##

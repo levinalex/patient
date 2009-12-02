@@ -31,10 +31,13 @@
         <% end %>
       <% end %>
     </table>
-    <br /><em>Notes:</em><br />
-    Notes here...
-    <%= a.text_area :notes, :rows => 3 %><br/>
-    <br />
+    <% a.fields_for :notes do |note_form| %>
+      <% if note_form.object.department.name == department %>
+        <br /><em><%= t('.notes') %></em><br />
+        <%= note_form.text_area :content, :rows => 3 %><br/><br />
+        <%= hidden_field_tag 'department_id', Department.find_by_name(department).id %>
+      <% end %>
+    <% end %>
   <% end %>
   <div class="buttonbar">
     <%= a.submit t('.submit') %> <%= t('.or') %> <%= link_to t('.cancel'), accession_path(@accession) %>
