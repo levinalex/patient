@@ -218,7 +218,7 @@ pdf.move_down(25)
   
   if @accession.department_notes(Department.find_by_name(department).id)
     pdf.move_down(5)
-    pdf.indent(50) do
+    pdf.indent(45) do
       pdf.fill_color colors[:abnormal_value]
       pdf.text "#{t('.notes')} #{@accession.department_notes(Department.find_by_name(department).id).content}", :style => :bold_italic
     end
