@@ -5,7 +5,7 @@
     <h3><%=h department %></h3>
     <% for lab_test in lab_tests %>
       <% content_tag_for :li, lab_test do %>
-        <span class="handle">[drag]</span>
+        <div class="handle">[drag]</div>
         <%=h lab_test.code %>
         <%=h lab_test.name %>
         <%=h lab_test.procedure %>

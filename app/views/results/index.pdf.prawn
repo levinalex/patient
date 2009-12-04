@@ -196,7 +196,7 @@ pdf.move_down(25)
         Prawn::Table::Cell.new( :text => result.units, :borders => [:bottom], :horizontal_padding => 5 ),
         Prawn::Table::Cell.new( :text => result.flag, :borders => [:bottom], :font_style => :bold, :text_color => colors[:"#{result.flag_color}"] ),
         Prawn::Table::Cell.new( :text => result.range_min, :borders => [:bottom] ),
-        Prawn::Table::Cell.new( :text => result.range_interval_symbol, :borders => [:bottom] ),
+        Prawn::Table::Cell.new( :text => result.range_interval_symbol, :borders => [:bottom], :horizontal_padding => 0 ),
         Prawn::Table::Cell.new( :text => result.range_max, :borders => [:bottom] )
       ]
     end

@@ -48,12 +48,11 @@ class Admin::LabTestsController < Admin::ApplicationController
     end
     render :nothing => true
   end
-  
-=begin
+ 
   def sort
-    order = params[:lab_test]
-    LabTest.order(order)
-    render :lab_test => order.inspect
+    params[:lab_test].each_with_index do |id, index|
+      LabTest.update_all(['position=?', index+1], ['id=?', id])
+    end
+    render :nothing => true
   end
-=end
 end

@@ -18,13 +18,4 @@ class LabTest < ActiveRecord::Base
   def department_name
     department.name
   end
-  
-  # FIND_IN_SET nonexistent in sqlite3
-  
-  def self.order(ids)
-    update_all(
-      ['ordinal = FIND_IN_SET(id, ?)', ids.join(',')],
-      { :id => ids }
-    )
-  end
 end

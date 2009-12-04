@@ -332,10 +332,11 @@ table {
     clear: both;
     background-color: #e5e5e5; }
 
-span.handle {
+.handle {
   font-size: 12px;
   cursor: move;
-  color: #777; }
+  color: #777;
+  display: inline; }
 
 .standalone {
   background: whitesmoke;

@@ -4,7 +4,9 @@ $(function() {
 	$("#departments").tabs();
 	$("#order_tests").tabs();
 	var $tabs = $('#lab_tests').tabs(), $panels = $('.ui-tabs-panel');
-  $("#sortable_lab_tests").sortable();
+  $(".lab_tests").sortable({handle: '.handle', axis: 'y', update: function() {
+                           $.post('/admin/lab_tests/sort', '_method=put&authenticity_token='+AUTH_TOKEN+'&'+$(this).sortable('serialize'))
+                           }}).disableSelection();
   $("li.contact").live("mouseover", function () {
                         $(this).css({
                                     'background' : 'seashell'
