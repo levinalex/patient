@@ -74,6 +74,10 @@ class AccessionsController < ApplicationController
     @accession = Accession.find(params[:id])
     @recent = Patient.recent
     @patient = @accession.patient
+    @accession.lab_tests.group_by(&:department_name).each do |department, lab_tests|
+      # Missing per department blank validation. It will only check first
+        @accession.notes.build(:department_id => Department.find_by_name(department).id)
+    end
   end
   
   def report

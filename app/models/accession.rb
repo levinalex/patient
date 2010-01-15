@@ -11,7 +11,7 @@ class Accession < ActiveRecord::Base
   
   accepts_nested_attributes_for :results, :allow_destroy => true
   accepts_nested_attributes_for :accession_panels, :allow_destroy => true
-  accepts_nested_attributes_for :notes, :allow_destroy => true
+  accepts_nested_attributes_for :notes, :allow_destroy => true, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
   
   validates_presence_of :patient_id
   validates_associated :results
@@ -60,7 +60,7 @@ class Accession < ActiveRecord::Base
   def department_notes(department)
     notes.find_by_department_id(department) if notes
   end
-  
+
   def order_list
     list = []
     panel_list = []

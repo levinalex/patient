@@ -33,3 +33,17 @@
     <%= link_to "Report", report_accession_path(@accession), :method => :put unless @accession.reported_at %>
   </p>  
 <% end %>
+
+        <%= hidden_field_tag 'department_id', Department.find_by_name(department).id %>
+
+
+
+    <% a.object.notes.group_by(&:department_name).each do |note_department, notes| %>
+      <% notes.each do |note| %>
+        <% fields_for "accession[note_attributes][]", note do |n| %>
+          <%= n.text_area :content, :rows => 3 if note_department == department %>
+          <%= hidden_field_tag 'department_id', Department.find_by_name(department).id %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <!-- Notes should be created when creating the accession -->

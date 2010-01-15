@@ -78,7 +78,7 @@ class Patient < ActiveRecord::Base
   def titleize_names
     self.given_name = given_name.titleize if given_name
     self.middle_name = middle_name.titleize if middle_name
-    self.family_name = family_name.titleize if family_name
-    self.family_name2 = family_name2.titleize if family_name2
+    #self.family_name = family_name.titleize if family_name
+    #self.family_name2 = family_name2.titleize if family_name2
   end
 end

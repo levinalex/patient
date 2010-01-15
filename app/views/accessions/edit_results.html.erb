@@ -6,7 +6,7 @@
   <% a.object.results.group_by(&:department_name).each do |department, results| %>
     <h2><%=h department %></h2>
     <table>
-      <% reset_cycle("alternating_row_colors") %>         
+      <% reset_cycle("alternating_row_colors") %>
       <% results.each do |result| %>
         <% fields_for "accession[result_attributes][]", result do |r| %>
           <tr class="<%= cycle("even", "odd", :name => "alternating_row_colors") %>">
@@ -35,7 +35,7 @@
       <% if note_form.object.department.name == department %>
         <br /><em><%= t('.notes') %></em><br />
         <%= note_form.text_area :content, :rows => 3 %><br/><br />
-        <%= hidden_field_tag 'department_id', Department.find_by_name(department).id %>
+        <%= note_form.hidden_field :department_id %>
       <% end %>
     <% end %>
   <% end %>
