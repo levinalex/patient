@@ -82,8 +82,20 @@ class AccessionsController < ApplicationController
   
   def report
     @accession = Accession.find(params[:id])
+    if validate_report
     @accession.update_attributes(:reported_by => current_user.id, :reported_at => Time.now)
     flash[:notice] = t('flash.accession.report')
     redirect_to accession_results_url(@accession, :format => 'pdf')
+    else
+      flash[:notice] = "Error!!!"
+      #render :action => 'edit'
+      redirect_to accession_url(@accession)
+    end
+  end
+  
+  private
+  
+  def validate_report
+    true
   end
 end
